@@ -1,10 +1,7 @@
 package Personnes;
 
-public class Passager {
-	private String prenom;
-	private String nom;
-	private DateNaissance dateNaissance;
-	private String nationalite;
+public class Passager extends Personne{
+	
 	private int numPasseport;
 	//add voyage souhaité (2 aéroports) --> faire les classes Vol et Avion
 	//add historique de leurs vols (liste aéroports departs et arrivées) --> classe Vol
