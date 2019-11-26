@@ -1,18 +1,21 @@
 package Avions;
 
-public class Avion {
-
-    private String modele;
-    private int personnesMax;
-    private int poidsMax;
-    private int carburantMax;
-    private int pilotesMin;
-
-    public Avion(String modele, int personnesMax, int poidsMax, int carburantMax, int pilotesMin){
+public abstract class Avion {
+	protected String modele;
+	protected int capacite;
+	protected double poidsBagageMax;
+	protected double volumeCarburant;
+	protected int NbPiloteMin;
+    
+    public Avion(String modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin){
         this.modele = modele;
-        this.personnesMax = personnesMax;
-        this.poidsMax = poidsMax;
-        this.carburantMax = carburantMax;
-        this.pilotesMin = pilotesMin;
+        this.capacite = capacite;
+        this.poidsBagageMax = poidsBagageMax;
+        this.volumeCarburant = volumeCarburant;
+        this.NbPiloteMin = NbPiloteMin;
     }
+
+	public String getModele() {
+		return modele;
+	}
 }

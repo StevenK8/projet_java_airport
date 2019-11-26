@@ -1,16 +1,39 @@
 package Avions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import CompagnieAerienne.Compagnie;
+import Personnes.Passager;
 
 public class AvionLigne extends Avion{
-
-    private Compagnie compagnie;
-    private int personnelMin;
-
-    public AvionLigne(String modele, int personnesMax, int poidsMax, int carburantMax, int pilotesMin, Compagnie compagnie, int personnelMin){
-        super(modele, personnesMax, poidsMax, carburantMax, pilotesMin);
-        this.compagnie = compagnie;
-        this.personnelMin = personnelMin;
-    }
-    
+	private Compagnie compagnieProprietaire;
+	private int nbPersonnelsMin;
+	private List<Passager> listPassagers;
+	
+	public AvionLigne(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin, Compagnie c, int nbPersonnel) {
+        super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin);
+		compagnieProprietaire = c;
+		nbPersonnelsMin = nbPersonnel;
+		listPassagers = new ArrayList<Passager>();
+	}
+	
+	public List<Passager> getListPassagers(){
+		return listPassagers;
+	}
+	
+	public void addPassager(Passager passager) {
+		if(listPassagers.size() < capacite) {
+			listPassagers.add(passager);
+		}
+		else {
+			System.out.println("Plus de places dans cet avion !");
+		}
+	}
+	public void removePassager(Passager passager) {
+		listPassagers.remove(passager);
+	}
+	public void clearAvion() {
+		listPassagers.clear();
+	}
 }
