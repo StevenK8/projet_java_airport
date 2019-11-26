@@ -2,11 +2,11 @@ package Personnes;
 
 public class Diplomate extends Passager{
 
-	private boolean accesCode; //si faux --> informations perso anonymisées
+	private boolean accesCode; //si faux --> informations perso anonymisÃ©es
 	
 	public Diplomate(String prenom, String nom, DateNaissance dateNaissance, String nationalite, int numPasseport) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport);
-		accesCode = true; //peut être à enlever plus tard ?
+		accesCode = true; //peut Ãªtre Ã  enlever plus tard ?
 	}
 	
 	public boolean getBooleanAccesCode() {

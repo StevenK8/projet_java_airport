@@ -1,20 +1,14 @@
 package Personnes;
 
-public class Passager {
-	private String prenom;
-	private String nom;
-	private DateNaissance dateNaissance;
-	private String nationalite;
-	private int numPasseport;
-	//add voyage souhaité (2 aéroports) --> faire les classes Vol et Avion
-	//add historique de leurs vols (liste aéroports departs et arrivées) --> classe Vol
+public class Passager extends Personne{
+	
+	private int numPasseport;//Ã‰tat correspondant au passeport? -> classe passeport
+	//add voyage souhaitï¿½ (2 aï¿½roports) --> faire les classes Vol et Avion
+	//add historique de leurs vols (liste aï¿½roports departs et arrivï¿½es) --> classe Vol
 	
 	//constructeur temporaire
 	public Passager(String prenom, String nom, DateNaissance dateNaissance, String nationalite, int numPasseport) {
-		this.prenom = prenom;
-		this.nom = nom;
-		this.dateNaissance = dateNaissance;
-		this.nationalite = nationalite;
+		super(prenom, nom, dateNaissance, nationalite);
 		this.numPasseport = numPasseport;
 	}
 
