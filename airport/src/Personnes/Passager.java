@@ -17,6 +17,7 @@ public class Passager {
 		this.nationalite = nationalite;
 		this.numPasseport = numPasseport;
 	}
+
 	
 	
 }
