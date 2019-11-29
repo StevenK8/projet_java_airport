@@ -14,7 +14,7 @@ public class Personne {
 	}
 	
 	public String toString() {
-		return prenom + " " + nom + "originaire de " + nationalite;
+		return prenom + " " + nom + " originaire de " + nationalite;
 	}
 	
 }

@@ -6,7 +6,7 @@ public class Diplomate extends Passager{
 	
 	public Diplomate(String prenom, String nom, DateNaissance dateNaissance, String nationalite, int numPasseport) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport);
-		accesCode = true; //peut être à enlever plus tard ?
+		accesCode = true; //peut etre a enlever plus tard ?
 	}
 	
 	public boolean getBooleanAccesCode() {

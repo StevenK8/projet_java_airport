@@ -18,4 +18,16 @@ public abstract class Avion {
 	public String getModele() {
 		return modele;
 	}
+	public int getCapacite() {
+		return capacite;
+	}
+	public double getPoidsBagageMax() {
+		return poidsBagageMax;
+	}
+	public double getVolumeCarburant() {
+		return volumeCarburant;
+	}
+	public int getNbPiloteMin() {
+		return NbPiloteMin;
+	}
 }

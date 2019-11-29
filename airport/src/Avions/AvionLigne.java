@@ -23,8 +23,9 @@ public class AvionLigne extends Avion{
 	}
 	
 	public void addPassager(Passager passager) {
-		if(listPassagers.size() < capacite) {
+		if(listPassagers.size() < capacite && !passager.estEnVol()) {
 			listPassagers.add(passager);
+			passager.setEstEnVol(true);
 		}
 		else {
 			System.out.println("Plus de places dans cet avion !");
@@ -32,14 +33,22 @@ public class AvionLigne extends Avion{
 	}
 	public void removePassager(Passager passager) {
 		listPassagers.remove(passager);
+		passager.setEstEnVol(false);
 	}
 	public void clearAvion() {
+		listPassagers.forEach(passager ->{
+			passager.setEstEnVol(false);
+		});
 		listPassagers.clear();
+	}
+	
+	public boolean peutDecoller() {
+		return this.capacite == listPassagers.size();
 	}
 	
 	public String toString() {
     	StringBuilder res = new StringBuilder();
-    	res.append("Avion diplomatique : " + modele + "\n");
+    	res.append("Avion de ligne : " + modele + "\n");
     	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
     	res.append("proprietaire : " + compagnieProprietaire + "\n");
     	return res.toString();
