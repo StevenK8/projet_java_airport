@@ -13,4 +13,8 @@ public class Personne {
         this.nationalite = nationalite;
 	}
 	
+	public String toString() {
+		return prenom + " " + nom + "originaire de " + nationalite;
+	}
+	
 }

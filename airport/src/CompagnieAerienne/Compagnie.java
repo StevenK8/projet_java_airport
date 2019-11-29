@@ -69,4 +69,8 @@ public class Compagnie {
 	public void setNationalite(String newNationalite) {
 		nationalite = newNationalite;
 	}
+	
+	public String toString() {
+		return nomCommercial + " " + nationalite;
+	}
 }

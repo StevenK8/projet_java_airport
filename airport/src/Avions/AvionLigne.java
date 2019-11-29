@@ -36,4 +36,12 @@ public class AvionLigne extends Avion{
 	public void clearAvion() {
 		listPassagers.clear();
 	}
+	
+	public String toString() {
+    	StringBuilder res = new StringBuilder();
+    	res.append("Avion diplomatique : " + modele + "\n");
+    	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
+    	res.append("proprietaire : " + compagnieProprietaire + "\n");
+    	return res.toString();
+    }
 }
