@@ -23,14 +23,14 @@ public class Main {
 		
 		AvionLigne avionLigne1 = new AvionLigne("airbus a320", 8, 12000.0, 10000.0, 2, airFrance, 2);
 		
-		Passager p1 = new Passager("passager","1", date, "maroc", 12);
-		Passager p2 = new Passager("passager","2", date, "tunisie", 12);
-		Passager p3 = new Passager("passager","3", date, "allemagne", 12);
-		Passager p4 = new Passager("passager","4", date, "france", 12);
-		Passager p5 = new Pilote("pilote","1", date, "france", 12);//2 pilotes min
-		Passager p6 = new Pilote("pilote","2", date, "france", 12);
-		Passager p7 = new Personnel("personnel","1", date, "france", 12);//2 personnels min
-		Passager p8 = new Personnel("personnel","2", date, "france", 12);
+		Passager p1 = new Passager("passager","1", date, "Maroc", 12);
+		Passager p2 = new Passager("passager","2", date, "Tunisie", 12);
+		Passager p3 = new Passager("passager","3", date, "Allemagne", 12);
+		Passager p4 = new Passager("passager","4", date, "France", 12);
+		Passager p5 = new Pilote("pilote","1", date, "France", 12,6);//2 pilotes min
+		Passager p6 = new Pilote("pilote","2", date, "France", 12,5);
+		Passager p7 = new Personnel("personnel","1", date, "France", 12);//2 personnels min
+		Passager p8 = new Personnel("personnel","2", date, "France", 12);
 		
 		avionLigne1.addPersonne(p1);//8 passagers max
 		avionLigne1.addPersonne(p2);

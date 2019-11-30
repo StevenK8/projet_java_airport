@@ -29,17 +29,29 @@ public abstract class Avion {
 	
 	public void addPersonne(Passager passager) {
 		if(listPassagers.size() < capacite && !passager.estEnVol()) {
-			listPassagers.add(passager);
-			passager.setEstEnVol(true);
+			if(passager instanceof Pilote){
+				Pilote pilote = (Pilote)passager;
+				if(!pilote.estQualifié(this)){
+					System.out.println(pilote.toString() + " n'est pas qualifié pour "+this.getNbPassagers()+" passagers");
+				}else{
+					listPassagers.add(passager);
+					passager.setEstEnVol(true);
+				}
+			}else{
+				listPassagers.add(passager);
+				passager.setEstEnVol(true);
+			}
 		}
 		else {
 			System.out.println("Plus de places dans cet avion !");
 		}
 	}
+
 	public void removePersonne(Passager passager) {
 		listPassagers.remove(passager);
 		passager.setEstEnVol(false);
 	}
+
 	public void clearAvion() {
 		listPassagers.forEach(passager ->{
 			passager.setEstEnVol(false);
@@ -59,11 +71,14 @@ public abstract class Avion {
 		}
 		return false;
 	}
-	
+
 	public boolean peutDecoller() {
-		return this.capacite == listPassagers.size() && aAssezDePilotes();
+		return this.capacite == getNbPassagers() && aAssezDePilotes();
 	}
 
+	public int getNbPassagers(){
+		return listPassagers.size();
+	}
 	public String getModele() {
 		return modele;
 	}
