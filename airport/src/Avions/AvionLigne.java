@@ -1,49 +1,36 @@
 package Avions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import CompagnieAerienne.Compagnie;
-import Personnes.Passager;
+import Personnes.Personne;
+import Personnes.Personnel;
 
 public class AvionLigne extends Avion{
 	private Compagnie compagnieProprietaire;
 	private int nbPersonnelsMin;
-	private List<Passager> listPassagers;
+
 	
 	public AvionLigne(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin, Compagnie c, int nbPersonnel) {
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin);
 		compagnieProprietaire = c;
 		nbPersonnelsMin = nbPersonnel;
-		listPassagers = new ArrayList<Passager>();
 	}
-	
-	public List<Passager> getListPassagers(){
-		return listPassagers;
-	}
-	
-	public void addPassager(Passager passager) {
-		if(listPassagers.size() < capacite && !passager.estEnVol()) {
-			listPassagers.add(passager);
-			passager.setEstEnVol(true);
+
+	//Vérifie si le personnel est suffisant
+	public boolean aAssezDePersonnel(){
+		int countPersonnel = 0;
+		for (Personne p:this.getlistPassagers()){
+			if(p instanceof Personnel){
+				countPersonnel++;
+			}
 		}
-		else {
-			System.out.println("Plus de places dans cet avion !");
+		if (countPersonnel >= nbPersonnelsMin){
+			return true;
 		}
+		return false;
 	}
-	public void removePassager(Passager passager) {
-		listPassagers.remove(passager);
-		passager.setEstEnVol(false);
-	}
-	public void clearAvion() {
-		listPassagers.forEach(passager ->{
-			passager.setEstEnVol(false);
-		});
-		listPassagers.clear();
-	}
-	
+
 	public boolean peutDecoller() {
-		return this.capacite == listPassagers.size();
+		return this.capacite == this.getlistPassagers().size() && aAssezDePersonnel() && aAssezDePilotes();
 	}
 	
 	public String toString() {
