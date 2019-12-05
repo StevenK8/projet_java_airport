@@ -69,15 +69,17 @@ public abstract class Avion {
 		}
 	}
 	
-	public void clearPassagerAvion() {
+	public void clearAvion() {
 		listOccupants.forEach(occupant ->{
 			if(occupant instanceof Passager) {
 				Passager p = (Passager) occupant;
 				p.setEstEnVol(false);
-				listOccupants.remove(p);
 			}
 		});
 		listPassagers.clear();
+		listOccupants.clear();
+		listPersonnels.clear();
+		listPilotes.clear();
 	}
 
 	public boolean aAssezDePilotes(){
