@@ -14,23 +14,9 @@ public class AvionLigne extends Avion{
 		compagnieProprietaire = c;
 		nbPersonnelsMin = nbPersonnel;
 	}
-
-	//Vérifie si le personnel est suffisant
-	public boolean aAssezDePersonnel(){
-		int countPersonnel = 0;
-		for (Personne p:this.getlistPassagers()){
-			if(p instanceof Personnel){
-				countPersonnel++;
-			}
-		}
-		if (countPersonnel >= nbPersonnelsMin){
-			return true;
-		}
-		return false;
-	}
-
+	
 	public boolean peutDecoller() {
-		return this.capacite == this.getlistPassagers().size() && aAssezDePersonnel() && aAssezDePilotes();
+		return (listPersonnels.size() >= nbPersonnelsMin && super.peutDecoller());
 	}
 	
 	public String toString() {
