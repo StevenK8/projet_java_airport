@@ -32,17 +32,18 @@ public class Piste {
     	if(this.onlyDecollage) {
     		if(vol.getAvion().peutDecoller()) {
     			System.out.println(vol.toString() + " decolle");
+    			vol.getAvion().setEstEnVol(true);
     			fileAttente.remove();
     		}
     		else {
     			System.out.println(vol.toString() + " ne peut pas décoller car il manque des pilotes");
     		}
-    		
     	}
     	else {
     		System.out.println(vol.toString() + " atterit");
+    		vol.getAvion().setEstEnVol(false);
+    		fileAttente.remove();
     	}
     	return vol;
     }
-    
 }

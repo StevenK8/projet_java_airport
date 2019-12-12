@@ -18,7 +18,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		long temps = System.currentTimeMillis();
-		int intervalleEnSecondes = 2;
+		int intervalleEnSecondes = 2;							
 		
 		DateNaissance date = new DateNaissance(1, 1, 1);
 		Personne proprio = new Personne("prenom", "nom", date, "france");

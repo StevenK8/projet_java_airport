@@ -19,6 +19,8 @@ public abstract class Avion {
 	public List<Pilote> listPilotes;
 	public List<Personnel> listPersonnels;
 	public List<Personne> listOccupants; //nombre total de personnes dans l'avion (passagers + pilotes + personnels)
+	private boolean estEnVol = false;
+	
 	
     public Avion(String modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin){
         this.modele = modele;
@@ -107,7 +109,14 @@ public abstract class Avion {
 			return false;
 		}
 	}
-
+	
+	public boolean estEnVol() {
+		return estEnVol;
+	}
+	public void setEstEnVol(boolean modif) {
+		estEnVol = modif;
+	}
+	
 	public void removePassager(Passager passager) {
 		listPassagers.remove(passager);
 		listOccupants.remove(passager);
