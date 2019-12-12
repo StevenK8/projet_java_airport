@@ -16,7 +16,16 @@ public class AvionLigne extends Avion{
 	}
 	
 	public boolean peutDecoller() {
-		return (listPersonnels.size() >= nbPersonnelsMin && super.peutDecoller());
+		if(listPersonnels.size() >= nbPersonnelsMin) {
+			if(super.peutDecoller()) {
+				return true;
+			}
+			return false;
+		}
+		else {
+			System.out.println("pas assez de personnels dans " + this.getModele());
+			return false;
+		}
 	}
 	
 	public String toString() {

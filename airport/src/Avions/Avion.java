@@ -41,28 +41,31 @@ public abstract class Avion {
 	}
 	
 	public void addPersonne(Personne p) {
-		if(listOccupants.size() < capacite) {
-			if(p instanceof Passager) {
+		if(listPassagers.size() < capacite) {
+			if(p instanceof Personnel) {
+				Personnel personnel = (Personnel) p;
+				listPersonnels.add(personnel);
+				listOccupants.add(p);
+				System.out.println("personnel : " + personnel.toString() + " entre dans l'avion");
+			}
+			else if(p instanceof Pilote) {
+				Pilote pilote = (Pilote) p;
+				listPilotes.add(pilote);
+				listOccupants.add(pilote);
+				System.out.println("pilote : " + pilote.toString() + " entre dans l'avion");
+			}
+			else if(p instanceof Passager) {
 				Passager passager = (Passager) p;
 				if(!passager.estEnVol()) {
 					listPassagers.add(passager);
 					listOccupants.add(passager);
 					passager.setEstEnVol(true);
+					System.out.println("passager : " + passager.toString() + " entre dans l'avion");
 				}
 				else {
 					System.out.println("Le passager que vous tentez d'ajouter est déjà en vol !");
 				}
 			}			
-			if(p instanceof Personnel) {
-				Personnel personnel = (Personnel) p;
-				listPersonnels.add(personnel);
-				listOccupants.add(p);
-			}
-			if(p instanceof Pilote) {
-				Pilote pilote = (Pilote) p;
-				listPilotes.add(pilote);
-				listOccupants.add(pilote);
-			}
 		}
 		else {
 			System.out.println("Plus de places dans cet avion !");
@@ -90,13 +93,26 @@ public abstract class Avion {
 	}
 
 	public boolean peutDecoller() {
-		return this.capacite == getNbPassagers() && aAssezDePilotes();
+		if(listPassagers.size() == getNbPassagers()) {
+			if(aAssezDePilotes()) {
+				return true;
+			}
+			else {
+				System.out.println("Pas assez de pilotes dans " + this.getModele());
+				return false;
+			}
+		}
+		else {
+			System.out.println("Pas assez de passagers dans " + this.getModele());
+			return false;
+		}
 	}
 
 	public void removePassager(Passager passager) {
 		listPassagers.remove(passager);
 		listOccupants.remove(passager);
 		passager.setEstEnVol(false);
+		System.out.println("passager : " + passager.toString() + " sort de l'avion");
 	}
 	
 	public int getNbPassagers(){

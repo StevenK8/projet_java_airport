@@ -18,4 +18,12 @@ public class Vol {
     	depart = chDepart;
     	destination = chDestination;
     }
+    
+    public Avion getAvion() {
+    	return avion;
+    }
+    
+    public String toString() {
+    	return avion.getModele().toString() + " " + depart + " - " + destination;
+    }
 }
