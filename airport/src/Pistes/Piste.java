@@ -36,12 +36,13 @@ public class Piste {
     			fileAttente.remove();
     		}
     		else {
-    			System.out.println(vol.toString() + " ne peut pas d�coller car il manque des pilotes");
+    			System.out.println(vol.toString() + " ne peut pas décoller car il manque des pilotes");
     		}
     	}
     	else {
     		System.out.println(vol.toString() + " atterit");
-    		vol.getAvion().setEstEnVol(false);
+			vol.getAvion().setEstEnVol(false);
+			vol.getAvion().clearPassagers(); // L’ensemble de leurs passagers evacuent aussitôt l’aéroport, alors que les pilotes de compagnies aériennes demeurent dans l’aéroport.
     		fileAttente.remove();
     	}
     	return vol;

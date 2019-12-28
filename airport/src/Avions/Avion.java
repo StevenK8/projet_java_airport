@@ -65,7 +65,7 @@ public abstract class Avion {
 					System.out.println("passager : " + passager.toString() + " entre dans l'avion");
 				}
 				else {
-					System.out.println("Le passager que vous tentez d'ajouter est déjà en vol !");
+					System.out.println("Le passager que vous tentez d'ajouter est dï¿½jï¿½ en vol !");
 				}
 			}			
 		}
@@ -85,6 +85,19 @@ public abstract class Avion {
 		listOccupants.clear();
 		listPersonnels.clear();
 		listPilotes.clear();
+	}
+
+	public void clearPassagers() {
+		listOccupants.forEach(occupant ->{
+			if(occupant instanceof Passager) {
+				Passager p = (Passager) occupant;
+				p.setEstEnVol(false);
+			}
+		});
+		listPassagers.clear();
+		listOccupants.clear();
+		listPersonnels.clear();
+		listPassagers = (List<Passager>)(Object)listPilotes;
 	}
 
 	public boolean aAssezDePilotes(){

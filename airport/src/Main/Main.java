@@ -64,16 +64,24 @@ public class Main {
 		
 		Vol vol1 = new Vol(avionLigne1, "Brasilia", "Paris");
 		Vol vol2 = new Vol(avionLigne2, "Toulouse", "Paris");
+		Vol vol3 = new Vol(avionLigne2, "Paris", "Toulouse");
 		
 		Piste pisteDecollage = new Piste(true);
 		Piste pisteAtterissage = new Piste(false);
 		pisteDecollage.addToQueue(vol1);
 		pisteDecollage.addToQueue(vol2);
+		pisteAtterissage.addToQueue(vol3);
 		
-		//faire décoller avec 2 secondes d'intervalle
+		//faire dï¿½coller avec 2 secondes d'intervalle
 		while(pisteDecollage.getQueue().size() > 0) {
 			if(temps + 1000 * intervalleEnSecondes < System.currentTimeMillis()) {
 				pisteDecollage.acceptFlight();
+				temps = System.currentTimeMillis();
+			}
+		}
+		while(pisteAtterissage.getQueue().size() > 0) {
+			if(temps + 1000 * intervalleEnSecondes < System.currentTimeMillis()) {
+				pisteAtterissage.acceptFlight();
 				temps = System.currentTimeMillis();
 			}
 		}
