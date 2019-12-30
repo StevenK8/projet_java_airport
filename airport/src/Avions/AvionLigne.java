@@ -1,8 +1,6 @@
 package Avions;
 
 import CompagnieAerienne.Compagnie;
-import Personnes.Personne;
-import Personnes.Personnel;
 
 public class AvionLigne extends Avion{
 	private Compagnie compagnieProprietaire;
@@ -36,9 +34,7 @@ public class AvionLigne extends Avion{
     	return res.toString();
     }
 
-	@Override
 	public int getPriorite() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 }

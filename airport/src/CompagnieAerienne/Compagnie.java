@@ -27,7 +27,7 @@ public class Compagnie {
 			flotte.add((AvionLigne)avion);
 		}
 		else {
-			System.out.println("L'avion ne peut pas être ajouté dans la flotte car ce n'est pas un avion de ligne\n");
+			System.out.println("L'avion ne peut pas Ãªtre ajoutÃ© dans la flotte car ce n'est pas un avion de ligne\n");
 		}
 	}
 	
