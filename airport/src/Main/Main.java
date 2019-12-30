@@ -1,6 +1,7 @@
 package Main;
 
 import Avions.AvionLigne;
+import Avions.AvionPrive;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
 import Vols.Vol;
@@ -17,9 +18,10 @@ public class Main {
 		
 		//Creation dun avion de ligne
 		AvionLigne avionLigne1 = aeroport.getListAvionsLignes().get(0);
-		AvionLigne avionLigne2 = aeroport.getListAvionsLignes().get(2);
+		AvionPrive avionPrive1 = aeroport.getListAvionsPrives().get(0);
 		
 		aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
-		
+		aeroport.preparationAvionPrive(avionPrive1, pisteDecollage);
+	
 	}
 }

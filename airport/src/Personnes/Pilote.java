@@ -6,8 +6,8 @@ public class Pilote extends Passager{
 
 	//Travaille pour une compagnie, un etat ou a titre privee
 	private String employeur;  //proprietaire donc avion privee
-	private Compagnie compagnie;
-	private Pays pays;
+	private Compagnie compagnie; //avion de ligne
+	private Pays pays; //avion diplo
 	private int intervallePilote; //intervalle entre 2 vols
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {

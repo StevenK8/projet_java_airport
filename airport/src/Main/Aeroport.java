@@ -80,7 +80,7 @@ public class Aeroport {
 		listCompagnies.add(airAustralia);
 		
 		//AvionPrive
-		AvionPrive avionprive1 = new AvionPrive("airbus a380", 1, 12000.0, 100.0, 2, proprio1);
+		AvionPrive avionprive1 = new AvionPrive("airbus a380", 4, 12000.0, 100.0, 1, proprio1);
 		AvionPrive avionprive2 = new AvionPrive("airbus a370", 2, 12000.0, 1000.0, 2, proprio2);
 		AvionPrive avionprive3 = new AvionPrive("airbus a360", 3, 12000.0, 1000.0, 2, proprio3);
 		AvionPrive avionprive4 = new AvionPrive("airbus a350", 4, 12000.0, 10000.0, 2, proprio4);
@@ -273,6 +273,18 @@ public class Aeroport {
 		}
 	}
 	
+	protected void preparationAvionPrive(AvionPrive avion, PisteDecollage piste) {
+		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
+			if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
+				if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
+					avion.remplissageAvion(this);
+					Vol vol = new Vol(avion, "Paris", "Marseille");
+					piste.addToQueue(vol);
+				}
+			}
+		}
+	}
+	
 	public int getPassagersDansAeroport() {
 		int res = 0;
 		for(Passager p : listVoyageurs) {
@@ -319,6 +331,20 @@ public class Aeroport {
 		for(Personnel p : listPersonnels) {
 			if (!p.estEnVol() && p.getCompagnie() == c) {
 				res += 1;
+			}
+		}
+		return res;
+	}
+	
+	//Pour avion prive
+	public int getPilotesDansAeroport(String idProprio) {
+		int res = 0;
+		for(Pilote p : listPilotes) {
+			if (!p.estEnVol() && p.getEmployeur() != null) {
+				if(p.getEmployeur().equals(idProprio)) {
+					//idProprio doit etre egale au nom+prenom du proprietaire de l'avion
+					res += 1;
+				}
 			}
 		}
 		return res;
