@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Avions.AvionLigne;
+import Personnes.Pays;
 import Personnes.Personnel;
 import Personnes.Pilote;
 
 public class Compagnie {
 	private String nomCommercial;
-	private String nationalite;
+	private Pays nationalite;
 	private List<AvionLigne> flotte;
 	private List<Pilote> pilotes;
 	private List<Personnel> personnelsNavigants;
 	
-	public Compagnie(String nomCommercial, String nationalite) {
+	public Compagnie(String nomCommercial, Pays nationalite) {
 		this.nomCommercial = nomCommercial;
 		this.nationalite = nationalite;
 		flotte = new ArrayList<>();
@@ -64,10 +65,6 @@ public class Compagnie {
 	
 	public void setNomCommercial(String newName) {
 		nomCommercial = newName;
-	}
-	
-	public void setNationalite(String newNationalite) {
-		nationalite = newNationalite;
 	}
 	
 	public String toString() {

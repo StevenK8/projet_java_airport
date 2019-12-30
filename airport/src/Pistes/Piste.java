@@ -1,10 +1,6 @@
 package Pistes;
 
 import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-
-import javax.swing.Box.Filler;
 
 import Vols.Vol;
 
@@ -23,7 +19,7 @@ public abstract class Piste {
 		System.out.println("[");
 		int num = 1;
     	for (Vol v : fileAttente) {
-			System.out.println("N°"+num+" :\t"+v.toString());
+			System.out.println("Position "+num+" :\t"+v.toString());
 			num++;
 		}
 		System.out.println("]\n");

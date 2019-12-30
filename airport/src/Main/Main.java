@@ -1,28 +1,14 @@
 package Main;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.text.html.ListView;
-
-import Avions.Avion;
-import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
-import Avions.AvionPrive;
-import CompagnieAerienne.Compagnie;
-import Personnes.DateNaissance;
-import Personnes.Passager;
-import Personnes.Personne;
-import Personnes.Personnel;
-import Personnes.Pilote;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
 import Vols.Vol;
 
 public class Main {
 	
-	public static void main(String[] args) {				
-		//Cration de laeroport
+	public static void main(String[] args) {	
+		//Creation de laeroport
 		Aeroport aeroport = new Aeroport();
 		
 		//Ouverture des pistes
@@ -31,18 +17,9 @@ public class Main {
 		
 		//Creation dun avion de ligne
 		AvionLigne avionLigne1 = aeroport.getListAvionsLignes().get(0);
-		AvionLigne avionLigne2 = aeroport.getListAvionsLignes().get(1);
+		AvionLigne avionLigne2 = aeroport.getListAvionsLignes().get(2);
 		
-		//Creation dun vol
-		Vol vol = new Vol(avionLigne1, "Paris", "Marseille");
+		aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
 		
-		//Remplissage dun avion de ligne (avec les bons nb de passagers,pilotes et personnels)
-		avionLigne1.remplissageAvion(aeroport);
-		avionLigne2.remplissageAvion(aeroport);
-		
-		System.out.println(avionLigne1.getListOccupants());
-		System.out.println(avionLigne2.getListOccupants());
-		
-		//pisteAtterissage.addToQueue(vol);
 	}
 }

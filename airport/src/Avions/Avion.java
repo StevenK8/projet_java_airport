@@ -50,14 +50,6 @@ public abstract class Avion {
 		}
 		System.out.println(this);
     }
-    
-    public List<Personne> getListOccupants(){
-    	return listOccupants;
-    }
-    
-	public List<Passager> getlistPassagers(){
-		return listPassagers;
-	}
 	
 	public void addPersonne(Personne p) {
 		if(!p.estEnVol()) {
@@ -87,21 +79,8 @@ public abstract class Avion {
 			}
 		}
 		else {
-			System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
+			//System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
 		}
-	}
-	
-	public void clearAvion() {
-		listOccupants.forEach(occupant ->{
-			if(occupant instanceof Passager) {
-				Passager p = (Passager) occupant;
-				p.setEstEnVol(false);
-			}
-		});
-		listPassagers.clear();
-		listOccupants.clear();
-		listPersonnels.clear();
-		listPilotes.clear();
 	}
 
 	public void clearPassagers() {
@@ -114,11 +93,12 @@ public abstract class Avion {
 		listPassagers.clear();
 		listOccupants.clear();
 		listPersonnels.clear();
-		for (Pilote pilote : listPilotes){
-			if(pilote.getCompagnie()!=null){ // Les pilotes de compagnies aériennes demeurent dans l’aéroport.
+		listPilotes.clear();
+		/*for (Pilote pilote : listPilotes){
+			if(pilote.getCompagnie()!=null){ // Les pilotes de compagnies aeriennes demeurent dans laeroport.
 				listPassagers.add(pilote);
 			}
-		}
+		}*/
 	}
 
 	public boolean aAssezDePilotes(){
@@ -127,22 +107,22 @@ public abstract class Avion {
 		}
 		return false;
 	}
-
-	public  boolean peutDecoller() {
-		if(listPassagers.size() == getNbPassagers()) {
-			if(aAssezDePilotes()) {
-				return true;
-			}
-			else {
-				System.out.println("Pas assez de pilotes dans " + this.getModele());
-				return false;
-			}
+	
+	public boolean aAssezDePersonnels(){
+		if (listPersonnels.size() >= nbPersonnelMin){
+			return true;
 		}
-		else {
-			System.out.println("Pas assez de passagers dans " + this.getModele());
-			return false;
-		}
+		return false;
 	}
+	
+	public boolean avionRempli(){
+		if (listPassagers.size() == capacite){
+			return true;
+		}
+		return false;
+	}
+
+	public abstract boolean peutDecoller();
 	
 	public boolean estEnVol() {
 		return estEnVol;
@@ -156,6 +136,22 @@ public abstract class Avion {
 		listOccupants.remove(passager);
 		passager.setEstEnVol(false);
 		System.out.println("passager : " + passager.toString() + " sort de " + this.getModele());
+	}
+	
+	
+    public List<Personne> getListOccupants(){
+    	return listOccupants;
+    }
+    
+	public List<Passager> getlistPassagers(){
+		return listPassagers;
+	}
+	public List<Pilote> getListPilotes(){
+    	return listPilotes;
+    }
+    
+	public List<Personnel> getlistPersonnels(){
+		return listPersonnels;
 	}
 	
 	public int getNbPassagers(){
@@ -175,6 +171,9 @@ public abstract class Avion {
 	}
 	public int getNbPiloteMin() {
 		return NbPiloteMin;
+	}
+	public int getNbPersonnelsMin() {
+		return nbPersonnelMin;
 	}
 	public abstract int getPriorite();
 }

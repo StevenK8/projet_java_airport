@@ -14,11 +14,20 @@ public class AvionLigne extends Avion{
 	}
 	
 	public boolean peutDecoller() {
-		if(listPersonnels.size() >= this.nbPersonnelMin) {
-			if(super.peutDecoller()) {
-				return true;
+		if(super.aAssezDePersonnels()) {
+			if(super.avionRempli()) {
+				if(super.aAssezDePilotes()) {
+					return true;
+				}
+				else {
+					System.out.println("Pas assez de pilotes dans " + this.getModele());
+					return false;
+				}
 			}
-			return false;
+			else {
+				System.out.println("Pas assez de passagers dans " + this.getModele());
+				return false;
+			}
 		}
 		else {
 			System.out.println("pas assez de personnels dans " + this.getModele());

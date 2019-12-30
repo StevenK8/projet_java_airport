@@ -23,4 +23,21 @@ public class AvionPrive extends Avion{
 	public int getPriorite() {
 		return 2;
 	}
+
+	@Override
+	public boolean peutDecoller() {
+		if(listPassagers.size() == getNbPassagers()) {
+			if(aAssezDePilotes()) {
+				return true;
+			}
+			else {
+				System.out.println("Pas assez de pilotes dans " + this.getModele());
+				return false;
+			}
+		}
+		else {
+			System.out.println("Pas assez de passagers dans " + this.getModele());
+			return false;
+		}
+	}
 }

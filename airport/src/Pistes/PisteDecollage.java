@@ -14,16 +14,19 @@ public class PisteDecollage extends Piste{
 	@Override
 	public void addToQueue(Vol vol) {
 		//prendre en compte la priorite de l'avion pour son espacement
-		/*if(vol.getAvion().peutDecoller()) {
+		if(vol.getAvion().peutDecoller()) {
 			fileAttente.add(vol);
-	    	System.out.println(vol.toString() + " entre dans la liste d'attente de l'aeroport\n");	
-		}	*/
+	    	System.out.println(vol.toString() + " entre dans la liste d'attente pour decoller\n");	
+		}	
 	}
 	
-	public void DecollePiste() {
-		Vol vol =  fileAttente.get(0);
-		System.out.println(vol.toString() + " decolle");
-		vol.getAvion().setEstEnVol(true);
-		fileAttente.remove(0);
+	public void decollePiste() {
+		if (fileAttente.size() != 0) {
+			Vol vol =  fileAttente.get(0);
+			System.out.println(vol.toString() + " decolle");
+			vol.getAvion().setEstEnVol(true);
+			fileAttente.remove(0);
+		}
+		
 	}
 }

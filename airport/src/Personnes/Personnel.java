@@ -7,7 +7,7 @@ public class Personnel extends Passager{
 	//add champ Compagnie
 	private Compagnie compagnie;
 	
-	public Personnel(String prenom, String nom, DateNaissance dateNaissance, String nationalite, int numPasseport) {
+	public Personnel(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport);
 	}
 	
