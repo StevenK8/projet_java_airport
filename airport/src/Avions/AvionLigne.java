@@ -1,6 +1,10 @@
 package Avions;
 
 import CompagnieAerienne.Compagnie;
+import Main.Aeroport;
+import Personnes.Passager;
+import Personnes.Personnel;
+import Personnes.Pilote;
 
 public class AvionLigne extends Avion{
 	private Compagnie compagnieProprietaire;
@@ -11,6 +15,31 @@ public class AvionLigne extends Avion{
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,nbPersonnel);
 		compagnieProprietaire = c;
 		nbPersonnelsMin = nbPersonnel;
+	}
+	
+	public void remplissageAvion(Aeroport aeroport) {
+    	for (Passager p : aeroport.getListVoyageurs()) {
+			this.addPersonne(p);
+		}
+		for(Personnel p : aeroport.getListPersonnels()) {
+			this.addPersonnel(p);
+		}
+		for(Pilote p : aeroport.getListPilotes()) {
+			this.addPilote(p);
+		}
+		System.out.println(this);
+    }
+	
+	public void addPilote(Pilote p) {
+		if (p.getCompagnie() == compagnieProprietaire) {
+			super.addPersonne(p);
+		}
+	}
+	
+	public void addPersonnel(Personnel p) {
+		if (p.getCompagnie() == compagnieProprietaire) {
+			super.addPersonne(p);
+		}
 	}
 	
 	public boolean peutDecoller() {
@@ -44,7 +73,11 @@ public class AvionLigne extends Avion{
     	res.append("proprietaire : " + compagnieProprietaire + "\n");
     	return res.toString();
     }
-
+	
+	public Compagnie getCompagnie() {
+		return compagnieProprietaire;
+	}
+	
 	public int getPriorite() {
 		return 1;
 	}

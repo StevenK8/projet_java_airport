@@ -1,7 +1,10 @@
 package Avions;
 
+import Main.Aeroport;
 import Personnes.Diplomate;
 import Personnes.Passager;
+import Personnes.Personnel;
+import Personnes.Pilote;
 
 public class AvionDiplomatique extends Avion {
 
@@ -20,7 +23,20 @@ public class AvionDiplomatique extends Avion {
     	return res.toString();
     }
     
-    public void addPersonne(Passager p) {
+    public void remplissageAvion(Aeroport aeroport) {
+    	for (Passager p : aeroport.getListVoyageurs()) {
+			this.addPassager(p);
+		}
+		for(Personnel p : aeroport.getListPersonnels()) {
+			this.addPersonne(p);
+		}
+		for(Pilote p : aeroport.getListPilotes()) {
+			this.addPersonne(p);
+		}
+		System.out.println(this);
+    }
+    
+    public void addPassager(Passager p) {
     	if(p instanceof Diplomate) {
     		super.addPersonne(p);
     	}

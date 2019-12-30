@@ -23,13 +23,8 @@ public class Compagnie {
 		personnelsNavigants = new ArrayList<>();
 	}
 	
-	public void addAvionDansFlotte(Object avion) {
-		if(avion instanceof AvionLigne) {
-			flotte.add((AvionLigne)avion);
-		}
-		else {
-			System.out.println("L'avion ne peut pas être ajouté dans la flotte car ce n'est pas un avion de ligne\n");
-		}
+	public void addAvionDansFlotte(AvionLigne avion) {
+		flotte.add((AvionLigne)avion);
 	}
 	
 	public void removeAvion(AvionLigne avion) {

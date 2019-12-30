@@ -8,6 +8,7 @@ import Personnes.Pilote;
 import java.util.ArrayList;
 import java.util.List;
 
+import CompagnieAerienne.Compagnie;
 import Main.Aeroport;
 
 public abstract class Avion {
@@ -38,18 +39,7 @@ public abstract class Avion {
 		listOccupants = new ArrayList<Personne>();
 	}	
 	
-    public void remplissageAvion(Aeroport aeroport) {
-    	for (Passager p : aeroport.getListVoyageurs()) {
-			this.addPersonne(p);
-		}
-		for(Personnel p : aeroport.getListPersonnels()) {
-			this.addPersonne(p);
-		}
-		for(Pilote p : aeroport.getListPilotes()) {
-			this.addPersonne(p);
-		}
-		System.out.println(this);
-    }
+    public abstract void remplissageAvion(Aeroport aeroport);
 	
 	public void addPersonne(Personne p) {
 		if(!p.estEnVol()) {
@@ -94,11 +84,6 @@ public abstract class Avion {
 		listOccupants.clear();
 		listPersonnels.clear();
 		listPilotes.clear();
-		/*for (Pilote pilote : listPilotes){
-			if(pilote.getCompagnie()!=null){ // Les pilotes de compagnies aeriennes demeurent dans laeroport.
-				listPassagers.add(pilote);
-			}
-		}*/
 	}
 
 	public boolean aAssezDePilotes(){
