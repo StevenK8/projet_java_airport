@@ -1,6 +1,5 @@
 package Avions;
 
-import Personnes.Diplomate;
 import Personnes.Passager;
 import Personnes.Personne;
 import Personnes.Personnel;
@@ -98,7 +97,11 @@ public abstract class Avion {
 		listPassagers.clear();
 		listOccupants.clear();
 		listPersonnels.clear();
-		listPassagers = (List<Passager>)(Object)listPilotes;
+		for (Pilote pilote : listPilotes){
+			if(pilote.getCompagnie()!=null){ // Les pilotes de compagnies aériennes demeurent dans l’aéroport.
+				listPassagers.add(pilote);
+			}
+		}
 	}
 
 	public boolean aAssezDePilotes(){

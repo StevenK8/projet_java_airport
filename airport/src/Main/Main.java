@@ -11,14 +11,11 @@ import Avions.AvionLigne;
 import Avions.AvionPrive;
 import CompagnieAerienne.Compagnie;
 import Personnes.DateNaissance;
-import Personnes.Diplomate;
 import Personnes.Passager;
 import Personnes.Personne;
 import Personnes.Personnel;
 import Personnes.Pilote;
-import Pistes.Piste;
 import Pistes.PisteAtterissage;
-import Pistes.PisteDecollage;
 import Vols.Vol;
 
 public class Main {
@@ -26,6 +23,9 @@ public class Main {
 	public static void main(String[] args) {				
 		
 		Aeroport aeroport = new Aeroport();
+
+
+		DateNaissance date = new DateNaissance(1, 1, 1);
 		
 		AvionLigne avionLigne1 = aeroport.getListAvionsLignes().get(0);
 		

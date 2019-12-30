@@ -161,20 +161,20 @@ public class Aeroport {
 		listVoyageurs.add(p20);
 		
 		//Pilotes
-		Pilote pilote1 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote2 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote3 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote4 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote5 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote6 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote7 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote8 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote9 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote10 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote11 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote12 = new Pilote("pilote","2", date, "France", 12);
-		Pilote pilote13 = new Pilote("pilote","1", date, "France", 12);
-		Pilote pilote14 = new Pilote("pilote","2", date, "France", 12);
+		Pilote pilote1 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote2 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote3 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote4 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote5 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote6 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote7 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote8 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote9 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote10 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote11 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote12 = new Pilote("pilote","2", date, "France", 12,airFrance);
+		Pilote pilote13 = new Pilote("pilote","1", date, "France", 12,airFrance);
+		Pilote pilote14 = new Pilote("pilote","2", date, "France", 12,airFrance);
 		
 		listPilotes.add(pilote1);
 		listPilotes.add(pilote2);
