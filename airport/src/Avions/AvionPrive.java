@@ -6,8 +6,8 @@ import Personnes.Personne;
 public class AvionPrive extends Avion{
 	private Personne proprietaire;
 	
-	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin, Personne proprio) {
-        super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin);
+	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin,int personnelMin , Personne proprio) {
+        super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,personnelMin);
 		proprietaire = proprio;
 	}
 	

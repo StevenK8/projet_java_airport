@@ -14,6 +14,7 @@ public abstract class Avion {
 	protected double poidsBagageMax;
 	protected double volumeCarburant;
 	protected int NbPiloteMin;
+	protected int nbPersonnelMin;
 	protected int priorite;
 	public List<Passager> listPassagers;
 	public List<Pilote> listPilotes;
@@ -22,12 +23,13 @@ public abstract class Avion {
 	private boolean estEnVol = false;
 	
 	
-    public Avion(String modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin){
+    public Avion(String modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin, int nbPersonnelMin){
         this.modele = modele;
         this.capacite = capacite;
         this.poidsBagageMax = poidsBagageMax;
         this.volumeCarburant = volumeCarburant;
 		this.NbPiloteMin = NbPiloteMin;
+		this.nbPersonnelMin = nbPersonnelMin;
 		listPassagers = new ArrayList<Passager>();
 		listPilotes = new ArrayList<Pilote>();
 		listPersonnels = new ArrayList<Personnel>();
@@ -43,35 +45,33 @@ public abstract class Avion {
 	}
 	
 	public void addPersonne(Personne p) {
-		if(listPassagers.size() < capacite) {
-			if(p instanceof Personnel) {
-				Personnel personnel = (Personnel) p;
-				listPersonnels.add(personnel);
-				listOccupants.add(p);
-				//System.out.println("personnel : " + personnel.toString() + " entre dans " + this.getModele());
-			}
-			else if(p instanceof Pilote) {
-				Pilote pilote = (Pilote) p;
-				listPilotes.add(pilote);
-				listOccupants.add(pilote);
-				//System.out.println("pilote : " + pilote.toString() + " entre dans " + this.getModele());
-			}
-			else if(p instanceof Passager) {
-				Passager passager = (Passager) p;
+		if(p instanceof Passager) {
+			if(listPassagers.size() < capacite) {
+			Passager passager = (Passager) p;
 				if(!passager.estEnVol()) {
 					listPassagers.add(passager);
 					listOccupants.add(passager);
 					passager.setEstEnVol(true);
-					//System.out.println("passager : " + passager.toString() + " entre dans " + this.getModele());
 				}
 				else {
 					System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
 				}
 			}			
 		}
-		/*else {
-			System.out.println("Plus de places dans cet avion : " + this.getModele() + " !");
-		}*/
+		if(p instanceof Personnel) {
+			if (listPersonnels.size() < nbPersonnelMin) {
+				Personnel personnel = (Personnel) p;
+				listPersonnels.add(personnel);
+				listOccupants.add(p);
+			}
+		}
+		else if(p instanceof Pilote) {
+			if(listPilotes.size() < NbPiloteMin) {
+				Pilote pilote = (Pilote) p;
+				listPilotes.add(pilote);
+				listOccupants.add(pilote);
+			}
+		}
 	}
 	
 	public void clearAvion() {

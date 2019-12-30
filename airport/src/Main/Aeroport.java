@@ -79,11 +79,11 @@ public class Aeroport {
 		listCompagnies.add(airAustralia);
 		
 		//AvionPrive
-		AvionPrive avionprive1 = new AvionPrive("airbus a380", 1, 12000.0, 100.0, 2, proprio1);
-		AvionPrive avionprive2 = new AvionPrive("airbus a370", 2, 12000.0, 1000.0, 2, proprio2);
-		AvionPrive avionprive3 = new AvionPrive("airbus a360", 3, 12000.0, 1000.0, 2, proprio3);
-		AvionPrive avionprive4 = new AvionPrive("airbus a350", 4, 12000.0, 10000.0, 2, proprio4);
-		AvionPrive avionprive5 = new AvionPrive("airbus a340", 5, 12000.0, 10000.0, 2, proprio5);
+		AvionPrive avionprive1 = new AvionPrive("airbus a380", 1, 12000.0, 100.0, 2,3, proprio1);
+		AvionPrive avionprive2 = new AvionPrive("airbus a370", 2, 12000.0, 1000.0, 2,3, proprio2);
+		AvionPrive avionprive3 = new AvionPrive("airbus a360", 3, 12000.0, 1000.0, 2,2, proprio3);
+		AvionPrive avionprive4 = new AvionPrive("airbus a350", 4, 12000.0, 10000.0, 2,3, proprio4);
+		AvionPrive avionprive5 = new AvionPrive("airbus a340", 5, 12000.0, 10000.0, 2,2, proprio5);
 		
 		listAvionsPrives.add(avionprive1);
 		listAvionsPrives.add(avionprive2);
@@ -105,11 +105,11 @@ public class Aeroport {
 		listAvionsLignes.add(avionLigne5);
 		
 		//AvionDiplomatique
-		AvionDiplomatique avionDiplo1 = new AvionDiplomatique("airbus a300", 3, 10000, 10000, 1, "France");
-		AvionDiplomatique avionDiplo2 = new AvionDiplomatique("airbus a310", 3, 10000, 10000, 1, "USA");
-		AvionDiplomatique avionDiplo3 = new AvionDiplomatique("airbus a320", 2, 10000, 1000, 1, "Angleterre");
-		AvionDiplomatique avionDiplo4 = new AvionDiplomatique("airbus a330", 2, 10000, 1000, 1, "Espagne");
-		AvionDiplomatique avionDiplo5 = new AvionDiplomatique("airbus a340", 2, 10000, 100, 1, "Turquie");
+		AvionDiplomatique avionDiplo1 = new AvionDiplomatique("airbus a300", 3, 10000, 10000, 1,0,"France");
+		AvionDiplomatique avionDiplo2 = new AvionDiplomatique("airbus a310", 3, 10000, 10000, 1,0, "USA");
+		AvionDiplomatique avionDiplo3 = new AvionDiplomatique("airbus a320", 2, 10000, 1000, 1,0, "Angleterre");
+		AvionDiplomatique avionDiplo4 = new AvionDiplomatique("airbus a330", 2, 10000, 1000, 1,0, "Espagne");
+		AvionDiplomatique avionDiplo5 = new AvionDiplomatique("airbus a340", 2, 10000, 100, 1, 0,"Turquie");
 		
 		listAvionsDiplomatiques.add(avionDiplo1);
 		listAvionsDiplomatiques.add(avionDiplo2);
