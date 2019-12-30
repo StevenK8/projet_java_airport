@@ -70,9 +70,9 @@ public abstract class Avion {
 				}
 			}			
 		}
-		else {
+		/*else {
 			System.out.println("Plus de places dans cet avion : " + this.getModele() + " !");
-		}
+		}*/
 	}
 	
 	public void clearAvion() {
@@ -108,7 +108,7 @@ public abstract class Avion {
 		return false;
 	}
 
-	public boolean peutDecoller() {
+	public  boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
 			if(aAssezDePilotes()) {
 				return true;

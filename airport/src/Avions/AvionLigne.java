@@ -38,7 +38,6 @@ public class AvionLigne extends Avion{
 
 	@Override
 	public int getPriorite() {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 }
