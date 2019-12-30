@@ -128,9 +128,9 @@ public class Aeroport {
 		//passagers
 		Passager p1 = new Passager("passager","1", date, Pays.AfriqueduSud, 1,true);
 		Passager p2 = new Passager("passager","2", date, Pays.Albanie, 2,true);
-		Passager p3 = new Passager("passager","3", date,Pays.Algérie , 3,true);
+		Passager p3 = new Passager("passager","3", date,Pays.Algerie , 3,true);
 		Passager p4 = new Passager("passager","4", date, Pays.Andorre, 4,false);
-		Passager p5 = new Passager("passager","5", date, Pays.BosnieHerzégovine, 5,false);
+		Passager p5 = new Passager("passager","5", date, Pays.BosnieHerzegovine, 5,false);
 		Passager p6 = new Passager("passager","6", date, Pays.Argentine, 6,false);
 		Passager p7 = new Passager("passager","7", date, Pays.Soudan, 7,false);
 		Passager p8 = new Passager("passager","8", date, Pays.Finlande, 8,false);
@@ -138,7 +138,7 @@ public class Aeroport {
 		Passager p10 = new Passager("passager","10", date, Pays.France, 10,false);
 		Passager p11 = new Passager("passager","11", date, Pays.Roumanie, 11,false);
 		Passager p12 = new Passager("passager","12", date, Pays.Lesotho, 12,false);
-		Passager p13 = new Passager("passager","13", date, Pays.Jamaïque, 13,false);
+		Passager p13 = new Passager("passager","13", date, Pays.Jamaique, 13,false);
 		Passager p14 = new Passager("passager","14", date, Pays.Fidji, 14,false);
 		Passager p15 = new Passager("passager","15", date, Pays.Hongrie, 15,false);
 		Passager p16 = new Passager("passager","16", date, Pays.Venezuela, 16,true);
