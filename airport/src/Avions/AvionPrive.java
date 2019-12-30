@@ -18,4 +18,10 @@ public class AvionPrive extends Avion{
     	res.append("proprietaire : " + proprietaire + "\n");
     	return res.toString();
     }
+
+	@Override
+	public int getPriorite() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
 }

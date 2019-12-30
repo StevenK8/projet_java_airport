@@ -1,5 +1,8 @@
 package Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Avions.Avion;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
@@ -12,24 +15,24 @@ import Personnes.Personne;
 import Personnes.Personnel;
 import Personnes.Pilote;
 import Pistes.Piste;
+import Pistes.PisteAtterissage;
+import Pistes.PisteDecollage;
 import Vols.Vol;
 
 public class Main {
 	
-	public static void main(String[] args) {
-		long temps = System.currentTimeMillis();
-		int intervalleEnSecondes = 2;							
+	public static void main(String[] args) {				
 		
 		DateNaissance date = new DateNaissance(1, 1, 1);
 		Personne proprio = new Personne("prenom", "nom", date, "france");
 		Compagnie airFrance = new Compagnie("AirFrance", "France");
 		
-		AvionPrive avionprive1 = new AvionPrive("airbus a380", 12, 12000.0, 10000.0, 2, proprio);
+		AvionPrive avionprive1 = new AvionPrive("airbus a380", 12, 12000.0, 100.0, 2, proprio);
 		
 		AvionLigne avionLigne1 = new AvionLigne("airbus a320", 8, 12000.0, 10000.0, 2, airFrance, 2);
-		AvionLigne avionLigne2 = new AvionLigne("airbus a380", 3, 12000.0, 10000.0, 1, airFrance, 1);
+		Avion avionLigne2 = new AvionLigne("airbus a380", 3, 12000.0, 10000.0, 1, airFrance, 1);
 		
-		AvionDiplomatique avionDiplo = new AvionDiplomatique("AvionDiplomatique", 100, 1234, 12345, 1, "France");
+		AvionDiplomatique avionDiplo = new AvionDiplomatique("AvionDiplomatique", 1, 1234, 12345, 1, "France");
 		
 		//avionLigne1
 		Passager p1 = new Passager("passager","1", date, "Maroc", 12);
@@ -50,7 +53,7 @@ public class Main {
 		
 		avionLigne1.addPersonne(p1);
 		avionLigne1.addPersonne(p2);
-		avionLigne1.addPersonne(p3);
+		//avionLigne1.addPersonne(p3);
 		avionLigne1.addPersonne(p4);
 		avionLigne1.addPersonne(p5);
 		avionLigne1.addPersonne(p6);
@@ -61,29 +64,24 @@ public class Main {
 		avionLigne2.addPersonne(personnel);
 		avionLigne2.addPersonne(pilote);
 		
+		avionDiplo.addPersonne(p5);
 		
+		Vol vol2 = new Vol(avionprive1, "Toulouse", "Paris");
 		Vol vol1 = new Vol(avionLigne1, "Brasilia", "Paris");
-		Vol vol2 = new Vol(avionLigne2, "Toulouse", "Paris");
-		Vol vol3 = new Vol(avionLigne2, "Paris", "Toulouse");
+		Vol vol3 = new Vol(avionDiplo, "Paris", "Toulouse");
 		
-		Piste pisteDecollage = new Piste(true);
-		Piste pisteAtterissage = new Piste(false);
-		pisteDecollage.addToQueue(vol1);
-		pisteDecollage.addToQueue(vol2);
+		PisteDecollage pisteDecollage = new PisteDecollage();
+		PisteAtterissage pisteAtterissage = new PisteAtterissage();
+		pisteAtterissage.addToQueue(vol1);
+		pisteAtterissage.addToQueue(vol2);
 		pisteAtterissage.addToQueue(vol3);
 		
-		//faire d�coller avec 2 secondes d'intervalle
-		while(pisteDecollage.getQueue().size() > 0) {
-			if(temps + 1000 * intervalleEnSecondes < System.currentTimeMillis()) {
-				pisteDecollage.acceptFlight();
-				temps = System.currentTimeMillis();
-			}
-		}
-		while(pisteAtterissage.getQueue().size() > 0) {
-			if(temps + 1000 * intervalleEnSecondes < System.currentTimeMillis()) {
-				pisteAtterissage.acceptFlight();
-				temps = System.currentTimeMillis();
-			}
-		}
+		pisteAtterissage.afficheQueue();
+		
+		pisteAtterissage.AtteritPiste();
+		pisteAtterissage.afficheQueue();
+		
+		pisteAtterissage.AtteritPiste();
+		pisteAtterissage.afficheQueue();
 	}
 }

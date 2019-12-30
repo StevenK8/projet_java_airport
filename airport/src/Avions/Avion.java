@@ -15,6 +15,7 @@ public abstract class Avion {
 	protected double poidsBagageMax;
 	protected double volumeCarburant;
 	protected int NbPiloteMin;
+	protected int priorite;
 	public List<Passager> listPassagers;
 	public List<Pilote> listPilotes;
 	public List<Personnel> listPersonnels;
@@ -48,13 +49,13 @@ public abstract class Avion {
 				Personnel personnel = (Personnel) p;
 				listPersonnels.add(personnel);
 				listOccupants.add(p);
-				System.out.println("personnel : " + personnel.toString() + " entre dans l'avion");
+				//System.out.println("personnel : " + personnel.toString() + " entre dans " + this.getModele());
 			}
 			else if(p instanceof Pilote) {
 				Pilote pilote = (Pilote) p;
 				listPilotes.add(pilote);
 				listOccupants.add(pilote);
-				System.out.println("pilote : " + pilote.toString() + " entre dans l'avion");
+				//System.out.println("pilote : " + pilote.toString() + " entre dans " + this.getModele());
 			}
 			else if(p instanceof Passager) {
 				Passager passager = (Passager) p;
@@ -62,15 +63,15 @@ public abstract class Avion {
 					listPassagers.add(passager);
 					listOccupants.add(passager);
 					passager.setEstEnVol(true);
-					System.out.println("passager : " + passager.toString() + " entre dans l'avion");
+					//System.out.println("passager : " + passager.toString() + " entre dans " + this.getModele());
 				}
 				else {
-					System.out.println("Le passager que vous tentez d'ajouter est d�j� en vol !");
+					System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
 				}
 			}			
 		}
 		else {
-			System.out.println("Plus de places dans cet avion !");
+			System.out.println("Plus de places dans cet avion : " + this.getModele() + " !");
 		}
 	}
 	
@@ -134,7 +135,7 @@ public abstract class Avion {
 		listPassagers.remove(passager);
 		listOccupants.remove(passager);
 		passager.setEstEnVol(false);
-		System.out.println("passager : " + passager.toString() + " sort de l'avion");
+		System.out.println("passager : " + passager.toString() + " sort de " + this.getModele());
 	}
 	
 	public int getNbPassagers(){
@@ -155,4 +156,5 @@ public abstract class Avion {
 	public int getNbPiloteMin() {
 		return NbPiloteMin;
 	}
+	public abstract int getPriorite();
 }

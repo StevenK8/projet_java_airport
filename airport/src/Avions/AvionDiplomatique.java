@@ -20,7 +20,7 @@ public class AvionDiplomatique extends Avion {
     	return res.toString();
     }
     
-    public void addPassager(Passager p) {
+    public void addPersonne(Passager p) {
     	if(p instanceof Diplomate) {
     		super.addPersonne(p);
     	}
@@ -28,4 +28,9 @@ public class AvionDiplomatique extends Avion {
     		System.out.println("Vous tentez d'ajoutez un passager non diplomatique dans un avion diplomatique !");
     	}
     }
+
+	@Override
+	public int getPriorite() {
+		return 0;
+	}
 }

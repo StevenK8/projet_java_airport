@@ -35,4 +35,10 @@ public class AvionLigne extends Avion{
     	res.append("proprietaire : " + compagnieProprietaire + "\n");
     	return res.toString();
     }
+
+	@Override
+	public int getPriorite() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
 }
