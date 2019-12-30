@@ -8,6 +8,8 @@ import Personnes.Pilote;
 import java.util.ArrayList;
 import java.util.List;
 
+import Main.Aeroport;
+
 public abstract class Avion {
 	protected String modele;
 	protected int capacite;
@@ -35,7 +37,20 @@ public abstract class Avion {
 		listPersonnels = new ArrayList<Personnel>();
 		listOccupants = new ArrayList<Personne>();
 	}	
-		
+	
+    public void remplissageAvion(Aeroport aeroport) {
+    	for (Passager p : aeroport.getListVoyageurs()) {
+			this.addPersonne(p);
+		}
+		for(Personnel p : aeroport.getListPersonnels()) {
+			this.addPersonne(p);
+		}
+		for(Pilote p : aeroport.getListPilotes()) {
+			this.addPersonne(p);
+		}
+		System.out.println(this);
+    }
+    
     public List<Personne> getListOccupants(){
     	return listOccupants;
     }
