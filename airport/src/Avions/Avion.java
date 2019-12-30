@@ -45,10 +45,10 @@ public abstract class Avion {
 		if(!p.estEnVol()) {
 			if(p instanceof Passager) {
 				if(listPassagers.size() < capacite) {
-				Passager passager = (Passager) p;
-						listPassagers.add(passager);
-						listOccupants.add(passager);
-						passager.setEstEnVol(true);
+					Passager passager = (Passager) p;
+					listPassagers.add(passager);
+					listOccupants.add(passager);
+					passager.setEstEnVol(true);
 				}			
 			}
 			if(p instanceof Personnel) {
@@ -67,9 +67,6 @@ public abstract class Avion {
 					p.setEstEnVol(true);
 				}
 			}
-		}
-		else {
-			//System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
 		}
 	}
 

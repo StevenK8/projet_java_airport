@@ -11,21 +11,23 @@ public class Pilote extends Passager{
 	private int intervallePilote; //intervalle entre 2 vols
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport);
+		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
 		intervallePilote = 2;
 		compagnie = pCompagnie;
+		pays = nationalite;
 	}
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, String pEmployeur) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport);
+		super(prenom, nom, dateNaissance, nationalite, numPasseport,true);
 		intervallePilote = 2;
 		employeur = pEmployeur;
+		pays = nationalite;
 	}
 	
-	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Pays pPays) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport);
+	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport) {
+		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
 		intervallePilote = 2;
-		pays = pPays;
+		pays = nationalite;
 	}
 
 	public String getEmployeur(){
@@ -35,7 +37,7 @@ public class Pilote extends Passager{
 	public Compagnie getCompagnie(){
 		return compagnie;
 	}
-	public Pays getPays() {
+	public Pays getNationalite() {
 		return pays;
 	}
 	public boolean estEnVol() {

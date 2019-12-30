@@ -9,15 +9,22 @@ import Personnes.Pilote;
 
 public class AvionPrive extends Avion{
 	private Personne proprietaire;
+	private int nbPersonnelMin;
 	
 	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin , Personne proprio) {
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,0);
 		proprietaire = proprio;
+		this.nbPersonnelMin = 0;
+	}
+	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin ,int nbPersonnelMin, Personne proprio) {
+        super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,nbPersonnelMin);
+		proprietaire = proprio;
+		this.nbPersonnelMin = nbPersonnelMin;
 	}
 	
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
-			super.addPersonne(p);
+			this.addPassager(p);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
 			super.addPersonne(p);
@@ -36,11 +43,17 @@ public class AvionPrive extends Avion{
 		}
 	}
 	
+	public void addPassager(Passager p) {
+		if (p.getPrendAvionPrive()) {
+			super.addPersonne(p);
+		}
+	}
+	
 	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion prive : " + modele + "\n");
     	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
-    	//res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelsMin + ") \n");
+    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelMin + ") \n");
     	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
     	res.append("proprietaire : " + proprietaire + "\n");
     	return res.toString();

@@ -6,10 +6,12 @@ public class Personnel extends Passager{
 
 	//add champ Compagnie
 	private Compagnie compagnie;
+	private Pays pays;
 	
 	public Personnel(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport);
+		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
 		compagnie = pCompagnie;
+		pays = nationalite;
 	}
 	
 	public boolean EstEnVol() {
@@ -18,6 +20,10 @@ public class Personnel extends Passager{
 	
 	public Compagnie getCompagnie() {
 		return compagnie;
+	}
+	
+	public Pays getNationalite() {
+		return pays;
 	}
 
 }

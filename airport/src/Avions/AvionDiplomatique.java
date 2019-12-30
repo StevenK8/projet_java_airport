@@ -3,45 +3,57 @@ package Avions;
 import Main.Aeroport;
 import Personnes.Diplomate;
 import Personnes.Passager;
+import Personnes.Pays;
 import Personnes.Personnel;
 import Personnes.Pilote;
 
 public class AvionDiplomatique extends Avion {
 
-    private String etatProprietaire;
+    private Pays etatProprietaire;
+    private int personnelMin;
 
-    public AvionDiplomatique(String modele, int personnesMax, double poidsMax, double carburantMax, int pilotesMin,int personnelMin, String etat){
-        super(modele, personnesMax, poidsMax, carburantMax, pilotesMin, personnelMin);
+    public AvionDiplomatique(String modele, int personnesMax, double poidsMax, double carburantMax, int pilotesMin,int pPersonnelMin, Pays etat){
+        super(modele, personnesMax, poidsMax, carburantMax, pilotesMin, pPersonnelMin);
         etatProprietaire = etat;
+        personnelMin = pPersonnelMin;
     }
     
     public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion diplomatique : " + modele + "\n");
     	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
+    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + personnelMin + ") \n");
+    	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
     	res.append("proprietaire : " + etatProprietaire + "\n");
     	return res.toString();
     }
     
     public void remplissageAvion(Aeroport aeroport) {
-    	for (Passager p : aeroport.getListVoyageurs()) {
-			this.addPassager(p);
+    	for (Diplomate d : aeroport.getListDiplomates()) {
+			this.addDiplomate(d);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
-			this.addPersonne(p);
+			this.addPersonnel(p);
 		}
 		for(Pilote p : aeroport.getListPilotes()) {
-			this.addPersonne(p);
+			this.addPilote(p);
 		}
 		System.out.println(this);
     }
     
-    public void addPassager(Passager p) {
-    	if(p instanceof Diplomate) {
+    public void addDiplomate(Passager p) {
+    	super.addPersonne(p);
+    }
+    
+    public void addPersonnel(Personnel p) {
+    	if(p.getNationalite() == etatProprietaire) {
     		super.addPersonne(p);
     	}
-    	else {
-    		System.out.println("Vous tentez d'ajoutez un passager non diplomatique dans un avion diplomatique !");
+    }
+    
+    public void addPilote(Pilote p) {
+    	if(p.getNationalite() == etatProprietaire) {
+    		super.addPersonne(p);
     	}
     }
 
@@ -65,5 +77,9 @@ public class AvionDiplomatique extends Avion {
 			System.out.println("Pas assez de passagers dans " + this.getModele());
 			return false;
 		}
+	}
+	
+	public Pays getEtatProprietaire() {
+		return etatProprietaire;
 	}
 }

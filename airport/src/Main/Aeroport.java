@@ -113,11 +113,11 @@ public class Aeroport {
 		
 		
 		//AvionDiplomatique
-		AvionDiplomatique avionDiplo1 = new AvionDiplomatique("airbus a300", 3, 10000, 10000, 1,0,"France");
-		AvionDiplomatique avionDiplo2 = new AvionDiplomatique("airbus a310", 3, 10000, 10000, 1,0, "USA");
-		AvionDiplomatique avionDiplo3 = new AvionDiplomatique("airbus a320", 2, 10000, 1000, 1,0, "Angleterre");
-		AvionDiplomatique avionDiplo4 = new AvionDiplomatique("airbus a330", 2, 10000, 1000, 1,0, "Espagne");
-		AvionDiplomatique avionDiplo5 = new AvionDiplomatique("airbus a340", 2, 10000, 100, 1, 0,"Turquie");
+		AvionDiplomatique avionDiplo1 = new AvionDiplomatique("airbus a300", 3, 10000, 10000, 1,0,Pays.France);
+		AvionDiplomatique avionDiplo2 = new AvionDiplomatique("airbus a310", 3, 10000, 10000, 1,0, Pays.Ukraine);
+		AvionDiplomatique avionDiplo3 = new AvionDiplomatique("airbus a320", 2, 10000, 1000, 1,0, Pays.RoyaumeUni);
+		AvionDiplomatique avionDiplo4 = new AvionDiplomatique("airbus a330", 2, 10000, 1000, 1,0, Pays.Espagne);
+		AvionDiplomatique avionDiplo5 = new AvionDiplomatique("airbus a340", 2, 10000, 100, 1, 0,Pays.Portugal);
 		
 		listAvionsDiplomatiques.add(avionDiplo1);
 		listAvionsDiplomatiques.add(avionDiplo2);
@@ -126,26 +126,26 @@ public class Aeroport {
 		listAvionsDiplomatiques.add(avionDiplo5);
 		
 		//passagers
-		Passager p1 = new Passager("passager","1", date, Pays.AfriqueduSud, 1);
-		Passager p2 = new Passager("passager","2", date, Pays.Albanie, 2);
-		Passager p3 = new Passager("passager","3", date,Pays.Algérie , 3);
-		Passager p4 = new Passager("passager","4", date, Pays.Andorre, 4);
-		Passager p5 = new Passager("passager","5", date, Pays.BosnieHerzégovine, 5);
-		Passager p6 = new Passager("passager","6", date, Pays.Argentine, 6);
-		Passager p7 = new Passager("passager","7", date, Pays.Soudan, 7);
-		Passager p8 = new Passager("passager","8", date, Pays.Finlande, 8);
-		Passager p9 = new Passager("passager","9", date, Pays.Autriche, 9);
-		Passager p10 = new Passager("passager","10", date, Pays.France, 10);
-		Passager p11 = new Passager("passager","11", date, Pays.Roumanie, 11);
-		Passager p12 = new Passager("passager","12", date, Pays.Lesotho, 12);
-		Passager p13 = new Passager("passager","13", date, Pays.Jamaïque, 13);
-		Passager p14 = new Passager("passager","14", date, Pays.Fidji, 14);
-		Passager p15 = new Passager("passager","15", date, Pays.Hongrie, 15);
-		Passager p16 = new Passager("passager","16", date, Pays.Venezuela, 16);
-		Passager p17 = new Passager("passager","17", date, Pays.Bahamas, 17);
-		Passager p18 = new Passager("passager","18", date, Pays.Gabon, 18);
-		Passager p19 = new Passager("passager","19", date, Pays.Mali, 19);
-		Passager p20 = new Passager("passager","20", date, Pays.Chili, 20);
+		Passager p1 = new Passager("passager","1", date, Pays.AfriqueduSud, 1,true);
+		Passager p2 = new Passager("passager","2", date, Pays.Albanie, 2,true);
+		Passager p3 = new Passager("passager","3", date,Pays.Algérie , 3,true);
+		Passager p4 = new Passager("passager","4", date, Pays.Andorre, 4,false);
+		Passager p5 = new Passager("passager","5", date, Pays.BosnieHerzégovine, 5,false);
+		Passager p6 = new Passager("passager","6", date, Pays.Argentine, 6,false);
+		Passager p7 = new Passager("passager","7", date, Pays.Soudan, 7,false);
+		Passager p8 = new Passager("passager","8", date, Pays.Finlande, 8,false);
+		Passager p9 = new Passager("passager","9", date, Pays.Autriche, 9,false);
+		Passager p10 = new Passager("passager","10", date, Pays.France, 10,false);
+		Passager p11 = new Passager("passager","11", date, Pays.Roumanie, 11,false);
+		Passager p12 = new Passager("passager","12", date, Pays.Lesotho, 12,false);
+		Passager p13 = new Passager("passager","13", date, Pays.Jamaïque, 13,false);
+		Passager p14 = new Passager("passager","14", date, Pays.Fidji, 14,false);
+		Passager p15 = new Passager("passager","15", date, Pays.Hongrie, 15,false);
+		Passager p16 = new Passager("passager","16", date, Pays.Venezuela, 16,true);
+		Passager p17 = new Passager("passager","17", date, Pays.Bahamas, 17,true);
+		Passager p18 = new Passager("passager","18", date, Pays.Gabon, 18,true);
+		Passager p19 = new Passager("passager","19", date, Pays.Mali, 19,true);
+		Passager p20 = new Passager("passager","20", date, Pays.Chili, 20,true);
 		
 		listVoyageurs.add(p1);
 		listVoyageurs.add(p2);
@@ -182,8 +182,8 @@ public class Aeroport {
 		Pilote pilote11 = new Pilote("pilote","11", date, Pays.France, 12,easyJet);
 		Pilote pilote12 = new Pilote("pilote","12", date, Pays.France, 12,airTunisia);
 		Pilote pilote13 = new Pilote("pilote","13", date, Pays.France, 12,airAustralia);
-		Pilote pilote14 = new Pilote("pilote","14", date, Pays.France, 12,Pays.France);
-		Pilote pilote15 = new Pilote("pilote","15", date, Pays.France, 12,Pays.France);
+		Pilote pilote14 = new Pilote("pilote","14", date, Pays.Ukraine, 12);
+		Pilote pilote15 = new Pilote("pilote","15", date, Pays.France, 12);
 		
 		listPilotes.add(pilote1);
 		listPilotes.add(pilote2);
@@ -246,9 +246,13 @@ public class Aeroport {
 		airFrance.addPersonnel(personnel4);
 		
 		//Diplomates
-		Diplomate d1 = new Diplomate("diplomate1", "nom", date, Pays.France, 666);
+		Diplomate d1 = new Diplomate("diplomate1", "nom", date, Pays.Ukraine, 666);
 		Diplomate d2 = new Diplomate("diplomate2", "nom", date, Pays.France, 333);
 		Diplomate d3 = new Diplomate("diplomate3", "nom", date, Pays.France, 999);
+		
+		listDiplomates.add(d1);
+		listDiplomates.add(d2);
+		listDiplomates.add(d3);
 		
 		//Piste
 		PisteDecollage pisteDecollage1 = new PisteDecollage();
@@ -265,23 +269,55 @@ public class Aeroport {
 	}
 
 	protected void preparationAvionLigne(AvionLigne avion, PisteDecollage piste) {
-		if(this.getPassagersDansAeroport() >= avion.getCapacite() && this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin() &&
-				this.getPersonnelsDansAeroport(avion.getCompagnie()) >= avion.getNbPersonnelsMin()) {
-			avion.remplissageAvion(this);
-			Vol vol = new Vol(avion, "Paris", "Marseille");
-			piste.addToQueue(vol);
-		}
-	}
-	
-	protected void preparationAvionPrive(AvionPrive avion, PisteDecollage piste) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
-			if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
-				if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
+			if( this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin()) {
+				if(this.getPersonnelsDansAeroport(avion.getCompagnie()) >= avion.getNbPersonnelsMin()) {
 					avion.remplissageAvion(this);
 					Vol vol = new Vol(avion, "Paris", "Marseille");
 					piste.addToQueue(vol);
 				}
+				else {
+					System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+				}
 			}
+			else {
+				System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+			}
+		}
+		else {
+			System.out.println(avion + "ne pourra pas decoller car la capacité maximum n'est pas atteinte");
+		}
+	}
+	
+	protected void preparationAvionPrive(AvionPrive avion, PisteDecollage piste) {
+		if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
+			if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
+				avion.remplissageAvion(this);
+				Vol vol = new Vol(avion, "Paris", "Marseille");
+				piste.addToQueue(vol);
+			}
+			else {
+				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+			}
+		}
+		else {
+			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+		}
+	}
+	
+	protected void preparationAvionDiplomatique(AvionDiplomatique avion, PisteDecollage piste) {
+		if(this.getPilotesDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPiloteMin()) {
+			if(this.getPersonnelsDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPersonnelsMin()) {
+				avion.remplissageAvion(this);
+				Vol vol = new Vol(avion, "Paris", "Marseille");
+				piste.addToQueue(vol);
+			}
+			else {
+				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+			}
+		}
+		else {
+			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
 		}
 	}
 	
@@ -301,6 +337,9 @@ public class Aeroport {
 			if (!p.estEnVol()) {
 				res += 1;
 			}
+		}
+		if(res == 0) {
+			System.out.println("Plus de pilotes disponibles");
 		}
 		return res;
 	}
@@ -343,6 +382,31 @@ public class Aeroport {
 			if (!p.estEnVol() && p.getEmployeur() != null) {
 				if(p.getEmployeur().equals(idProprio)) {
 					//idProprio doit etre egale au nom+prenom du proprietaire de l'avion
+					res += 1;
+				}
+			}
+		}
+		return res;
+	}
+	
+	//Pour les avions Diplomatiques
+	public int getPilotesDansAeroport(Pays pays) {
+		int res = 0;
+		for(Pilote p : listPilotes) {
+			if (!p.estEnVol() && p.getNationalite() != null) {
+				if(p.getNationalite().equals(pays)) {
+					res += 1;
+				}
+			}
+		}
+		return res;
+	}
+	
+	public int getPersonnelsDansAeroport(Pays pays) {
+		int res = 0;
+		for(Personnel p : listPersonnels) {
+			if (!p.estEnVol()) {
+				if(p.getNationalite().equals(pays)) {
 					res += 1;
 				}
 			}
