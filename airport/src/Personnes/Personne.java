@@ -5,6 +5,7 @@ public class Personne {
 	private String nom;
     private DateNaissance dateNaissance;
     private String nationalite;
+    private boolean estEnVol;
 
 	public Personne(String prenom, String nom, DateNaissance dateNaissance, String nationalite) {
 		this.prenom = prenom;
@@ -17,4 +18,10 @@ public class Personne {
 		return prenom + " " + nom + " originaire de " + nationalite;
 	}
 	
+	public boolean estEnVol() {
+		return estEnVol;
+	}
+	public void setEstEnVol(boolean modif) {
+		estEnVol = modif;
+	}
 }

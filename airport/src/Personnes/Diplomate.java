@@ -15,5 +15,9 @@ public class Diplomate extends Passager{
 	public void setBooleanAccesCode(boolean modif) {
 		accesCode = modif;
 	}
+	
+	public boolean estEnVol() {
+		return super.estEnVol();
+	}
 
 }

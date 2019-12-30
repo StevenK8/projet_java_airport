@@ -27,4 +27,7 @@ public class Pilote extends Passager{
 	public Compagnie getCompagnie(){
 		return compagnie;
 	}
+	public boolean estEnVol() {
+		return super.estEnVol();
+	}
 }

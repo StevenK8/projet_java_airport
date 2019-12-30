@@ -31,13 +31,18 @@ public class Main {
 		
 		//Creation dun avion de ligne
 		AvionLigne avionLigne1 = aeroport.getListAvionsLignes().get(0);
+		AvionLigne avionLigne2 = aeroport.getListAvionsLignes().get(1);
 		
 		//Creation dun vol
 		Vol vol = new Vol(avionLigne1, "Paris", "Marseille");
 		
 		//Remplissage dun avion de ligne (avec les bons nb de passagers,pilotes et personnels)
 		avionLigne1.remplissageAvion(aeroport);
+		avionLigne2.remplissageAvion(aeroport);
 		
-		pisteAtterissage.addToQueue(vol);
+		System.out.println(avionLigne1.getListOccupants());
+		System.out.println(avionLigne2.getListOccupants());
+		
+		//pisteAtterissage.addToQueue(vol);
 	}
 }

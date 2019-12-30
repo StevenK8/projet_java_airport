@@ -60,32 +60,34 @@ public abstract class Avion {
 	}
 	
 	public void addPersonne(Personne p) {
-		if(p instanceof Passager) {
-			if(listPassagers.size() < capacite) {
-			Passager passager = (Passager) p;
-				if(!passager.estEnVol()) {
-					listPassagers.add(passager);
-					listOccupants.add(passager);
-					passager.setEstEnVol(true);
+		if(!p.estEnVol()) {
+			if(p instanceof Passager) {
+				if(listPassagers.size() < capacite) {
+				Passager passager = (Passager) p;
+						listPassagers.add(passager);
+						listOccupants.add(passager);
+						passager.setEstEnVol(true);
+				}			
+			}
+			if(p instanceof Personnel) {
+				if (listPersonnels.size() < nbPersonnelMin) {
+					Personnel personnel = (Personnel) p;
+					listPersonnels.add(personnel);
+					listOccupants.add(p);
+					p.setEstEnVol(true);
 				}
-				else {
-					System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
+			}
+			else if(p instanceof Pilote) {
+				if(listPilotes.size() < NbPiloteMin) {
+					Pilote pilote = (Pilote) p;
+					listPilotes.add(pilote);
+					listOccupants.add(pilote);
+					p.setEstEnVol(true);
 				}
-			}			
-		}
-		if(p instanceof Personnel) {
-			if (listPersonnels.size() < nbPersonnelMin) {
-				Personnel personnel = (Personnel) p;
-				listPersonnels.add(personnel);
-				listOccupants.add(p);
 			}
 		}
-		else if(p instanceof Pilote) {
-			if(listPilotes.size() < NbPiloteMin) {
-				Pilote pilote = (Pilote) p;
-				listPilotes.add(pilote);
-				listOccupants.add(pilote);
-			}
+		else {
+			System.out.println("Le passager que vous tentez d'ajouter est deja en vol !");
 		}
 	}
 	

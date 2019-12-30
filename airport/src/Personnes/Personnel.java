@@ -10,5 +10,9 @@ public class Personnel extends Passager{
 	public Personnel(String prenom, String nom, DateNaissance dateNaissance, String nationalite, int numPasseport) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport);
 	}
+	
+	public boolean EstEnVol() {
+		return super.estEnVol();
+	}
 
 }
