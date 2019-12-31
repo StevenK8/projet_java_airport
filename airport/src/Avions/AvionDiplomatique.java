@@ -38,7 +38,7 @@ public class AvionDiplomatique extends Avion {
 		for(Pilote p : aeroport.getListPilotes()) {
 			this.addPilote(p);
 		}
-		System.out.println(this);
+		//System.out.println(this);
     }
     
     public void addDiplomate(Passager p) {

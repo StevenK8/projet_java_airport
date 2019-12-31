@@ -8,7 +8,7 @@ public class Pilote extends Passager{
 	private String employeur;  //proprietaire donc avion privee
 	private Compagnie compagnie; //avion de ligne
 	private Pays pays; //avion diplo
-	private int intervallePilote = 1; //intervalle entre 2 vols
+	private int intervallePilote = 0; //intervalle entre 2 vols
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);

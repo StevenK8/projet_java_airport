@@ -5,13 +5,14 @@ import Avions.AvionLigne;
 import Avions.AvionPrive;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
+import Vols.Ville;
 import Vols.Vol;
 
 public class Main {
 	
 	public static void main(String[] args) {	
 		//Creation de laeroport
-		Aeroport aeroport = new Aeroport();
+		Aeroport aeroport = new Aeroport(Ville.Paris);
 		
 		//Ouverture des pistes
 		PisteDecollage pisteDecollage = aeroport.getListPisteDecollages().get(0);
@@ -20,34 +21,36 @@ public class Main {
 		//Creation dun avion de ligne
 		AvionLigne avionLigne1 = aeroport.getListAvionsLignes().get(0);
 		AvionPrive avionPrive1 = aeroport.getListAvionsPrives().get(0);
-		AvionDiplomatique avionDiplomatique1 = aeroport.getListAvionsDiplomatiques().get(1);
+		AvionDiplomatique avionDiplomatique1 = aeroport.getListAvionsDiplomatiques().get(0);
+		
+		
 		
 		
 		//La preparation remplit les avions avant le decollage et ajoute les avions dans la file dattente du decollage
-		aeroport.preparationAvionPrive(avionPrive1, pisteDecollage);
-		aeroport.preparationAvionDiplomatique(avionDiplomatique1, pisteDecollage);
-		aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
+		aeroport.preparationAvionPrive(avionPrive1);
+		aeroport.preparationAvionDiplomatique(avionDiplomatique1);
+		aeroport.preparationAvionLigne(avionLigne1);
 		
-		System.out.println(aeroport.getListVoyageurs().size());
+		Vol vol = new Vol(avionLigne1,aeroport);
+		Vol vol2 = new Vol(avionPrive1,aeroport);
+		Vol vol3 = new Vol(avionDiplomatique1, aeroport);
 		
-		pisteDecollage.decollePiste();
-		while(pisteDecollage.getIntervalleDecollage() != 0) {
-			pisteDecollage.diminueIntervalleDecollage();
+		pisteDecollage.addToQueue(vol);
+		pisteDecollage.addToQueue(vol2);
+		pisteDecollage.addToQueue(vol3);
+		while(pisteDecollage.getFileAttente().size() != 0) {
+			while(!pisteDecollage.decollePiste()){
+				pisteDecollage.diminueIntervalleDecollage();
+			}
 		}
-		pisteDecollage.decollePiste();
-		while(pisteDecollage.getIntervalleDecollage() != 0) {
-			pisteDecollage.diminueIntervalleDecollage();
-		}
-		pisteDecollage.decollePiste();
 		
-		pisteAtterissage.addToQueue(new Vol(avionLigne1, "a", "b"));
-		pisteAtterissage.addToQueue(new Vol(avionDiplomatique1, "c", "d"));
-		pisteAtterissage.addToQueue(new Vol(avionPrive1, "e", "f"));
-		
-		pisteAtterissage.afficheQueue();
-		
+		pisteAtterissage.addToQueue(vol);
 		pisteAtterissage.atteritPiste();
+		
+		pisteAtterissage.addToQueue(vol2);
 		pisteAtterissage.atteritPiste();
+		
+		pisteAtterissage.addToQueue(vol3);
 		pisteAtterissage.atteritPiste();
 		
 	}

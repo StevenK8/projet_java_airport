@@ -11,7 +11,7 @@ public class PisteDecollage extends Piste{
 	
 	public PisteDecollage() {
 		fileAttente = new ArrayList<>(capacite);
-		intervalleDecollage = 0;
+		intervalleDecollage = 1;
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class PisteDecollage extends Piste{
 		}	
 	}
 	
-	public void decollePiste() {
+	public boolean decollePiste() {
 		if(intervalleDecollage == 0) {
 			if (fileAttente.size() != 0) {
 				Vol vol =  fileAttente.get(0);
@@ -44,13 +44,16 @@ public class PisteDecollage extends Piste{
 					intervalleDecollage = 3;
 				}
 				System.out.println("update de lintervalle decollage, il vaut mtn : " + intervalleDecollage );
+				return true;
 			}
 			else {
 				System.out.println("Auncun avion dans la file dattente");
+				return false;
 			}
 		}
 		else {
-			System.out.println("Lavion ne peut pas decoler, encore : " + intervalleDecollage + " intervalle(s) de temps");
+			System.out.println("Il reste " + intervalleDecollage + " intervalles de temps avant le prochain decollage");
+			return false;
 		}
 	}
 	
@@ -60,7 +63,6 @@ public class PisteDecollage extends Piste{
 	public void diminueIntervalleDecollage() {
 		if(intervalleDecollage > 0) {
 			intervalleDecollage -= 1;
-			System.out.println("Il reste " + intervalleDecollage + " intervalles de temps avant le prochain decollage");
 		}
 	}
 }

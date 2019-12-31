@@ -1,11 +1,7 @@
 package Main;
 
-import java.awt.Frame;
+
 import java.util.ArrayList;
-
-import javax.management.ListenerNotFoundException;
-
-import Avions.Avion;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
 import Avions.AvionPrive;
@@ -19,6 +15,7 @@ import Personnes.Personnel;
 import Personnes.Pilote;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
+import Vols.Ville;
 import Vols.Vol;
 
 public class Aeroport {
@@ -39,7 +36,10 @@ public class Aeroport {
 	protected ArrayList<PisteDecollage> listPisteDecollages;
 	protected ArrayList<PisteAtterissage> listPisteAtterissages;
 	
-	public Aeroport() {
+	private Ville ville;
+	
+	public Aeroport(Ville pVille) {
+		ville = pVille;
 		listVoyageurs = new ArrayList<Passager>();
 		listPilotes = new ArrayList<Pilote>();
 		listPersonnels = new ArrayList<Personnel>();
@@ -179,7 +179,7 @@ public class Aeroport {
 		Pilote pilote8 = new Pilote("pilote","8", date, Pays.France, 12,proprio4.getNomProprio());
 		Pilote pilote9 = new Pilote("pilote","9", date, Pays.France, 12,proprio5.getNomProprio());
 		Pilote pilote10 = new Pilote("pilote","10", date, Pays.France, 12,airFrance);
-		Pilote pilote11 = new Pilote("pilote","11", date, Pays.France, 12,easyJet);
+		Pilote pilote11 = new Pilote("pilote","11", date, Pays.France, 12,airFrance);
 		Pilote pilote12 = new Pilote("pilote","12", date, Pays.France, 12,airTunisia);
 		Pilote pilote13 = new Pilote("pilote","13", date, Pays.France, 12,airAustralia);
 		Pilote pilote14 = new Pilote("pilote","14", date, Pays.Ukraine, 12);
@@ -277,13 +277,12 @@ public class Aeroport {
 	}
 	
 	
-	protected void preparationAvionLigne(AvionLigne avion, PisteDecollage piste) {
+	protected void preparationAvionLigne(AvionLigne avion) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
 			if( this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin()) {
 				if(this.getPersonnelsDansAeroport(avion.getCompagnie()) >= avion.getNbPersonnelsMin()) {
 					avion.remplissageAvion(this);
-					Vol vol = new Vol(avion, "Paris", "Marseille");
-					piste.addToQueue(vol);
+					Vol vol = new Vol(avion, this);
 				}
 				else {
 					System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
@@ -298,12 +297,11 @@ public class Aeroport {
 		}
 	}
 	
-	protected void preparationAvionPrive(AvionPrive avion, PisteDecollage piste) {
+	protected void preparationAvionPrive(AvionPrive avion) {
 		if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
-				Vol vol = new Vol(avion, "Paris", "Marseille");
-				piste.addToQueue(vol);
+				Vol vol = new Vol(avion, this);
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
@@ -314,12 +312,11 @@ public class Aeroport {
 		}
 	}
 	
-	protected void preparationAvionDiplomatique(AvionDiplomatique avion, PisteDecollage piste) {
+	protected void preparationAvionDiplomatique(AvionDiplomatique avion) {
 		if(this.getPilotesDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
-				Vol vol = new Vol(avion, "Paris", "Marseille");
-				piste.addToQueue(vol);
+				Vol vol = new Vol(avion, this);
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
@@ -486,5 +483,9 @@ public class Aeroport {
 
 	public ArrayList<PisteAtterissage> getListPisteAtterissages() {
 		return listPisteAtterissages;
+	}
+	
+	public Ville getVille() {
+		return ville;
 	}
 }

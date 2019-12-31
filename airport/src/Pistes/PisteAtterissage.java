@@ -40,10 +40,11 @@ public class PisteAtterissage extends Piste{
 				}
 				else if(x == 2) {
 					System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir en derniere position");
+					fileAttente.add(vol);
+					ajout = true;
 					break;
 				}
 				sc.close();
-				
 			}
 		}
     	if(!ajout) {

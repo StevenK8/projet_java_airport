@@ -34,7 +34,7 @@ public class AvionPrive extends Avion{
 				this.addPilote(p);
 			}
 		}
-		System.out.println(this);
+		//System.out.println(this);
     }
 	
 	public void addPilote(Pilote p) {

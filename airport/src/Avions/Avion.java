@@ -171,5 +171,21 @@ public abstract class Avion {
 	public int getNbPersonnelsMin() {
 		return nbPersonnelMin;
 	}
+	
+	public String getType() {
+		if (this instanceof AvionLigne) {
+			return "Avion de ligne";
+		}
+		else if (this instanceof AvionPrive) {
+			return "Avion privee";
+		}
+		else if (this instanceof AvionDiplomatique) {
+			return "Avion diplomatique";
+		}
+		else {
+			return "";
+		}
+		
+	}
 	public abstract int getPriorite();
 }
