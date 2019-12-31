@@ -15,7 +15,7 @@ public class PisteAtterissage extends Piste{
 		//prendre en compte la priorite de l'avion pour son espacement
 		int prio = vol.getAvion().getPriorite();
 		double carb = vol.getAvion().getVolumeCarburant();
-		boolean ok = false;
+		boolean ajout = false;
 		for(int i = 0; i < fileAttente.size(); i++) {
 			//priorite : 0-> maximale (avion diplo) 	1-> medium (avionLigne)		 2-> minimale (avionPrive)
 			if (fileAttente.get(i).getAvion().getPriorite() > prio || fileAttente.get(i).getAvion().getVolumeCarburant() > carb) {
@@ -29,7 +29,7 @@ public class PisteAtterissage extends Piste{
 				if(x == 1) {
 					fileAttente.add(i, vol);
 					System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir ра la position " + i);
-					ok = true;
+					ajout = true;
 					break;
 				}
 				else if(x == 2) {
@@ -40,7 +40,7 @@ public class PisteAtterissage extends Piste{
 				
 			}
 		}
-    	if(!ok) {
+    	if(!ajout) {
     		fileAttente.add(vol);
     		System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir en derniere position");
     	}

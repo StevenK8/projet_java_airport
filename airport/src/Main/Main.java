@@ -22,10 +22,13 @@ public class Main {
 		AvionPrive avionPrive1 = aeroport.getListAvionsPrives().get(0);
 		AvionDiplomatique avionDiplomatique1 = aeroport.getListAvionsDiplomatiques().get(1);
 		
-		//aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
-		//aeroport.preparationAvionPrive(avionPrive1, pisteDecollage);
+		aeroport.preparationAvionPrive(avionPrive1, pisteDecollage);
 		aeroport.preparationAvionDiplomatique(avionDiplomatique1, pisteDecollage);
+		aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
 		
-		System.out.println(avionDiplomatique1.listOccupants);
+		pisteDecollage.afficheQueue();
+		pisteDecollage.decollePiste();
+		pisteDecollage.afficheQueue();
+		System.out.println(pisteDecollage.getIntervalleDecollage());
 	}
 }
