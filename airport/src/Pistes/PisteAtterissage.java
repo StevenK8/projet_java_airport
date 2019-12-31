@@ -61,6 +61,7 @@ public class PisteAtterissage extends Piste{
 				vol.getAvion().setEstEnVol(false);
 				vol.getAvion().clearAvion(aeroport);
 				fileAttente.remove(0);
+				aeroport.diminueIntervallePilotes();
 			}
 			else {
 				System.out.println("nope");

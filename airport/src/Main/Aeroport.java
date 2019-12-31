@@ -268,6 +268,15 @@ public class Aeroport {
 		listPisteDecollages.add(pisteDecollage2);
 	}
 
+	public void diminueIntervallePilotes() {
+		for(Pilote p : listPilotes) {
+			if(p.estEnPause()) {
+				p.setIntervallePilote(p.getIntervallePilote() - 1);
+			}
+		}
+	}
+	
+	
 	protected void preparationAvionLigne(AvionLigne avion, PisteDecollage piste) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
 			if( this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin()) {
