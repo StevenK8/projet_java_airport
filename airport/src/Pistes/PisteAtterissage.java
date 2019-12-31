@@ -2,12 +2,18 @@ package Pistes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Main.Aeroport;
+import Personnes.Pilote;
 import Vols.Vol;
 
 public class PisteAtterissage extends Piste{
 
-	public PisteAtterissage() {
+	private Aeroport aeroport;
+	
+	public PisteAtterissage(Aeroport pAeroport) {
 		fileAttente = new ArrayList<>(capacite);
+		aeroport = pAeroport;
 	}
 	
 	@Override
@@ -50,11 +56,15 @@ public class PisteAtterissage extends Piste{
 	public void atteritPiste() {
 		if(fileAttente.size() != 0) {
 			Vol vol =  fileAttente.get(0);
-			System.out.println(vol.toString() + " atterit");
-			vol.getAvion().setEstEnVol(false);
-			vol.getAvion().clearPassagers();
-			fileAttente.remove(0);
+			if(vol.getAvion().estEnVol()) {
+				System.out.println(vol.toString() + " atterit");
+				vol.getAvion().setEstEnVol(false);
+				vol.getAvion().clearAvion(aeroport);
+				fileAttente.remove(0);
+			}
+			else {
+				System.out.println("nope");
+			}
 		}
-		
 	}
 }

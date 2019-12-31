@@ -1,5 +1,6 @@
 package Avions;
 
+import Personnes.Diplomate;
 import Personnes.Passager;
 import Personnes.Personne;
 import Personnes.Personnel;
@@ -22,7 +23,7 @@ public abstract class Avion {
 	public List<Passager> listPassagers;
 	public List<Pilote> listPilotes;
 	public List<Personnel> listPersonnels;
-	public List<Personne> listOccupants; //nombre total de personnes dans l'avion (passagers + pilotes + personnels)
+	public List<Passager> listOccupants; //nombre total de personnes dans l'avion (passagers + pilotes + personnels)
 	private boolean estEnVol = false;
 	
 	
@@ -36,12 +37,12 @@ public abstract class Avion {
 		listPassagers = new ArrayList<Passager>();
 		listPilotes = new ArrayList<Pilote>();
 		listPersonnels = new ArrayList<Personnel>();
-		listOccupants = new ArrayList<Personne>();
+		listOccupants = new ArrayList<Passager>();
 	}	
 	
     public abstract void remplissageAvion(Aeroport aeroport);
 	
-	public void addPersonne(Personne p) {
+	public void addPersonne(Passager p) {
 		if(!p.estEnVol()) {
 			if(p instanceof Passager) {
 				if(listPassagers.size() < capacite) {
@@ -70,17 +71,30 @@ public abstract class Avion {
 		}
 	}
 
-	public void clearPassagers() {
-		listOccupants.forEach(occupant ->{
-			if(occupant instanceof Passager) {
-				Passager p = (Passager) occupant;
-				p.setEstEnVol(false);
+	public void clearAvion(Aeroport aeroport) {
+		ArrayList<Pilote> pilotesRestantsDansAeroport = new ArrayList<>();
+		for (Passager p : listOccupants) {
+			if(p instanceof Pilote) {
+				Pilote pilote = (Pilote) p;
+				if(pilote.getCompagnie() != null) {
+					listPilotes.remove(pilote); //le pilote descend de l'avion mais reste dans laeroport
+					pilote.setIntervallePilote(1); //le pilote a un temps de pause de 1 intervalle
+				}
+				else {
+					listPilotes.remove(pilote); //le pilote descend de l'avion
+					aeroport.getListPilotes().remove(pilote); //le pilote quitte laeroport
+				}
 			}
-		});
-		listPassagers.clear();
+			else if (p instanceof Personnel) {
+				listPersonnels.remove(p);
+				aeroport.getListPersonnels().remove(p);
+			}
+			else {
+				listPassagers.remove(p);
+				aeroport.getListVoyageurs().remove(p);
+			}
+		}
 		listOccupants.clear();
-		listPersonnels.clear();
-		listPilotes.clear();
 	}
 
 	public boolean aAssezDePilotes(){
@@ -121,7 +135,7 @@ public abstract class Avion {
 	}
 	
 	
-    public List<Personne> getListOccupants(){
+    public List<Passager> getListOccupants(){
     	return listOccupants;
     }
     

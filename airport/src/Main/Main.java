@@ -22,13 +22,33 @@ public class Main {
 		AvionPrive avionPrive1 = aeroport.getListAvionsPrives().get(0);
 		AvionDiplomatique avionDiplomatique1 = aeroport.getListAvionsDiplomatiques().get(1);
 		
+		
+		//La preparation remplit les avions avant le decollage et ajoute les avions dans la file dattente du decollage
 		aeroport.preparationAvionPrive(avionPrive1, pisteDecollage);
 		aeroport.preparationAvionDiplomatique(avionDiplomatique1, pisteDecollage);
 		aeroport.preparationAvionLigne(avionLigne1, pisteDecollage);
 		
-		pisteDecollage.afficheQueue();
+		System.out.println(aeroport.getListVoyageurs().size());
+		
 		pisteDecollage.decollePiste();
-		pisteDecollage.afficheQueue();
-		System.out.println(pisteDecollage.getIntervalleDecollage());
+		while(pisteDecollage.getIntervalleDecollage() != 0) {
+			pisteDecollage.diminueIntervalleDecollage();
+		}
+		pisteDecollage.decollePiste();
+		while(pisteDecollage.getIntervalleDecollage() != 0) {
+			pisteDecollage.diminueIntervalleDecollage();
+		}
+		pisteDecollage.decollePiste();
+		
+		pisteAtterissage.addToQueue(new Vol(avionLigne1, "a", "b"));
+		pisteAtterissage.addToQueue(new Vol(avionDiplomatique1, "c", "d"));
+		pisteAtterissage.addToQueue(new Vol(avionPrive1, "e", "f"));
+		
+		pisteAtterissage.afficheQueue();
+		
+		pisteAtterissage.atteritPiste();
+		pisteAtterissage.atteritPiste();
+		pisteAtterissage.atteritPiste();
+		
 	}
 }

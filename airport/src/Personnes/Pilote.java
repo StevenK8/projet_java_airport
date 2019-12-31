@@ -8,25 +8,22 @@ public class Pilote extends Passager{
 	private String employeur;  //proprietaire donc avion privee
 	private Compagnie compagnie; //avion de ligne
 	private Pays pays; //avion diplo
-	private int intervallePilote; //intervalle entre 2 vols
+	private int intervallePilote = 1; //intervalle entre 2 vols
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
-		intervallePilote = 2;
 		compagnie = pCompagnie;
 		pays = nationalite;
 	}
 
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, String pEmployeur) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport,true);
-		intervallePilote = 2;
 		employeur = pEmployeur;
 		pays = nationalite;
 	}
 	
 	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport) {
 		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
-		intervallePilote = 2;
 		pays = nationalite;
 	}
 
@@ -42,5 +39,12 @@ public class Pilote extends Passager{
 	}
 	public boolean estEnVol() {
 		return super.estEnVol();
+	}
+	
+	public boolean estEnPause() {
+		return intervallePilote != 0;
+	}
+	public void setIntervallePilote(int inter) {
+		intervallePilote = inter;
 	}
 }

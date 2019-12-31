@@ -11,7 +11,7 @@ public class PisteDecollage extends Piste{
 	
 	public PisteDecollage() {
 		fileAttente = new ArrayList<>(capacite);
-		intervalleDecollage = 1;
+		intervalleDecollage = 0;
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class PisteDecollage extends Piste{
 					//avion prive
 					intervalleDecollage = 3;
 				}
+				System.out.println("update de lintervalle decollage, il vaut mtn : " + intervalleDecollage );
 			}
 			else {
 				System.out.println("Auncun avion dans la file dattente");
@@ -59,6 +60,7 @@ public class PisteDecollage extends Piste{
 	public void diminueIntervalleDecollage() {
 		if(intervalleDecollage > 0) {
 			intervalleDecollage -= 1;
+			System.out.println("Il reste " + intervalleDecollage + " intervalles de temps avant le prochain decollage");
 		}
 	}
 }

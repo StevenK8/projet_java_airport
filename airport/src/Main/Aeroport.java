@@ -257,8 +257,8 @@ public class Aeroport {
 		//Piste
 		PisteDecollage pisteDecollage1 = new PisteDecollage();
 		PisteDecollage pisteDecollage2 = new PisteDecollage();
-		PisteAtterissage pisteAtterissage1 = new PisteAtterissage();
-		PisteAtterissage pisteAtterissage2 = new PisteAtterissage();
+		PisteAtterissage pisteAtterissage1 = new PisteAtterissage(this);
+		PisteAtterissage pisteAtterissage2 = new PisteAtterissage(this);
 		
 		listPisteAtterissages.add(pisteAtterissage1);
 		listPisteAtterissages.add(pisteAtterissage2);
