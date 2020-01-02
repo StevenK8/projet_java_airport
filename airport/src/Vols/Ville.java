@@ -26,7 +26,7 @@ public enum Ville {
 	Vilnius,
 	Bucarest,
 	Sofia,
-	Athénes,
+	Athenes,
 	Reykjavic,
 	Oslo,
 	Moscou,
