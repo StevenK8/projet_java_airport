@@ -17,14 +17,14 @@ public class PisteDecollage extends Piste{
 	@Override
 	public void addToQueue(Vol vol) {
 		//prendre en compte la priorite de l'avion pour son espacement
-		if(vol.getAvion().peutDecoller()) {
+		if(vol.getAvion().peutDecoller() && isOpened()) {
 			fileAttente.add(vol);
 	    	System.out.println(vol.toString() + " entre dans la liste d'attente pour decoller\n");	
 		}	
 	}
 	
 	public boolean decollePiste() {
-		if(intervalleDecollage == 0) {
+		if(intervalleDecollage == 0 && isOpened()) {
 			if (fileAttente.size() != 0) {
 				Vol vol =  fileAttente.get(0);
 				System.out.println(vol.toString() + " decolle");

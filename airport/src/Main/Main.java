@@ -38,6 +38,8 @@ public class Main {
 		pisteDecollage.addToQueue(vol);
 		pisteDecollage.addToQueue(vol2);
 		pisteDecollage.addToQueue(vol3);
+		aeroport.closePiste(pisteDecollage);
+
 		while(pisteDecollage.getFileAttente().size() != 0) {
 			while(!pisteDecollage.decollePiste()){
 				pisteDecollage.diminueIntervalleDecollage();
@@ -47,10 +49,13 @@ public class Main {
 		pisteAtterissage.addToQueue(vol);
 		pisteAtterissage.atteritPiste();
 		
+		
 		pisteAtterissage.addToQueue(vol2);
+		pisteAtterissage.addToQueue(vol3);
+		aeroport.closePiste(pisteAtterissage);
 		pisteAtterissage.atteritPiste();
 		
-		pisteAtterissage.addToQueue(vol3);
+		
 		pisteAtterissage.atteritPiste();
 		
 	}

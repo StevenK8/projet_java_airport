@@ -272,6 +272,7 @@ public class Aeroport {
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
 				if(p.isOpened()){
+					System.out.println("> Fermeture piste de decollage");
 					piste.closePiste();
 					mergePiste(piste);
 					return true;
@@ -295,6 +296,7 @@ public class Aeroport {
 		if(listPisteAtterissages.contains(piste)){
 			for (Piste p : listPisteAtterissages){
 				if(p.isOpened()){
+					System.out.println("> Fermeture piste atterissage");
 					piste.closePiste();
 					mergePiste(piste);
 					return true;
