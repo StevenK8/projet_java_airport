@@ -1,6 +1,5 @@
 package Main;
 
-
 import java.util.ArrayList;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
@@ -13,6 +12,7 @@ import Personnes.Pays;
 import Personnes.Personne;
 import Personnes.Personnel;
 import Personnes.Pilote;
+import Pistes.Piste;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
 import Vols.Ville;
@@ -268,6 +268,52 @@ public class Aeroport {
 		listPisteDecollages.add(pisteDecollage2);
 	}
 
+	public boolean closePiste(PisteDecollage piste){
+		if(listPisteDecollages.contains(piste)){
+			for (Piste p : listPisteDecollages){
+				if(p.isOpened()){
+					piste.closePiste();
+					mergePiste(piste);
+					return true;
+				}
+			}
+		}
+		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
+	}
+
+	private void mergePiste(PisteDecollage piste) {
+		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
+			for (PisteDecollage p : listPisteDecollages){
+				if(p.isOpened()){ // Pour chaque piste ouverte
+					p.addToQueue(piste.removeVol());
+				}
+			}
+		}
+	}
+
+	public boolean closePiste(PisteAtterissage piste){
+		if(listPisteAtterissages.contains(piste)){
+			for (Piste p : listPisteAtterissages){
+				if(p.isOpened()){
+					piste.closePiste();
+					mergePiste(piste);
+					return true;
+				}
+			}
+		}
+		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
+	}
+
+	private void mergePiste(PisteAtterissage piste) {
+		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
+			for (PisteAtterissage p : listPisteAtterissages){
+				if(p.isOpened()){ // Pour chaque piste ouverte
+					p.addToQueue(piste.removeVol());
+				}
+			}
+		}
+	}
+
 	public void diminueIntervallePilotes() {
 		for(Pilote p : listPilotes) {
 			if(p.estEnPause()) {
@@ -293,7 +339,7 @@ public class Aeroport {
 			}
 		}
 		else {
-			System.out.println(avion + "ne pourra pas decoller car la capacit� maximum n'est pas atteinte");
+			System.out.println(avion + "ne pourra pas decoller car la capacit� maximum n'est pas atteinte");
 		}
 	}
 	
@@ -478,8 +524,6 @@ public class Aeroport {
 	public ArrayList<PisteDecollage> getListPisteDecollages() {
 		return listPisteDecollages;
 	}
-
-
 
 	public ArrayList<PisteAtterissage> getListPisteAtterissages() {
 		return listPisteAtterissages;

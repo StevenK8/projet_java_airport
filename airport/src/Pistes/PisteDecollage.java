@@ -30,7 +30,6 @@ public class PisteDecollage extends Piste{
 				System.out.println(vol.toString() + " decolle");
 				vol.getAvion().setEstEnVol(true);
 				fileAttente.remove(0);
-				int inter;
 				if(vol.getAvion().getPriorite() == 0) {
 					//avion diplomatique
 					intervalleDecollage = 1;
@@ -43,7 +42,7 @@ public class PisteDecollage extends Piste{
 					//avion prive
 					intervalleDecollage = 3;
 				}
-				System.out.println("update de lintervalle decollage, il vaut mtn : " + intervalleDecollage );
+				System.out.println("\n[Intervalle = " + intervalleDecollage +"]");
 				return true;
 			}
 			else {
@@ -52,7 +51,7 @@ public class PisteDecollage extends Piste{
 			}
 		}
 		else {
-			System.out.println("Il reste " + intervalleDecollage + " intervalles de temps avant le prochain decollage");
+			System.out.println("> Intervalle : " + intervalleDecollage);
 			return false;
 		}
 	}
