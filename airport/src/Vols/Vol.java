@@ -34,6 +34,6 @@ public class Vol {
     }
     
     public String toString() {
-    	return avion.getModele().toString() + " " +avion.getType() +  " " + depart + " - " + destination;
+    	return "> " + avion.getType() + " " +avion.getModele().toString() + " " + depart + " - " + destination;
     }
 }

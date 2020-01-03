@@ -177,7 +177,7 @@ public abstract class Avion {
 			return "Avion de ligne";
 		}
 		else if (this instanceof AvionPrive) {
-			return "Avion privee";
+			return "Avion prive";
 		}
 		else if (this instanceof AvionDiplomatique) {
 			return "Avion diplomatique";

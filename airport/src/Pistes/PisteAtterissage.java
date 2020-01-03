@@ -27,30 +27,30 @@ public class PisteAtterissage extends Piste{
 				//priorite : 0-> maximale (avion diplo) 	1-> medium (avionLigne)		 2-> minimale (avionPrive)
 				if (fileAttente.get(i).getAvion().getPriorite() > prio || fileAttente.get(i).getAvion().getVolumeCarburant() > carb) {
 					//on fait passer devant le vol en parametre
-					System.out.println(vol.getAvion().getModele() + " priorite : " + prio + " | carburant : " + carb + "L, le mettre en position n� " + i + " de la file d'attente ?" );
-					Scanner sc = new Scanner(System.in);int x;
+					System.out.println("> " +vol.getAvion().getModele() + " \npriorite : " + vol.getAvion().getType() + "\n carburant : " + carb + "L\n le mettre premiere position de la file d'attente ?" );
+					Scanner sc = new Scanner(System.in);
+					int x;
 					do{
 						System.out.println("Oui = 1  Non = 2");
 						x = sc.nextInt();
 					}while(x != 1 && x != 2);
 					if(x == 1) {
 						fileAttente.add(i, vol);
-						System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir � la position " + i);
+						this.afficheQueue();
 						ajout = true;
 						break;
 					}
 					else if(x == 2) {
-						System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir en derniere position");
 						fileAttente.add(vol);
+						this.afficheQueue();
 						ajout = true;
 						break;
 					}
-					sc.close();
 				}
 			}
 			if(!ajout) {
 				fileAttente.add(vol);
-				System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir en derniere position");
+				this.afficheQueue();
 			}
     			
 		}

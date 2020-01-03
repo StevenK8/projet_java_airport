@@ -3,6 +3,8 @@ package Main;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.management.ListenerNotFoundException;
+
 import Avions.Avion;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
@@ -81,6 +83,43 @@ public class Aeroport {
 		listPisteDecollages.add(pisteDecollage3);
 	}
 	
+	//ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
+	public void createPilotesEnVol(Avion avion) {
+		for(int i = 0; i < avion.getNbPiloteMin();i++) {
+			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
+			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
+			Pays nationalite = Pays.values()[new Random().nextInt(Pays.values().length)];
+			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
+			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
+			Pilote p;
+			if(avion.getType().equals("Avion de ligne")) {
+				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,compagnie);
+			}
+			else if(avion.getType().equals("Avion diplomatique")) {
+				p = new Pilote(prenom, nom, new DateNaissance(), nationalite);
+			}
+			else {
+				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,proprio1.getNomProprio());
+			}
+			avion.addPersonne(p);
+			listPilotes.add(p);
+			p.setEstEnVol(true);
+		}
+	}
+	
+	
+	public void createPisteDecollage(int nbPiste) {
+		for(int i = 0; i < nbPiste;i++) {
+			listPisteDecollages.add(new PisteDecollage());
+		}
+	}
+	
+	public void createPisteAtterissage(int nbPiste) {
+		for(int i = 0; i < nbPiste;i++) {
+			listPisteAtterissages.add(new PisteAtterissage(this));
+		}
+	}
+	
 	public Vol createVol(Avion avion, boolean isFromAnotherAirport) {
 		return new Vol(avion, this, isFromAnotherAirport);
 	}
@@ -108,7 +147,7 @@ public class Aeroport {
 			if(typeDePersonne <= 15) {
 				//Passager normal
 				boolean prendAvionPrive = false;
-				if(typeDePersonne < 3) {
+				if(typeDePersonne <= 3) {
 					//1 chance sur 5 que ce passager prenne un avion prive
 					prendAvionPrive = true;
 				}
@@ -125,7 +164,7 @@ public class Aeroport {
 					p = new Pilote(prenom, nom, new DateNaissance(),nationalite, compagnie);
 					compagnie.addPilote(p);
 				}
-				else if ( typeDePilote > 7 && typeDePersonne <= 9) {
+				else if ( typeDePilote > 7 && typeDePilote <= 9) {
 					//Pilote d'avion prive
 					p = new Pilote(prenom, nom, new DateNaissance(),nationalite, proprio1.getNomProprio());
 				}
@@ -134,7 +173,7 @@ public class Aeroport {
 				}
 				listPilotes.add(p);
 			}
-			if(typeDePersonne > 15 && typeDePersonne < 25) {
+			if(typeDePersonne > 17 && typeDePersonne < 25) {
 				//Personnel
 				Personnel p = new Personnel(prenom, nom, new DateNaissance(), nationalite, compagnie);
 				listPersonnels.add(p);
@@ -167,16 +206,55 @@ public class Aeroport {
 				AvionLigne avion = new AvionLigne(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, compagnie, nbPersonnel);
 				listAvionsLignes.add(avion);
 				compagnie.addAvionDansFlotte(avion);
+				avion.setEstEnVol(true);
 			}
 			else if (typeAvion > 15 && typeAvion < 18) {
 				AvionPrive avion = new AvionPrive(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, proprio1);
 				listAvionsPrives.add(avion);
+				avion.setEstEnVol(true);
 			}
 			else {
 				AvionDiplomatique avion = new AvionDiplomatique(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, nbPersonnel, etat);
 				listAvionsDiplomatiques.add(avion);
+				avion.setEstEnVol(true);
 			}
 		}
+	}
+	
+	public ArrayList<Vol> createAvionsEnVol(int nombreAvions) {
+		Random r = new Random();
+		ArrayList<Vol> listAvionsEnVol = new ArrayList<>();
+		for(int i = 0 ; i < nombreAvions; i++) {
+			int typeAvion = r.nextInt(20-1) + 1; 
+			
+			EnumModele modele = EnumModele.values()[new Random().nextInt(EnumModele.values().length)];
+			int capacite = r.nextInt(300-10) + 10; 
+			int poidsBagageMax = r.nextInt(3000-2000) + 2000;
+			int volumeCarburant = r.nextInt(5000-2000) + 2000; 
+			int nbPiloteMin = r.nextInt(3-1) + 1; 
+			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
+			Pays etat = Pays.values()[new Random().nextInt(Pays.values().length)];
+			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
+			int nbPersonnel = r.nextInt(15-5) + 5; 
+			
+			if(typeAvion <= 15) {
+				AvionLigne avion = new AvionLigne(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, compagnie, nbPersonnel);
+				avion.setEstEnVol(true);
+				compagnie.addAvionDansFlotte(avion);
+				listAvionsEnVol.add(createVol(avion, true));
+			}
+			else if (typeAvion > 15 && typeAvion < 18) {
+				AvionPrive avion = new AvionPrive(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, proprio1);
+				avion.setEstEnVol(true);
+				listAvionsEnVol.add(createVol(avion, true));
+			}
+			else {
+				AvionDiplomatique avion = new AvionDiplomatique(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, nbPersonnel, etat);
+				avion.setEstEnVol(true);
+				listAvionsEnVol.add(createVol(avion, true));
+			}
+		}
+		return listAvionsEnVol;
 	}
 	
 	public boolean closePiste(PisteDecollage piste){
