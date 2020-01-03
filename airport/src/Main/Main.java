@@ -21,7 +21,7 @@ public class Main {
 		Aeroport aeroport = new Aeroport(Ville.Paris);
 		
 		//*********************************//
-		//Définition des parametres initiaux
+		//Dï¿½finition des parametres initiaux
 		Scanner sc = new Scanner(System.in);Random r = new Random();
 		System.out.println("BIENVENUE DANS VOTRE NOUVEL AEROPORT \n");
 		
@@ -83,7 +83,7 @@ public class Main {
 		while(true) {
 			int nbAvionsFromAnotherAirport = r.nextInt(4-1)+1;
 			aeroport.createAvions(nbAvionsFromAnotherAirport);
-			System.out.println("nb passagers avant" + aeroport.listVoyageurs.size());
+			System.out.println("nb passagers avant " + aeroport.listVoyageurs.size());
 			ArrayList<Vol> listAvionsVoulantAtterir = aeroport.createAvionsEnVol(nbAvionsFromAnotherAirport);
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
 			for(Vol v : listAvionsVoulantAtterir) {

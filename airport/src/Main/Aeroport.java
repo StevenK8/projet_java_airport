@@ -256,8 +256,52 @@ public class Aeroport {
 		}
 		return listAvionsEnVol;
 	}
+
+	public boolean openPiste(PisteDecollage piste){
+		if(listPisteDecollages.contains(piste)){
+			for (Piste p : listPisteDecollages){
+				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
+					piste.openPiste();
+					System.out.println("> Ouverture piste de décollage");
+					remplirPiste(piste);
+					return true;
+				}
+			}
+		}
+		System.out.println("> La piste de décollage ne peut être ouverte!");
+		return false;
+	}
 	
-	public boolean closePiste(PisteDecollage piste){
+	private void remplirPiste(PisteDecollage piste) {
+		int size = 0;
+		int nbPistesOuvertes = 0;
+		for (Piste p : listPisteDecollages){
+			if(p.isOpened()){
+				nbPistesOuvertes++;
+				size += p.getFileAttente().size();
+			}
+		}
+
+		if(nbPistesOuvertes!=0)
+			size = (size/nbPistesOuvertes)-1;
+		else
+			System.out.println("ERREUR : Aucune piste de décollage n'est ouverte!");
+
+		while (size>0){
+			for (Piste p : listPisteDecollages){
+				if(p.isOpened()){
+					if(size < 0)
+						break;
+					if(p.getFileAttente().size() != 0){
+						piste.addToQueue(p.removeVol());
+						size--;
+					}
+				}
+			}
+		}
+	}
+
+	public boolean closePiste(PisteDecollage piste) {
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
 				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
@@ -313,17 +357,50 @@ public class Aeroport {
 		}
 	}
 	
-	/***************************[TODO]
-	public boolean openPiste(PisteDecollage piste) {
+
+	public boolean openPiste(PisteAtterissage piste){
+		if(listPisteAtterissages.contains(piste)){
+			for (Piste p : listPisteAtterissages){
+				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
+					piste.openPiste();
+					System.out.println("> Ouverture piste d'atterissage");
+					remplirPiste(piste);
+					return true;
+				}
+			}
+		}
+		System.out.println("> La piste d'atterissage ne peut être ouverte!");
 		return false;
-		
 	}
 	
-	public boolean openPiste(PisteAtterissage piste) {
-		return false;
-		
+	private void remplirPiste(PisteAtterissage piste) {
+		int size = 0;
+		int nbPistesOuvertes = 0;
+		for (Piste p : listPisteAtterissages){
+			if(p.isOpened()){
+				nbPistesOuvertes++;
+				size += p.getFileAttente().size();
+			}
+		}
+
+		if(nbPistesOuvertes!=0)
+			size = (size/nbPistesOuvertes)-1;
+		else
+			System.out.println("ERREUR : Aucune piste d'atterissage n'est ouverte!");
+
+		while (size>0){
+			for (Piste p : listPisteAtterissages){
+				if(p.isOpened()){
+					if(size < 0)
+						break;
+					if(p.getFileAttente().size() != 0){
+						piste.addToQueue(p.removeVol());
+						size--;
+					}
+				}
+			}
+		}
 	}
-	/*********************************/
 	 
 	 
 	public void diminueIntervallePilotes() {
