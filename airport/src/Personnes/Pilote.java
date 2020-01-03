@@ -10,20 +10,21 @@ public class Pilote extends Passager{
 	private Pays pays; //avion diplo
 	private int intervallePilote = 0; //intervalle entre 2 vols
 
-	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
+	public Pilote(EnumPrenom prenom, EnumNom nom, DateNaissance dateNaissance, Pays nationalite, Compagnie pCompagnie) {
+		super(prenom, nom, dateNaissance, nationalite,false);
 		compagnie = pCompagnie;
 		pays = nationalite;
 	}
 
-	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, String pEmployeur) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport,true);
+	public Pilote(EnumPrenom prenom, EnumNom nom, DateNaissance dateNaissance, Pays nationalite, String pEmployeur) {
+		super(prenom, nom, dateNaissance, nationalite,true);
 		employeur = pEmployeur;
 		pays = nationalite;
 	}
 	
-	public Pilote(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
+	public Pilote(EnumPrenom prenom, EnumNom nom, DateNaissance dateNaissance, Pays nationalite) {
+		//pilote d'avion diplomatique --> ne pilote que des avions de sa nationalite
+		super(prenom, nom, dateNaissance, nationalite,false);
 		pays = nationalite;
 	}
 

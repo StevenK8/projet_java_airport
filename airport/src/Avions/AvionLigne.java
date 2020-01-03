@@ -11,7 +11,7 @@ public class AvionLigne extends Avion{
 	private int nbPersonnelsMin;
 
 	
-	public AvionLigne(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin ,Compagnie c, int nbPersonnel) {
+	public AvionLigne(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin ,Compagnie c, int nbPersonnel) {
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,nbPersonnel);
 		compagnieProprietaire = c;
 		nbPersonnelsMin = nbPersonnel;

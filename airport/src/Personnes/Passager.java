@@ -2,16 +2,16 @@ package Personnes;
 
 public class Passager extends Personne{
 	
-	private int numPasseport;//nationalite correspondant au passeport? -> classe passeport
+	private int numPasseport = 0;
 	//add voyage souhaite (2 aeroports) --> faire les classes Vol et Avion
 	//add historique de leurs vols (liste aeroports departs et arrivees) --> classe Vol
 	
-	private boolean prendAvionPrivee;
+	private boolean prendAvionPrivee = false;
 	
 	//constructeur temporaire
-	public Passager(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, boolean pPrendAvionPrive) {
+	public Passager(EnumPrenom prenom, EnumNom nom, DateNaissance dateNaissance, Pays nationalite, boolean pPrendAvionPrive) {
 		super(prenom, nom, dateNaissance, nationalite);
-		this.numPasseport = numPasseport;
+		this.numPasseport = numPasseport + 1;
 		prendAvionPrivee = pPrendAvionPrive;
 	}
 
@@ -21,6 +21,9 @@ public class Passager extends Personne{
 	
 	public boolean getPrendAvionPrive() {
 		return prendAvionPrivee;
+	}
+	public void setPrendAvionPrive(boolean pPrendAvionprive) {
+		prendAvionPrivee = pPrendAvionprive;
 	}
 	
 	

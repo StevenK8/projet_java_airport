@@ -3,13 +3,17 @@ package Main;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Avions.Avion;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
 import Avions.AvionPrive;
+import Avions.EnumModele;
 import CompagnieAerienne.Compagnie;
 import CompagnieAerienne.EnumCompagnie;
 import Personnes.DateNaissance;
 import Personnes.Diplomate;
+import Personnes.EnumNom;
+import Personnes.EnumPrenom;
 import Personnes.Passager;
 import Personnes.Pays;
 import Personnes.Personne;
@@ -41,6 +45,10 @@ public class Aeroport {
 	
 	private Ville ville;
 	
+	
+	Personne proprio1 = new Personne(EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)],
+			EnumNom.values()[new Random().nextInt(EnumNom.values().length)], new DateNaissance(), Pays.values()[new Random().nextInt(Pays.values().length)]);
+	
 	public Aeroport(Ville pVille) {
 		ville = pVille;
 		listVoyageurs = new ArrayList<Passager>();
@@ -55,207 +63,7 @@ public class Aeroport {
 		listPisteDecollages = new ArrayList<PisteDecollage>(); 
 		listPisteAtterissages = new ArrayList<PisteAtterissage>();
 		
-		DateNaissance date = new DateNaissance(1, 1, 1);
-		
-		//Proprietaires davion prive
-		Personne proprio1 = new Personne("Jean", "azerty", date, Pays.AfriqueduSud);
-		Personne proprio2 = new Personne("Daniel", "lala", date, Pays.France);
-		Personne proprio3 = new Personne("toto", "kerv", date, Pays.Allemagne);
-		Personne proprio4 = new Personne("tata", "lalzlel", date, Pays.Espagne);
-		Personne proprio5 = new Personne("titi", "momomo", date, Pays.Australie);
-		
 		listProprietaires.add(proprio1);
-		listProprietaires.add(proprio2);
-		listProprietaires.add(proprio3);
-		listProprietaires.add(proprio4);
-		listProprietaires.add(proprio5);
-		
-		
-		//Compagnie aerienne
-		Compagnie airFrance = new Compagnie(EnumCompagnie.Air_France,Pays.France );
-		Compagnie easyJet = new Compagnie(EnumCompagnie.Air_France, Pays.France);
-		Compagnie airTunisia = new Compagnie(EnumCompagnie.Air_France, Pays.Tunisie);
-		Compagnie airAustralia = new Compagnie(EnumCompagnie.Air_France, Pays.Australie);
-		
-		listCompagnies.add(airFrance);
-		listCompagnies.add(easyJet);
-		listCompagnies.add(airTunisia);
-		listCompagnies.add(airAustralia);
-		
-		//AvionPrive
-		AvionPrive avionprive1 = new AvionPrive("airbus a380", 4, 12000.0, 100.0, 1, proprio1);
-		AvionPrive avionprive2 = new AvionPrive("airbus a370", 2, 12000.0, 1000.0, 2, proprio2);
-		AvionPrive avionprive3 = new AvionPrive("airbus a360", 3, 12000.0, 1000.0, 2, proprio3);
-		AvionPrive avionprive4 = new AvionPrive("airbus a350", 4, 12000.0, 10000.0, 2, proprio4);
-		AvionPrive avionprive5 = new AvionPrive("airbus a340", 5, 12000.0, 10000.0, 2, proprio5);
-		
-		listAvionsPrives.add(avionprive1);
-		listAvionsPrives.add(avionprive2);
-		listAvionsPrives.add(avionprive3);
-		listAvionsPrives.add(avionprive4);
-		listAvionsPrives.add(avionprive5);
-		
-		//AvionLigne
-		AvionLigne avionLigne1 = new AvionLigne("airbus a320", 3, 12000.0, 10000.0, 2, airFrance, 2);
-		AvionLigne avionLigne2 = new AvionLigne("airbus a330", 7, 12000.0, 10000.0, 1, easyJet, 1);
-		AvionLigne avionLigne3 = new AvionLigne("airbus a340", 6, 12000.0, 1000.0, 2, airTunisia, 2);
-		AvionLigne avionLigne4 = new AvionLigne("airbus a350", 5, 12000.0, 1000.0, 1, airAustralia, 1);
-		AvionLigne avionLigne5 = new AvionLigne("airbus a360", 4, 12000.0, 100.0, 1, airFrance, 1);
-		
-		listAvionsLignes.add(avionLigne1);
-		listAvionsLignes.add(avionLigne2);
-		listAvionsLignes.add(avionLigne3);
-		listAvionsLignes.add(avionLigne4);
-		listAvionsLignes.add(avionLigne5);
-		
-		airFrance.addAvionDansFlotte(avionLigne1);
-		airFrance.addAvionDansFlotte(avionLigne2);
-		airFrance.addAvionDansFlotte(avionLigne3);
-		airFrance.addAvionDansFlotte(avionLigne4);
-		airFrance.addAvionDansFlotte(avionLigne5);
-		
-		
-		//AvionDiplomatique
-		AvionDiplomatique avionDiplo1 = new AvionDiplomatique("airbus a300", 3, 10000, 10000, 1,0,Pays.France);
-		AvionDiplomatique avionDiplo2 = new AvionDiplomatique("airbus a310", 3, 10000, 10000, 1,0, Pays.Ukraine);
-		AvionDiplomatique avionDiplo3 = new AvionDiplomatique("airbus a320", 2, 10000, 1000, 1,0, Pays.RoyaumeUni);
-		AvionDiplomatique avionDiplo4 = new AvionDiplomatique("airbus a330", 2, 10000, 1000, 1,0, Pays.Espagne);
-		AvionDiplomatique avionDiplo5 = new AvionDiplomatique("airbus a340", 2, 10000, 100, 1, 0,Pays.Portugal);
-		
-		listAvionsDiplomatiques.add(avionDiplo1);
-		listAvionsDiplomatiques.add(avionDiplo2);
-		listAvionsDiplomatiques.add(avionDiplo3);
-		listAvionsDiplomatiques.add(avionDiplo4);
-		listAvionsDiplomatiques.add(avionDiplo5);
-		
-		//passagers
-		Passager p1 = new Passager("passager","1", date, Pays.AfriqueduSud, 1,true);
-		Passager p2 = new Passager("passager","2", date, Pays.Albanie, 2,true);
-		Passager p3 = new Passager("passager","3", date,Pays.Algerie , 3,true);
-		Passager p4 = new Passager("passager","4", date, Pays.Andorre, 4,false);
-		Passager p5 = new Passager("passager","5", date, Pays.BosnieHerzegovine, 5,false);
-		Passager p6 = new Passager("passager","6", date, Pays.Argentine, 6,false);
-		Passager p7 = new Passager("passager","7", date, Pays.Soudan, 7,false);
-		Passager p8 = new Passager("passager","8", date, Pays.Finlande, 8,false);
-		Passager p9 = new Passager("passager","9", date, Pays.Autriche, 9,false);
-		Passager p10 = new Passager("passager","10", date, Pays.France, 10,false);
-		Passager p11 = new Passager("passager","11", date, Pays.Roumanie, 11,false);
-		Passager p12 = new Passager("passager","12", date, Pays.Lesotho, 12,false);
-		Passager p13 = new Passager("passager","13", date, Pays.Jamaique, 13,false);
-		Passager p14 = new Passager("passager","14", date, Pays.Fidji, 14,false);
-		Passager p15 = new Passager("passager","15", date, Pays.Hongrie, 15,false);
-		Passager p16 = new Passager("passager","16", date, Pays.Venezuela, 16,true);
-		Passager p17 = new Passager("passager","17", date, Pays.Bahamas, 17,true);
-		Passager p18 = new Passager("passager","18", date, Pays.Gabon, 18,true);
-		Passager p19 = new Passager("passager","19", date, Pays.Mali, 19,true);
-		Passager p20 = new Passager("passager","20", date, Pays.Chili, 20,true);
-		
-		listVoyageurs.add(p1);
-		listVoyageurs.add(p2);
-		listVoyageurs.add(p3);
-		listVoyageurs.add(p4);
-		listVoyageurs.add(p5);
-		listVoyageurs.add(p6);
-		listVoyageurs.add(p7);
-		listVoyageurs.add(p8);
-		listVoyageurs.add(p9);
-		listVoyageurs.add(p10);
-		listVoyageurs.add(p11);
-		listVoyageurs.add(p12);
-		listVoyageurs.add(p13);
-		listVoyageurs.add(p14);
-		listVoyageurs.add(p15);
-		listVoyageurs.add(p16);
-		listVoyageurs.add(p17);
-		listVoyageurs.add(p18);
-		listVoyageurs.add(p19);
-		listVoyageurs.add(p20);
-		
-		//Pilotes
-		Pilote pilote1 = new Pilote("pilote","1", date, Pays.France, 12,airFrance);
-		Pilote pilote2 = new Pilote("pilote","2", date, Pays.France, 12,easyJet);
-		Pilote pilote3 = new Pilote("pilote","3", date, Pays.France, 12,airTunisia);
-		Pilote pilote4 = new Pilote("pilote","4", date, Pays.France, 12,airAustralia);
-		Pilote pilote5 = new Pilote("pilote","5", date, Pays.France, 12,proprio1.getNomProprio());
-		Pilote pilote6 = new Pilote("pilote","6", date, Pays.France, 12,proprio2.getNomProprio());
-		Pilote pilote7 = new Pilote("pilote","7", date, Pays.France, 12,proprio3.getNomProprio());
-		Pilote pilote8 = new Pilote("pilote","8", date, Pays.France, 12,proprio4.getNomProprio());
-		Pilote pilote9 = new Pilote("pilote","9", date, Pays.France, 12,proprio5.getNomProprio());
-		Pilote pilote10 = new Pilote("pilote","10", date, Pays.France, 12,airFrance);
-		Pilote pilote11 = new Pilote("pilote","11", date, Pays.France, 12,airFrance);
-		Pilote pilote12 = new Pilote("pilote","12", date, Pays.France, 12,airTunisia);
-		Pilote pilote13 = new Pilote("pilote","13", date, Pays.France, 12,airAustralia);
-		Pilote pilote14 = new Pilote("pilote","14", date, Pays.Ukraine, 12);
-		Pilote pilote15 = new Pilote("pilote","15", date, Pays.France, 12);
-		
-		listPilotes.add(pilote1);
-		listPilotes.add(pilote2);
-		listPilotes.add(pilote3);
-		listPilotes.add(pilote4);
-		listPilotes.add(pilote5);
-		listPilotes.add(pilote6);
-		listPilotes.add(pilote7);
-		listPilotes.add(pilote8);
-		listPilotes.add(pilote9);
-		listPilotes.add(pilote10);
-		listPilotes.add(pilote11);
-		listPilotes.add(pilote12);
-		listPilotes.add(pilote13);
-		listPilotes.add(pilote14);
-		
-		airFrance.addPilote(pilote1);
-		airFrance.addPilote(pilote2);
-		airFrance.addPilote(pilote3);
-		airFrance.addPilote(pilote4);
-		
-		//Personnel
-		Personnel personnel1 = new Personnel("personnel","1", date, Pays.France, 12, airFrance);
-		Personnel personnel2 = new Personnel("personnel","2", date, Pays.France, 12, airFrance);
-		Personnel personnel3 = new Personnel("personnel","3", date, Pays.France, 12, airFrance);
-		Personnel personnel4 = new Personnel("personnel","4", date, Pays.France, 12, airFrance);
-		Personnel personnel5 = new Personnel("personnel","5", date, Pays.France, 12, airFrance);
-		Personnel personnel6 = new Personnel("personnel","6", date, Pays.France, 12, airFrance);
-		Personnel personnel7 = new Personnel("personnel","7", date, Pays.France, 12, airFrance);
-		Personnel personnel8 = new Personnel("personnel","8", date, Pays.France, 12, easyJet);
-		Personnel personnel9 = new Personnel("personnel","9", date, Pays.France, 12, easyJet);
-		Personnel personnel10 = new Personnel("personnel","10", date, Pays.France, 12, easyJet);
-		Personnel personnel11 = new Personnel("personnel","11", date, Pays.France, 12, easyJet);
-		Personnel personnel12 = new Personnel("personnel","12", date, Pays.France, 12, easyJet);
-		Personnel personnel13 = new Personnel("personnel","13", date, Pays.France, 12, easyJet);
-		Personnel personnel14 = new Personnel("personnel","14", date, Pays.France, 12, airTunisia);
-		Personnel personnel15 = new Personnel("personnel","15", date, Pays.France, 12, airAustralia);
-		Personnel personnel16 = new Personnel("personnel","16", date, Pays.France, 12, airAustralia);
-		
-		listPersonnels.add(personnel1);
-		listPersonnels.add(personnel2);
-		listPersonnels.add(personnel3);
-		listPersonnels.add(personnel4);
-		listPersonnels.add(personnel5);
-		listPersonnels.add(personnel6);
-		listPersonnels.add(personnel7);
-		listPersonnels.add(personnel8);
-		listPersonnels.add(personnel9);
-		listPersonnels.add(personnel10);
-		listPersonnels.add(personnel11);
-		listPersonnels.add(personnel12);
-		listPersonnels.add(personnel13);
-		listPersonnels.add(personnel14);
-		listPersonnels.add(personnel15);
-		listPersonnels.add(personnel16);
-		
-		airFrance.addPersonnel(personnel1);
-		airFrance.addPersonnel(personnel2);
-		airFrance.addPersonnel(personnel3);
-		airFrance.addPersonnel(personnel4);
-		
-		//Diplomates
-		Diplomate d1 = new Diplomate("diplomate1", "nom", date, Pays.Ukraine, 666);
-		Diplomate d2 = new Diplomate("diplomate2", "nom", date, Pays.France, 333);
-		Diplomate d3 = new Diplomate("diplomate3", "nom", date, Pays.France, 999);
-		
-		listDiplomates.add(d1);
-		listDiplomates.add(d2);
-		listDiplomates.add(d3);
 		
 		//Piste
 		PisteDecollage pisteDecollage1 = new PisteDecollage();
@@ -272,6 +80,10 @@ public class Aeroport {
 		listPisteDecollages.add(pisteDecollage2);
 		listPisteDecollages.add(pisteDecollage3);
 	}
+	
+	public Vol createVol(Avion avion, boolean isFromAnotherAirport) {
+		return new Vol(avion, this, isFromAnotherAirport);
+	}
 
 	public void createCompagnie(int nombreCompagnie) {
 		for(int i = 0 ; i < nombreCompagnie; i++) {
@@ -285,22 +97,87 @@ public class Aeroport {
 	public void createPersonne(int nombrePersonne) {
 		Random r = new Random();
 		for(int i = 0 ; i < nombrePersonne; i++) {
-			int type = r.nextInt(20-1) + 1;
-			if(type <= 15) {
+			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
+			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
+			Pays nationalite = Pays.values()[new Random().nextInt(Pays.values().length)];
+			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
+			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
+			
+			int typeDePersonne = r.nextInt(25-1) + 1; // Définit le type de personne que l'on créé au hasard(passager, pilote, personnel ou diplomate)
+			
+			if(typeDePersonne <= 15) {
 				//Passager normal
+				boolean prendAvionPrive = false;
+				if(typeDePersonne < 3) {
+					//1 chance sur 5 que ce passager prenne un avion prive
+					prendAvionPrive = true;
+				}
+				Passager p = new Passager(prenom,nom,new DateNaissance(),nationalite,prendAvionPrive);
+				listVoyageurs.add(p);
 			}
-			if(type <= 17 && type > 15) {
+			
+			if(typeDePersonne == 17 || typeDePersonne == 16) {
 				//Pilote
+				Pilote p;
+				int typeDePilote = r.nextInt(11-1)+1;
+				if(typeDePilote <= 6) {
+					//pilote de compagnie (avion de ligne)
+					p = new Pilote(prenom, nom, new DateNaissance(),nationalite, compagnie);
+					compagnie.addPilote(p);
+				}
+				else if ( typeDePilote > 7 && typeDePersonne <= 9) {
+					//Pilote d'avion prive
+					p = new Pilote(prenom, nom, new DateNaissance(),nationalite, proprio1.getNomProprio());
+				}
+				else {
+					p = new Pilote(prenom, nom, new DateNaissance(), nationalite);
+				}
+				listPilotes.add(p);
 			}
-			if(type <= 19 && type > 17) {
+			if(typeDePersonne > 15 && typeDePersonne < 25) {
 				//Personnel
+				Personnel p = new Personnel(prenom, nom, new DateNaissance(), nationalite, compagnie);
+				listPersonnels.add(p);
+				compagnie.addPersonnel(p);
 			}
-			if(type == 20) {
+			if(typeDePersonne == 25) {
 				//Diplomate
+				Diplomate d = new Diplomate(prenom, nom, new DateNaissance(), nationalite);
+				listDiplomates.add(d);
 			}
 		}
 	}
 	
+	public void createAvions(int nombreAvions) {
+		Random r = new Random();
+		for(int i = 0 ; i < nombreAvions; i++) {
+			int typeAvion = r.nextInt(20-1) + 1; 
+			
+			EnumModele modele = EnumModele.values()[new Random().nextInt(EnumModele.values().length)];
+			int capacite = r.nextInt(300-10) + 10; 
+			int poidsBagageMax = r.nextInt(3000-2000) + 2000;
+			int volumeCarburant = r.nextInt(5000-2000) + 2000; 
+			int nbPiloteMin = r.nextInt(3-1) + 1; 
+			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
+			Pays etat = Pays.values()[new Random().nextInt(Pays.values().length)];
+			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
+			int nbPersonnel = r.nextInt(15-5) + 5; 
+			
+			if(typeAvion <= 15) {
+				AvionLigne avion = new AvionLigne(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, compagnie, nbPersonnel);
+				listAvionsLignes.add(avion);
+				compagnie.addAvionDansFlotte(avion);
+			}
+			else if (typeAvion > 15 && typeAvion < 18) {
+				AvionPrive avion = new AvionPrive(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, proprio1);
+				listAvionsPrives.add(avion);
+			}
+			else {
+				AvionDiplomatique avion = new AvionDiplomatique(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, nbPersonnel, etat);
+				listAvionsDiplomatiques.add(avion);
+			}
+		}
+	}
 	
 	public boolean closePiste(PisteDecollage piste){
 		if(listPisteDecollages.contains(piste)){
@@ -383,7 +260,6 @@ public class Aeroport {
 			if( this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin()) {
 				if(this.getPersonnelsDansAeroport(avion.getCompagnie()) >= avion.getNbPersonnelsMin()) {
 					avion.remplissageAvion(this);
-					Vol vol = new Vol(avion, this);
 				}
 				else {
 					System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
@@ -402,7 +278,6 @@ public class Aeroport {
 		if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
-				Vol vol = new Vol(avion, this);
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
@@ -417,7 +292,6 @@ public class Aeroport {
 		if(this.getPilotesDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
-				Vol vol = new Vol(avion, this);
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
