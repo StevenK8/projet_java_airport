@@ -1,10 +1,13 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
 import Avions.AvionPrive;
 import CompagnieAerienne.Compagnie;
+import CompagnieAerienne.EnumCompagnie;
 import Personnes.DateNaissance;
 import Personnes.Diplomate;
 import Personnes.Passager;
@@ -69,10 +72,10 @@ public class Aeroport {
 		
 		
 		//Compagnie aerienne
-		Compagnie airFrance = new Compagnie("AirFrance",Pays.France );
-		Compagnie easyJet = new Compagnie("EasyJet", Pays.France);
-		Compagnie airTunisia = new Compagnie("AirTunisia", Pays.Tunisie);
-		Compagnie airAustralia = new Compagnie("airAustralia", Pays.Australie);
+		Compagnie airFrance = new Compagnie(EnumCompagnie.Air_France,Pays.France );
+		Compagnie easyJet = new Compagnie(EnumCompagnie.Air_France, Pays.France);
+		Compagnie airTunisia = new Compagnie(EnumCompagnie.Air_France, Pays.Tunisie);
+		Compagnie airAustralia = new Compagnie(EnumCompagnie.Air_France, Pays.Australie);
 		
 		listCompagnies.add(airFrance);
 		listCompagnies.add(easyJet);
@@ -257,6 +260,7 @@ public class Aeroport {
 		//Piste
 		PisteDecollage pisteDecollage1 = new PisteDecollage();
 		PisteDecollage pisteDecollage2 = new PisteDecollage();
+		PisteDecollage pisteDecollage3 = new PisteDecollage();
 		PisteAtterissage pisteAtterissage1 = new PisteAtterissage(this);
 		PisteAtterissage pisteAtterissage2 = new PisteAtterissage(this);
 		
@@ -266,8 +270,38 @@ public class Aeroport {
 
 		listPisteDecollages.add(pisteDecollage1);
 		listPisteDecollages.add(pisteDecollage2);
+		listPisteDecollages.add(pisteDecollage3);
 	}
 
+	public void createCompagnie(int nombreCompagnie) {
+		for(int i = 0 ; i < nombreCompagnie; i++) {
+			Compagnie c = new Compagnie(
+					EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)],
+					Pays.values()[new Random().nextInt(Pays.values().length)]);
+			listCompagnies.add(c);
+		}
+	}
+	
+	public void createPersonne(int nombrePersonne) {
+		Random r = new Random();
+		for(int i = 0 ; i < nombrePersonne; i++) {
+			int type = r.nextInt(20-1) + 1;
+			if(type <= 15) {
+				//Passager normal
+			}
+			if(type <= 17 && type > 15) {
+				//Pilote
+			}
+			if(type <= 19 && type > 17) {
+				//Personnel
+			}
+			if(type == 20) {
+				//Diplomate
+			}
+		}
+	}
+	
+	
 	public boolean closePiste(PisteDecollage piste){
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
@@ -287,6 +321,9 @@ public class Aeroport {
 			for (PisteDecollage p : listPisteDecollages){
 				if(p.isOpened()){ // Pour chaque piste ouverte
 					p.addToQueue(piste.removeVol());
+					if(piste.getFileAttente().size() == 0) {
+						break;
+					}
 				}
 			}
 		}
@@ -311,11 +348,27 @@ public class Aeroport {
 			for (PisteAtterissage p : listPisteAtterissages){
 				if(p.isOpened()){ // Pour chaque piste ouverte
 					p.addToQueue(piste.removeVol());
+					if(piste.getFileAttente().size() == 0) {
+						break;
+					}
 				}
 			}
 		}
 	}
-
+	
+	/***************************[TODO]
+	public boolean openPiste(PisteDecollage piste) {
+		return false;
+		
+	}
+	
+	public boolean openPiste(PisteAtterissage piste) {
+		return false;
+		
+	}
+	/*********************************/
+	 
+	 
 	public void diminueIntervallePilotes() {
 		for(Pilote p : listPilotes) {
 			if(p.estEnPause()) {
