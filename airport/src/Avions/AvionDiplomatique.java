@@ -12,7 +12,7 @@ public class AvionDiplomatique extends Avion {
     private Pays etatProprietaire;
     private int personnelMin;
 
-    public AvionDiplomatique(String modele, int personnesMax, double poidsMax, double carburantMax, int pilotesMin,int pPersonnelMin, Pays etat){
+    public AvionDiplomatique(EnumModele modele, int personnesMax, double poidsMax, double carburantMax, int pilotesMin,int pPersonnelMin, Pays etat){
         super(modele, personnesMax, poidsMax, carburantMax, pilotesMin, pPersonnelMin);
         etatProprietaire = etat;
         personnelMin = pPersonnelMin;

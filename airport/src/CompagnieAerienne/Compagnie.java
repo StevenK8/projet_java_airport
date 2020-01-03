@@ -9,13 +9,13 @@ import Personnes.Personnel;
 import Personnes.Pilote;
 
 public class Compagnie {
-	private String nomCommercial;
+	private EnumCompagnie nomCommercial;
 	private Pays nationalite;
 	private List<AvionLigne> flotte;
 	private List<Pilote> pilotes;
 	private List<Personnel> personnelsNavigants;
 	
-	public Compagnie(String nomCommercial, Pays nationalite) {
+	public Compagnie(EnumCompagnie nomCommercial, Pays nationalite) {
 		this.nomCommercial = nomCommercial;
 		this.nationalite = nationalite;
 		flotte = new ArrayList<>();
@@ -56,10 +56,6 @@ public class Compagnie {
 	
 	public List<Personnel> getListPersonnel(){
 		return personnelsNavigants;
-	}
-	
-	public void setNomCommercial(String newName) {
-		nomCommercial = newName;
 	}
 	
 	public String toString() {

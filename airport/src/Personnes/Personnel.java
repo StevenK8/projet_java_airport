@@ -8,8 +8,8 @@ public class Personnel extends Passager{
 	private Compagnie compagnie;
 	private Pays pays;
 	
-	public Personnel(String prenom, String nom, DateNaissance dateNaissance, Pays nationalite, int numPasseport, Compagnie pCompagnie) {
-		super(prenom, nom, dateNaissance, nationalite, numPasseport,false);
+	public Personnel(EnumPrenom prenom, EnumNom nom, DateNaissance dateNaissance, Pays nationalite, Compagnie pCompagnie) {
+		super(prenom, nom, dateNaissance, nationalite,false);
 		compagnie = pCompagnie;
 		pays = nationalite;
 	}

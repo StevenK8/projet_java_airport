@@ -15,11 +15,18 @@ public class Vol {
     private Ville destination;
     private Aeroport aeroport;
     
-    public Vol(Avion chAvion, Aeroport pAeroport) {
+    public Vol(Avion chAvion, Aeroport pAeroport, boolean isFromAnotherAirport) {
     	aeroport = pAeroport;
     	avion = chAvion;
-    	depart = aeroport.getVille();
-    	destination =  Ville.values()[new Random().nextInt(Ville.values().length)];
+    	if(isFromAnotherAirport) {
+    		depart = Ville.values()[new Random().nextInt(Ville.values().length)];
+        	destination = aeroport.getVille();
+    	}
+    	else {
+    		depart = aeroport.getVille();
+        	destination =  Ville.values()[new Random().nextInt(Ville.values().length)];
+    	}
+    	
     }
     
     public Avion getAvion() {

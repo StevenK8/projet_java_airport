@@ -13,7 +13,7 @@ import CompagnieAerienne.Compagnie;
 import Main.Aeroport;
 
 public abstract class Avion {
-	protected String modele;
+	protected EnumModele modele;
 	protected int capacite;
 	protected double poidsBagageMax;
 	protected double volumeCarburant;
@@ -27,7 +27,7 @@ public abstract class Avion {
 	private boolean estEnVol = false;
 	
 	
-    public Avion(String modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin, int nbPersonnelMin){
+    public Avion(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin, int nbPersonnelMin){
         this.modele = modele;
         this.capacite = capacite;
         this.poidsBagageMax = poidsBagageMax;
@@ -153,7 +153,7 @@ public abstract class Avion {
 	public int getNbPassagers(){
 		return listPassagers.size();
 	}
-	public String getModele() {
+	public EnumModele getModele() {
 		return modele;
 	}
 	public int getCapacite() {

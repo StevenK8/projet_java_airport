@@ -11,12 +11,12 @@ public class AvionPrive extends Avion{
 	private Personne proprietaire;
 	private int nbPersonnelMin;
 	
-	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin , Personne proprio) {
+	public AvionPrive(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin , Personne proprio) {
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,0);
 		proprietaire = proprio;
 		this.nbPersonnelMin = 0;
 	}
-	public AvionPrive(String modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin ,int nbPersonnelMin, Personne proprio) {
+	public AvionPrive(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant,int NbPiloteMin ,int nbPersonnelMin, Personne proprio) {
         super(modele, capacite, poidsBagageMax, volumeCarburant, NbPiloteMin,nbPersonnelMin);
 		proprietaire = proprio;
 		this.nbPersonnelMin = nbPersonnelMin;
