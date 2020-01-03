@@ -142,7 +142,7 @@ public class Aeroport {
 			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
 			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
 			
-			int typeDePersonne = r.nextInt(25-1) + 1; // D�finit le type de personne que l'on cr�� au hasard(passager, pilote, personnel ou diplomate)
+			int typeDePersonne = r.nextInt(25-1) + 1; // D�finit le type de personne que l'on cr�� au hasard(passager, pilote, personnel ou diplomate)
 			
 			if(typeDePersonne <= 15) {
 				//Passager normal
@@ -260,14 +260,15 @@ public class Aeroport {
 	public boolean closePiste(PisteDecollage piste){
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
-				if(p.isOpened()){
-					System.out.println("> Fermeture piste de decollage");
+				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
+					System.out.println("> Fermeture piste de décollage");
 					piste.closePiste();
 					mergePiste(piste);
 					return true;
 				}
 			}
 		}
+		System.out.println("> La piste de décollage ne peut être fermée!");
 		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
 	}
 
@@ -275,10 +276,10 @@ public class Aeroport {
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
 			for (PisteDecollage p : listPisteDecollages){
 				if(p.isOpened()){ // Pour chaque piste ouverte
-					p.addToQueue(piste.removeVol());
-					if(piste.getFileAttente().size() == 0) {
+					if(piste.getFileAttente().size() > 0)
+						p.addToQueue(piste.removeVol());
+					else
 						break;
-					}
 				}
 			}
 		}
@@ -295,6 +296,7 @@ public class Aeroport {
 				}
 			}
 		}
+		System.out.println("> La piste d'atterissage ne peut être fermée!");
 		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
 	}
 
@@ -302,10 +304,10 @@ public class Aeroport {
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
 			for (PisteAtterissage p : listPisteAtterissages){
 				if(p.isOpened()){ // Pour chaque piste ouverte
-					p.addToQueue(piste.removeVol());
-					if(piste.getFileAttente().size() == 0) {
+					if(piste.getFileAttente().size() > 0)
+						p.addToQueue(piste.removeVol());
+					else 
 						break;
-					}
 				}
 			}
 		}

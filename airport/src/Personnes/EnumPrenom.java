@@ -96,7 +96,7 @@ MAELYS ,
 CLARA ,
 EVA ,
 LINA ,
-ANAÏS ,
+ANAIS ,
 LOUNA ,
 ROMANE ,
 JULIETTE, 
@@ -146,31 +146,5 @@ YASMINE ,
 FAUSTINE ,
 SARA ,
 GABRIELLE;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+;
 }
