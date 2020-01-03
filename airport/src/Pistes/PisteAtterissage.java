@@ -35,7 +35,7 @@ public class PisteAtterissage extends Piste{
 					}while(x != 1 && x != 2);
 					if(x == 1) {
 						fileAttente.add(i, vol);
-						System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir � la position " + i);
+						System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir a la position " + i);
 						ajout = true;
 						break;
 					}
