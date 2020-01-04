@@ -25,10 +25,10 @@ public abstract class Piste {
 		res += "[";
 		int num = 1;
     	for (Vol v : fileAttente) {
-			res += "Position "+num+" :\t"+v.toString()+ "\n";
+			res += "Position "+num+" :\t"+v.toString()+ "\n\t";
 			num++;
 		}
-		res += "]\n";
+		res += "  ]\n";
 		return res;
 	}
 	

@@ -60,4 +60,17 @@ public class Pilote extends Passager{
 	public int getIntervallePilote() {
 		return intervallePilote;
 	}
+	
+	public String toString() {
+		String res = super.toString();
+		if(compagnie != null) {
+			return res + " pilote de ligne pour " + compagnie;
+		}
+		else if(employeur != null) {
+			return res + " pilote d'avion privee pour " +  employeur;
+		}
+		else {
+			return res + " pilote d'avion diplomatique pour " + pays.toString();
+		}
+	}
 }

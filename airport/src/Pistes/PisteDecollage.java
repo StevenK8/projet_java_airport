@@ -19,7 +19,7 @@ public class PisteDecollage extends Piste{
 		//prendre en compte la priorite de l'avion pour son espacement
 		if(vol.getAvion().peutDecoller() && isOpened()) {
 			fileAttente.add(vol);
-	    	System.out.println(vol.toString() + " entre dans la liste d'attente pour decoller\n");	
+	    	System.out.println(vol.toString() + " entre dans la liste d'attente pour decoller");	
 		}	
 	}
 	
@@ -46,12 +46,12 @@ public class PisteDecollage extends Piste{
 				return true;
 			}
 			else {
-				System.out.println("Auncun avion sur la piste de decollage");
+				System.out.println(">  Auncun avion sur la piste de decollage");
 				return false;
 			}
 		}
 		else {
-			System.out.println("> Temps de pause avant prochain decollage: " + intervalleDecollage);
+			System.out.println(">  Temps de pause avant prochain decollage: " + intervalleDecollage);
 			return false;
 		}
 	}

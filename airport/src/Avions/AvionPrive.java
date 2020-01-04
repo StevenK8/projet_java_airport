@@ -52,9 +52,7 @@ public class AvionPrive extends Avion{
 	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion prive : " + modele + "\n");
-    	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
-    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelMin + ") \n");
-    	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
+    	res.append(super.toString());
     	res.append("proprietaire : " + proprietaire + "\n");
     	return res.toString();
     }

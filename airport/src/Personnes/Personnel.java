@@ -25,5 +25,10 @@ public class Personnel extends Passager{
 	public Pays getNationalite() {
 		return pays;
 	}
+	
+	public String toString() {
+		String res = super.toString();
+		return res + " personnel navigant pour " + compagnie.toString();
+	}
 
 }

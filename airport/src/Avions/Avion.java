@@ -42,6 +42,14 @@ public abstract class Avion {
 	
     public abstract void remplissageAvion(Aeroport aeroport);
 	
+    public String toString() {
+    	StringBuilder res = new StringBuilder();
+    	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
+    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelMin + ") \n");
+    	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
+    	return res.toString();
+    }
+    
 	public void addPersonne(Passager p) {
 		if(!p.estEnVol()) {
 			if(p instanceof Personnel) {

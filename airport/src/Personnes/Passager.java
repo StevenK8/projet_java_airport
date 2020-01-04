@@ -26,5 +26,10 @@ public class Passager extends Personne{
 		prendAvionPrivee = pPrendAvionprive;
 	}
 	
+	public String toString() {
+		String res= "";
+		res += super.toString();
+		return res;
+	}
 	
 }

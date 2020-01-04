@@ -10,6 +10,7 @@ import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
 import Avions.AvionPrive;
 import Personnes.Passager;
+import Personnes.Personnel;
 import Personnes.Pilote;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
@@ -176,16 +177,52 @@ public class Main {
 					System.out.println("Nombre de passagers en attente : " + aeroport.getPassagersDansAeroport());
 					System.out.println("Nombre de pilotes en attente : " + aeroport.getPilotesDansAeroport());
 					System.out.println("Nombre de personnels en attente : " + aeroport.getPersonnelsDansAeroport());
-					System.out.println("Nombre d'avions en attente : " + avionEnAttente);
+					System.out.println("Nombre d'avions en attente : " + avionEnAttente + "\n");
+					
+					int voirDetail;
+					do {
+						System.out.println("Voir détails passagers (1)    Voir détails avions (2)    Voir détails pilotes (3)    Voir détails personnels (4)    Retour (5)");
+						voirDetail = sc.nextInt();
+						
+						if(voirDetail == 1) {
+							for(Passager p : aeroport.listVoyageurs) {
+								if(!p.estEnVol()) {
+									System.out.println(p.toString());
+								}
+							}
+						}
+						else if (voirDetail == 2) {
+							for(Avion a : aeroport.listAvions) {
+								if(!a.estEnVol()) {
+									System.out.println(a.toString());
+								}
+							}
+						}
+						else if( voirDetail == 3) {
+							for(Pilote p : aeroport.listPilotes) {
+								if(!p.estEnVol()) {
+									System.out.println(p.toString());
+								}
+							}
+						}
+						else if(voirDetail == 4) {
+							for(Personnel p : aeroport.listPersonnels) {
+								if(!p.EstEnVol()) {
+									System.out.println(p);
+								}
+							}
+						}
+					}while(voirDetail != 5);
+					
 				}
 				else if (resume == 2) {
 					int avionEnVol = 0;
 					for(Avion a : aeroport.listAvions) {
 						if(a.estEnVol()) {
 							avionEnVol += 1;
+							System.out.println(avionEnVol + "- " + a.toString());
 						}
 					}
-					System.out.println("Nombre d'avions en vol : " + avionEnVol);
 				}
 			}while( resume != 3);
 		}

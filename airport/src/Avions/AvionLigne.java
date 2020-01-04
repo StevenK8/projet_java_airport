@@ -67,9 +67,7 @@ public class AvionLigne extends Avion{
 	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion de ligne : " + modele + "\n");
-    	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
-    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelsMin + ") \n");
-    	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
+    	res.append(super.toString());
     	res.append("proprietaire : " + compagnieProprietaire + "\n");
     	return res.toString();
     }

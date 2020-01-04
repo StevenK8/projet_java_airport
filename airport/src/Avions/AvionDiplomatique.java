@@ -21,9 +21,7 @@ public class AvionDiplomatique extends Avion {
     public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion diplomatique : " + modele + "\n");
-    	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
-    	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + personnelMin + ") \n");
-    	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
+    	res.append(super.toString());
     	res.append("proprietaire : " + etatProprietaire + "\n");
     	return res.toString();
     }
