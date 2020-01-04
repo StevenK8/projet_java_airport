@@ -28,7 +28,7 @@ public abstract class Piste {
 			res += "Position "+num+" :\t"+v.toString()+ "\n\t";
 			num++;
 		}
-		res += "  ]\n";
+		res += "  ]";
 		return res;
 	}
 	

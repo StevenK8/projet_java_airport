@@ -69,7 +69,7 @@ public class Aeroport {
 	}
 	
 	//ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
-	public void createPilotesEnVol(Avion avion) {
+	public void populateAvionEnVol(Avion avion) {
 		for(int i = 0; i < avion.getNbPiloteMin();i++) {
 			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
 			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
@@ -90,6 +90,14 @@ public class Aeroport {
 			avion.addPersonne(p);
 			listPilotes.add(p);
 			p.setEstEnVol(true);
+		}
+		for(int i = 0; i < avion.getCapacite();i++) {
+			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
+			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
+			Pays nationalite = Pays.values()[new Random().nextInt(Pays.values().length)];
+			Passager p;
+			p = new Passager(prenom, nom, new DateNaissance(), nationalite, false);
+			avion.addPersonne(p);
 		}
 	}
 	
