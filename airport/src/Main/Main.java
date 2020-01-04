@@ -271,6 +271,7 @@ public class Main {
 						}
 					}
 					
+					
 					System.out.println("Nombre de passagers en attente : " + aeroport.getPassagersDansAeroport());
 					System.out.println("Nombre de pilotes en attente : " + aeroport.getPilotesDansAeroport());
 					System.out.println("Nombre de personnels en attente : " + aeroport.getPersonnelsDansAeroport());
