@@ -313,7 +313,7 @@ public class Main {
 					
 					int voirDetail;
 					do {
-						System.out.println("Voir détails passagers (1)    Voir détails avions (2)    Voir détails pilotes (3)    Voir détails personnels (4)    Retour (5)");
+						System.out.println("Voir détails passagers (1)   Voir détails avions (2)    Voir détails pilotes (3)    Voir détails personnels (4)    Retour (5)");
 						voirDetail = sc.nextInt();
 						
 						if(voirDetail == 1) {
