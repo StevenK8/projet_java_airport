@@ -80,14 +80,146 @@ public class Main {
 		aeroport.createPisteAtterissage(nbPistesAterrissage);
 		System.out.println("> Creation de " + nbPistesAterrissage + " pistes d'aterrissage");
 		
-		
+		String choice = "help";
+		int choiceInt;
+		boolean aChoisi;
+		int i=1;
+		String strList;
+		System.out.println("\n---[AIDE]---\nhelp: \tAfficher l'aide\nq : \tQuitter le programme\nclose : \tFermer une piste [-d / -a]\nopen : \tOuvrir une piste [-d / -a]\nAppuyez sur entrée pour passer cet intervalle.\n");
+		choice = getChoice(sc);
 		//********************************//
 		//Lancement de la boucle du jeu
-		while(true) {
-			int nbAvionsFromAnotherAirport = r.nextInt(4-1)+1;
+		while(choice!="q") {
+			aChoisi = false;
+			choiceInt = -1;
+			while(!aChoisi){
+				i = 0;
+				strList = "";
+				choice = getChoice(sc);
+				switch (choice){
+					case "help":
+						System.out.println("\n---[AIDE]---\nhelp: \tAfficher cette aide\nq : \tQuitter le programme\nclose : \tFermer une piste [-d / -a]\nopen : \tOuvrir une piste [-d / -a]\nAppuyez sur entrée pour passer cet intervalle.\n");
+						break;
+
+					case "open":
+						System.out.println("open -d : \tOuvrir un piste de décollage\nopen -a : \tOuvrir une piste d'atterissage\n");
+						break;
+					case "open -d":
+						strList += "[\n";
+						for (PisteDecollage p : aeroport.getListPisteDecollages()){
+							if(!p.isOpened()){	
+								i++;
+								strList += i + ". "+p.afficheQueue()+"\n";
+							}	
+						}
+						strList += "]";
+						if(i!=0){
+							System.out.println("Veuillez choisir la piste de décollage à ouvrir [1-"+aeroport.getListPisteDecollages().size()+"] :\n");
+							System.out.println(strList);
+							System.out.print("> ");
+
+							while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								choiceInt = sc.nextInt()-1;
+							if(aeroport.openPiste(aeroport.getListPisteDecollages().get(choiceInt)))
+								aChoisi = true;
+						}else{
+							System.out.println("Il n'y a pas de piste de décollage à ouvrir.");
+						}
+						break;
+					case "open -a":
+						strList += "[\n";
+						for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
+							if(!p.isOpened()){
+								i++;
+								strList += i + ". "+p.afficheQueue()+"\n";
+							}	
+						}
+						strList += "]";
+						if(i!=0){
+							System.out.println("Veuillez choisir la piste d'atterissage à ouvrir [1-"+aeroport.getListPisteAtterissages().size()+"] :\n");
+							System.out.println(strList);
+							System.out.print("> ");
+
+							while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								choiceInt = sc.nextInt()-1;
+							if(aeroport.openPiste(aeroport.getListPisteAtterissages().get(choiceInt)))
+								aChoisi = true;
+						}else{
+							System.out.println("Il n'y a pas de piste d'atterissage à ouvrir.");
+						}
+						break;
+
+					case "close":
+						System.out.println("close -d : \tFermer un piste de décollage\nclose -a : \tFermer une piste d'atterissage\n");
+						break;
+					case "close -d":
+						strList += "[\n";
+						for (PisteDecollage p : aeroport.getListPisteDecollages()){
+							if(p.isOpened()){
+								i++;	
+								strList += i + ". "+p.afficheQueue()+"\n";
+							}	
+						}
+						strList += "]";
+						if(i!=0){
+							System.out.println("Veuillez choisir la piste de décollage à fermer [1-"+aeroport.getListPisteDecollages().size()+"] :\n");
+							System.out.println(strList);
+							System.out.print("> ");
+
+							while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								choiceInt = sc.nextInt()-1;
+							if(aeroport.closePiste(aeroport.getListPisteDecollages().get(choiceInt)))
+								aChoisi = true;
+						}else{
+							System.out.println("Il n'y a pas de piste de décollage à fermer.");
+						}
+						break;
+					case "close -a":
+						strList += "[\n";
+						for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
+							if(p.isOpened()){
+								i++;	
+								strList += i + ". "+p.afficheQueue()+"\n";
+							}	
+						}
+						strList += "]";
+						if(i!=0){
+							System.out.println("Veuillez choisir la piste d'atterissage à fermer [1-"+aeroport.getListPisteAtterissages().size()+"] :\n");
+							System.out.println(strList);
+							System.out.print("> ");
+						
+							while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								choiceInt = sc.nextInt()-1;
+							if(aeroport.closePiste(aeroport.getListPisteAtterissages().get(choiceInt)))
+								aChoisi = true;
+						}else{
+							System.out.println("Il n'y a pas de piste de d'atterissage à fermer.");
+						}
+						break;
+					
+					case " ":
+						aChoisi = true;
+						break;
+					case "":
+						aChoisi = true;
+						break;
+					
+					case "q":
+						System.out.println("Au revoir!\n");
+						System.exit(0);
+						break;
+
+					default:
+						System.out.println("'"+choice+"'" + " n'est pas un terme ou une commande reconnue.\nEntrez 'help' pour la liste de commandes.\n");
+						break;
+				}
+			}
+
+			int nbAvionsFromAnotherAirport = r.nextInt(4 - 1) + 1;
+			aeroport.createAvions(nbAvionsFromAnotherAirport);
 			ArrayList<Vol> listAvionsVoulantAtterir = aeroport.createAvionsEnVol(nbAvionsFromAnotherAirport);
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
-			for(Vol v : listAvionsVoulantAtterir) {
+			for (Vol v : listAvionsVoulantAtterir) {
 				aeroport.createPilotesEnVol(v.getAvion());
 				PisteAtterissage piste = aeroport.getPisteAterrissageMoinsEncombre();
 				piste.addToQueue(v);
@@ -104,12 +236,12 @@ public class Main {
 						System.out.println("Voir pistes atterrissage ? (1)    Voir pistes decollage ? (2)    Retour (3)");
 						etatPiste = sc.nextInt();
 						if(etatPiste == 1) {
-							for(int i = 0; i < aeroport.listPisteAtterissages.size(); i++) {
+							for(i = 0; i < aeroport.listPisteAtterissages.size(); i++) {
 								System.out.println("Piste " + i + " : " + aeroport.listPisteAtterissages.get(i).afficheQueue() +"\n");
 							}
 						}
 						if(etatPiste == 2) {
-							for(int i = 0; i < aeroport.listPisteDecollages.size(); i++) {
+							for(i = 0; i < aeroport.listPisteDecollages.size(); i++) {
 								System.out.println("Piste " + i + " : " + aeroport.listPisteDecollages.get(i).afficheQueue() +"\n");
 							}
 						}
@@ -120,8 +252,8 @@ public class Main {
 			for(PisteAtterissage piste : aeroport.listPisteAtterissages) {
 				piste.atteritPiste();
 			}
-	
-			for(PisteDecollage piste : aeroport.listPisteDecollages) {
+
+			for (PisteDecollage piste : aeroport.listPisteDecollages) {
 				piste.decollePiste();
 			}
 			for(AvionLigne avion : aeroport.listAvionsLignes) {
@@ -154,9 +286,9 @@ public class Main {
 					}
 				}
 			}
-			int nbPersonnes = r.nextInt(500-50)+50;
+			int nbPersonnes = r.nextInt(500 - 50) + 50;
 			aeroport.createPersonne(nbPersonnes);
-			
+
 			aeroport.diminueIntervallesDecollage();
 			aeroport.diminueIntervallePilotes();
 			aeroport.diminueCarburantAvionsEnVol();
@@ -226,5 +358,17 @@ public class Main {
 				}
 			}while( resume != 3);
 		}
+		sc.close();
 	}
+
+	public static String getChoice(Scanner sc) {
+		System.out.print("\n> ");
+		String choice = sc.nextLine();
+		choice = choice.toLowerCase(); // Mise en minuscules
+		choice = choice.replaceAll("[^A-Za-z- ]+", ""); // On ne garde que les lettres et '-'
+
+		return choice;
+	}
+	
+	
 }

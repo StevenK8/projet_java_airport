@@ -47,6 +47,7 @@ public class PisteAtterissage extends Piste{
 						ajout = true;
 						break;
 					}
+					sc.close();
 				}
 			}
 			if(!ajout) {
