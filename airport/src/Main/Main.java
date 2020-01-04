@@ -168,7 +168,7 @@ public class Main {
 				if(resume == 1) {
 					int choixActions;
 					do {
-						System.out.println("Ouverture Piste Atterrissage ? (1)    Fermeture Piste Atterrissage (2) Ouverture Piste Decollage ? (3)    Fermeture Piste Decollage (4)    Retour (5)");
+						System.out.println("Ouverture Piste Atterrissage ? (1) \tFermeture Piste Atterrissage (2) \tOuverture Piste Decollage ? (3) \tFermeture Piste Decollage (4) \tAnnulation vol (5) \tRetour (6)");
 						choixActions = sc.nextInt();
 						int choiceInt = -1;
 						String strList = "[\n";
@@ -257,9 +257,27 @@ public class Main {
 							}else{
 								System.out.println("Il n'y a pas de piste de decollage a fermer.");
 							}
+						}else if(choixActions == 5) {
+							int i = 0;
+							for (Vol v : listAvionsVoulantAtterir){
+								i++;	
+								strList += i + ". "+v.toString()+"\n";
+							}
+							strList += "]";
+							if(i!=0){
+								System.out.println("Veuillez choisir le vol Ã  annuler [1-"+listAvionsVoulantAtterir.size()+"] :\n");
+								System.out.println(strList);
+								System.out.print("> ");
+
+								while(choiceInt<0 || choiceInt>=listAvionsVoulantAtterir.size())
+									choiceInt = sc.nextInt()-1;
+								aeroport.annuleVol(listAvionsVoulantAtterir.remove(choiceInt));
+							}else{
+								System.out.println("Il n'y a pas de vol Ã  annuler.");
+							}
 						}
 						
-					}while(choixActions != 5);
+					}while(choixActions != 6);
 				}
 				
 				if(resume == 2) {
@@ -279,7 +297,7 @@ public class Main {
 					
 					int voirDetail;
 					do {
-						System.out.println("Voir détails passagers (1)   Voir détails avions (2)    Voir détails pilotes (3)    Voir détails personnels (4)    Retour (5)");
+						System.out.println("Voir details passagers (1)   Voir details avions (2)    Voir details pilotes (3)    Voir details personnels (4)    Retour (5)");
 						voirDetail = sc.nextInt();
 						
 						if(voirDetail == 1) {

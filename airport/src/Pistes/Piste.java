@@ -21,14 +21,13 @@ public abstract class Piste {
     public abstract void addToQueue(Vol vol); 
     
     public String afficheQueue() {
-    	String res = "";
-		res += "[";
+    	String res = "\n\t[\n\t";
 		int num = 1;
     	for (Vol v : fileAttente) {
 			res += "Position "+num+" :\t"+v.toString()+ "\n\t";
 			num++;
 		}
-		res += "  ]\n";
+		res += "]\n";
 		return res;
 	}
 	
