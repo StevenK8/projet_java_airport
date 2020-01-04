@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import Avions.Avion;
 import Avions.AvionDiplomatique;
 import Avions.AvionLigne;
 import Avions.AvionPrive;
+import Personnes.Passager;
 import Personnes.Pilote;
 import Pistes.PisteAtterissage;
 import Pistes.PisteDecollage;
@@ -27,7 +29,7 @@ public class Main {
 		
 		int nbAvionDepart, nbPersonneDepart, nbPistesDecollage, nbPistesAterrissage;
 		//creation des avions
-		do {
+		/*do {
 			System.out.println("Combien d'avions avez-vous actuellement dans votre aeroport ? [1-100]\n");
 			nbAvionDepart = sc.nextInt();
 		}while(nbAvionDepart < 1 || nbAvionDepart > 101);
@@ -61,7 +63,7 @@ public class Main {
 		System.out.println("> Creation de " + nbPiloteAvionLigne + " pilotes de ligne");
 		System.out.println("> Creation de " + nbPilotePrive + " pilotes prives");
 		System.out.println("> Creation de " + nbPiloteDiplo + " pilotes diplomatique");
-		System.out.println("> Creation de " + aeroport.listPersonnels.size() + " personnels navigants");
+		System.out.println("> Creation de " + aeroport.listPersonnels.size() + " personnels navigants");*/
 		
 		do {
 			System.out.println("Combien de pistes de decollages avez-vous ? [1-5]\n");
@@ -106,7 +108,7 @@ public class Main {
 						for (PisteDecollage p : aeroport.getListPisteDecollages()){
 							if(!p.isOpened()){	
 								i++;
-								strList += i + ". "+p.toString()+"\n";
+								strList += i + ". "+p.afficheQueue()+"\n";
 							}	
 						}
 						strList += "]";
@@ -128,7 +130,7 @@ public class Main {
 						for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
 							if(!p.isOpened()){
 								i++;
-								strList += i + ". "+p.toString()+"\n";
+								strList += i + ". "+p.afficheQueue()+"\n";
 							}	
 						}
 						strList += "]";
@@ -154,7 +156,7 @@ public class Main {
 						for (PisteDecollage p : aeroport.getListPisteDecollages()){
 							if(p.isOpened()){
 								i++;	
-								strList += i + ". "+p.toString()+"\n";
+								strList += i + ". "+p.afficheQueue()+"\n";
 							}	
 						}
 						strList += "]";
@@ -176,7 +178,7 @@ public class Main {
 						for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
 							if(p.isOpened()){
 								i++;	
-								strList += i + ". "+p.toString()+"\n";
+								strList += i + ". "+p.afficheQueue()+"\n";
 							}	
 						}
 						strList += "]";
@@ -210,7 +212,6 @@ public class Main {
 						System.out.println("'"+choice+"'" + " n'est pas un terme ou une commande reconnue.\nEntrez 'help' pour la liste de commandes.\n");
 						break;
 				}
-				System.out.println("Choix : \n"+choice);
 			}
 
 			int nbAvionsFromAnotherAirport = r.nextInt(4 - 1) + 1;
@@ -219,29 +220,68 @@ public class Main {
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
 			for (Vol v : listAvionsVoulantAtterir) {
 				aeroport.createPilotesEnVol(v.getAvion());
-				for (PisteAtterissage piste : aeroport.listPisteAtterissages) {
-					if (piste.isOpened() && !piste.isFull()) {
-						piste.addToQueue(v);
-						break;
-					}
-				}
+				PisteAtterissage piste = aeroport.getPisteAterrissageMoinsEncombre();
+				piste.addToQueue(v);
 			}
-
-			for (PisteAtterissage piste : aeroport.listPisteAtterissages) {
+			
+			
+			int resume; int etatPiste;
+			do {
+				System.out.println("Voir etat des pistes ? (1)    Continuer jeu ? (2)");
+				resume = sc.nextInt();
+				
+				if(resume == 1) {
+					do {
+						System.out.println("Voir pistes atterrissage ? (1)    Voir pistes decollage ? (2)    Retour (3)");
+						etatPiste = sc.nextInt();
+						if(etatPiste == 1) {
+							for(i = 0; i < aeroport.listPisteAtterissages.size(); i++) {
+								System.out.println("Piste " + i + " : " + aeroport.listPisteAtterissages.get(i).afficheQueue() +"\n");
+							}
+						}
+						if(etatPiste == 2) {
+							for(i = 0; i < aeroport.listPisteDecollages.size(); i++) {
+								System.out.println("Piste " + i + " : " + aeroport.listPisteDecollages.get(i).afficheQueue() +"\n");
+							}
+						}
+					}while(etatPiste != 3);
+				}
+			}while(resume != 2);
+			
+			for(PisteAtterissage piste : aeroport.listPisteAtterissages) {
 				piste.atteritPiste();
 			}
 
 			for (PisteDecollage piste : aeroport.listPisteDecollages) {
 				piste.decollePiste();
 			}
-			for (AvionLigne avion : aeroport.listAvionsLignes) {
-				if (aeroport.preparationAvionLigne(avion)) {
-					Vol vol = aeroport.createVol(avion, false);
-					for (PisteDecollage piste : aeroport.listPisteDecollages) {
-						if (piste.isOpened() && !piste.isFull()) {
-							piste.addToQueue(vol);
-							break;
-						}
+			for(AvionLigne avion : aeroport.listAvionsLignes) {
+				if(!avion.estEnVol()) {
+					if(aeroport.preparationAvionLigne(avion)) {
+						//preparationAvionLigne renvoie un booleen ET remplit lavion si cest possible
+						Vol vol = aeroport.createVol(avion, false); //false car ce nest pas un avion provenant dun autre aeroport
+						PisteDecollage piste = aeroport.getPisteDecollageMoinsEncombre();
+						piste.addToQueue(vol);
+					}
+				}
+			}
+			for(AvionPrive avion : aeroport.listAvionsPrives) {
+				if(!avion.estEnVol()) {
+					if(aeroport.preparationAvionPrive(avion)) {
+						//preparationAvionLigne renvoie un booleen ET remplit lavion si cest possible
+						Vol vol = aeroport.createVol(avion, false); //false car ce nest pas un avion provenant dun autre aeroport
+						PisteDecollage piste = aeroport.getPisteDecollageMoinsEncombre();
+						piste.addToQueue(vol);
+					}
+				}
+			}
+			for(AvionDiplomatique avion : aeroport.listAvionsDiplomatiques) {
+				if(!avion.estEnVol()) {
+					if(aeroport.preparationAvionDiplomatique(avion)) {
+						//preparationAvionLigne renvoie un booleen ET remplit lavion si cest possible
+						Vol vol = aeroport.createVol(avion, false); //false car ce nest pas un avion provenant dun autre aeroport
+						PisteDecollage piste = aeroport.getPisteDecollageMoinsEncombre();
+						piste.addToQueue(vol);
 					}
 				}
 			}
@@ -251,6 +291,35 @@ public class Main {
 			aeroport.diminueIntervallesDecollage();
 			aeroport.diminueIntervallePilotes();
 			aeroport.diminueCarburantAvionsEnVol();
+			
+			do {
+				System.out.println("Voir etat aeroport ? (1)    Voir avions en vol (2)    Prochain intervalle (3)");
+				resume = sc.nextInt();
+				
+				if(resume == 1) {
+					int avionEnAttente = 0 ;
+					
+					for(Avion a : aeroport.listAvions) {
+						if(!a.estEnVol()) {
+							avionEnAttente += 1;
+						}
+					}
+					
+					System.out.println("Nombre de passagers en attente : " + aeroport.getPassagersDansAeroport());
+					System.out.println("Nombre de pilotes en attente : " + aeroport.getPilotesDansAeroport());
+					System.out.println("Nombre de personnels en attente : " + aeroport.getPersonnelsDansAeroport());
+					System.out.println("Nombre d'avions en attente : " + avionEnAttente);
+				}
+				else if (resume == 2) {
+					int avionEnVol = 0;
+					for(Avion a : aeroport.listAvions) {
+						if(a.estEnVol()) {
+							avionEnVol += 1;
+						}
+					}
+					System.out.println("Nombre d'avions en vol : " + avionEnVol);
+				}
+			}while( resume != 3);
 		}
 		sc.close();
 	}

@@ -51,7 +51,7 @@ public class PisteDecollage extends Piste{
 			}
 		}
 		else {
-			System.out.println("> Intervalle : " + intervalleDecollage);
+			System.out.println("> Temps de pause avant prochain decollage: " + intervalleDecollage);
 			return false;
 		}
 	}

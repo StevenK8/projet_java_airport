@@ -20,14 +20,16 @@ public abstract class Piste {
     
     public abstract void addToQueue(Vol vol); 
     
-    public void afficheQueue() {
-		System.out.println("[");
+    public String afficheQueue() {
+    	String res = "";
+		res += "[";
 		int num = 1;
     	for (Vol v : fileAttente) {
-			System.out.println("Position "+num+" :\t"+v.toString());
+			res += "Position "+num+" :\t"+v.toString()+ "\n";
 			num++;
 		}
-		System.out.println("]\n");
+		res += "]\n";
+		return res;
 	}
 	
 	public void closePiste(){
