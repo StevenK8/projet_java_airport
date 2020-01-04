@@ -262,13 +262,13 @@ public class Aeroport {
 			for (Piste p : listPisteDecollages){
 				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
 					piste.openPiste();
-					System.out.println("> Ouverture piste de décollage");
+					System.out.println("> Ouverture piste de decollage");
 					remplirPiste(piste);
 					return true;
 				}
 			}
 		}
-		System.out.println("> La piste de décollage ne peut être ouverte!");
+		System.out.println("> La piste de decollage ne peut etre ouverte!");
 		return false;
 	}
 	

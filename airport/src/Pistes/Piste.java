@@ -41,4 +41,11 @@ public abstract class Piste {
 	public void openPiste(){
 		status = true;
 	}
+	
+	private int getCapacite() {
+		return capacite;
+	}
+	public boolean isFull() {
+		return this.getFileAttente().size() == capacite;
+	}
 }

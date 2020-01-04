@@ -21,7 +21,7 @@ public class Main {
 		Aeroport aeroport = new Aeroport(Ville.Paris);
 		
 		//*********************************//
-		//D�finition des parametres initiaux
+		//Definition des parametres initiaux
 		Scanner sc = new Scanner(System.in);Random r = new Random();
 		System.out.println("BIENVENUE DANS VOTRE NOUVEL AEROPORT \n");
 		
@@ -88,7 +88,14 @@ public class Main {
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
 			for(Vol v : listAvionsVoulantAtterir) {
 				aeroport.createPilotesEnVol(v.getAvion());
-				aeroport.listPisteAtterissages.get(0).addToQueue(v);
+				for(PisteAtterissage piste : aeroport.listPisteAtterissages) {
+					if(piste.isOpened() && !piste.isFull()) {
+						piste.addToQueue(v);
+						break;
+					}
+					
+				}
+				
 			}
 			for(Vol v : listAvionsVoulantAtterir) {
 				aeroport.listPisteAtterissages.get(0).atteritPiste();

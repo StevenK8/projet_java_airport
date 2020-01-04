@@ -72,4 +72,6 @@ public class PisteAtterissage extends Piste{
 			}
 		}
 	}
+	
+	
 }
