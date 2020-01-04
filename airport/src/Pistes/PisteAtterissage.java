@@ -57,7 +57,6 @@ public class PisteAtterissage extends Piste{
     			
 		}
 	}
-	
 	public void atteritPiste() {
 		if(fileAttente.size() != 0 && isOpened()) {
 			Vol vol =  fileAttente.get(0);

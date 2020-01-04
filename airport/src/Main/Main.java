@@ -88,7 +88,7 @@ public class Main {
 			ArrayList<Vol> listAvionsVoulantAtterir = aeroport.createAvionsEnVol(nbAvionsFromAnotherAirport);
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
 			for (Vol v : listAvionsVoulantAtterir) {
-				aeroport.createPilotesEnVol(v.getAvion());
+				aeroport.populateAvionEnVol(v.getAvion());
 				PisteAtterissage piste = aeroport.getPisteAterrissageMoinsEncombre();
 				piste.addToQueue(v);
 			}
@@ -289,6 +289,24 @@ public class Main {
 						}
 					}
 					
+					System.out.println("PISTES ATTERRISSAGES");
+					for(PisteAtterissage piste : aeroport.listPisteAtterissages) {
+						if(piste.isOpened()) {
+							System.out.println(piste.afficheQueue() + " [piste ouverte]");
+						}
+						else {
+							System.out.println(piste.afficheQueue() + " [piste fermee]");
+						}
+					}
+					System.out.println("PISTES DECOLLAGES");
+					for(PisteDecollage piste : aeroport.listPisteDecollages) {
+						if(piste.isOpened()) {
+							System.out.println(piste.afficheQueue() + " [piste ouverte]");
+						}
+						else {
+							System.out.println(piste.afficheQueue() + " [piste fermee]");
+						}
+					}
 					
 					System.out.println("Nombre de passagers en attente : " + aeroport.getPassagersDansAeroport());
 					System.out.println("Nombre de pilotes en attente : " + aeroport.getPilotesDansAeroport());
