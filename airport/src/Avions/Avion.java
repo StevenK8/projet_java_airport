@@ -117,6 +117,29 @@ public abstract class Avion {
 		listOccupants.clear();
 	}
 
+	public void cancelVolAvion(Aeroport aeroport) {
+		for (Passager p : listOccupants) {
+			if(p instanceof Pilote) {
+				Pilote pilote = (Pilote) p;
+				listPilotes.remove(pilote);
+				aeroport.getListPilotes().remove(pilote);
+				aeroport.getListPilotes().add(pilote); // On le replace en première position
+			}
+			else if (p instanceof Personnel) {
+				Personnel personnel = (Personnel) p;
+				listPersonnels.remove(p);
+				aeroport.getListPersonnels().remove(personnel);
+				aeroport.getListPersonnels().add(personnel);
+			}
+			else {
+				listPassagers.remove(p);
+				aeroport.getListVoyageurs().remove(p);
+				aeroport.getListVoyageurs().add(p);
+			}
+		}
+		listOccupants.clear();
+	}
+
 	public boolean aAssezDePilotes(){
 		if (listPilotes.size() >= NbPiloteMin){
 			return true;

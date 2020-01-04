@@ -370,7 +370,6 @@ public class Aeroport {
 			}
 		}
 	}
-	
 
 	public boolean openPiste(PisteAtterissage piste){
 		if(listPisteAtterissages.contains(piste)){
@@ -414,6 +413,18 @@ public class Aeroport {
 				}
 			}
 		}
+	}
+
+	public void annuleVol(Vol vol){
+		Avion avion = vol.getAvion();
+		avion.immobilise();
+		avion.cancelVolAvion(this);
+	}
+
+	public void annuleVol(Vol vol, int periodeImmobilisation){
+		Avion avion = vol.getAvion();
+		avion.immobilise(periodeImmobilisation);
+		avion.cancelVolAvion(this);
 	}
 	 
 	 
