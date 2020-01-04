@@ -443,6 +443,28 @@ public class Aeroport {
 		}
 	}
 	
+	public PisteAtterissage getPisteAterrissageMoinsEncombre() {
+		int min = 200;
+		PisteAtterissage res = listPisteAtterissages.get(0);
+		for(PisteAtterissage piste : listPisteAtterissages) {
+			if(piste.getFileAttente().size() < min && piste.isOpened()) {
+				res = piste;
+				min = res.getFileAttente().size();
+			}
+		}
+		return res;
+	}
+	public PisteDecollage getPisteDecollageMoinsEncombre() {
+		int min = 200;
+		PisteDecollage res = listPisteDecollages.get(0);
+		for(PisteDecollage piste : listPisteDecollages) {
+			if(piste.getFileAttente().size() < min && piste.isOpened()) {
+				res = piste;
+				min = res.getFileAttente().size();
+			}
+		}
+		return res;
+	}
 	
 	protected boolean preparationAvionLigne(AvionLigne avion) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
