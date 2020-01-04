@@ -46,7 +46,7 @@ public class PisteDecollage extends Piste{
 				return true;
 			}
 			else {
-				System.out.println("Auncun avion dans la file dattente");
+				System.out.println("Auncun avion sur la piste de decollage");
 				return false;
 			}
 		}

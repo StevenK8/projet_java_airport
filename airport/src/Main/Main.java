@@ -83,7 +83,6 @@ public class Main {
 		while(true) {
 			int nbAvionsFromAnotherAirport = r.nextInt(4-1)+1;
 			aeroport.createAvions(nbAvionsFromAnotherAirport);
-			System.out.println("nb passagers avant " + aeroport.listVoyageurs.size());
 			ArrayList<Vol> listAvionsVoulantAtterir = aeroport.createAvionsEnVol(nbAvionsFromAnotherAirport);
 			System.out.println("> " + nbAvionsFromAnotherAirport + " avions apparaissent dans votre radar !");
 			for(Vol v : listAvionsVoulantAtterir) {
@@ -93,15 +92,33 @@ public class Main {
 						piste.addToQueue(v);
 						break;
 					}
-					
 				}
-				
 			}
-			for(Vol v : listAvionsVoulantAtterir) {
-				aeroport.listPisteAtterissages.get(0).atteritPiste();
+			
+			for(PisteAtterissage piste : aeroport.listPisteAtterissages) {
+				piste.atteritPiste();
 			}
-			System.out.println("nb passagers apres "+aeroport.listVoyageurs.size());
+	
+			for(PisteDecollage piste : aeroport.listPisteDecollages) {
+				piste.decollePiste();
+			}
+			for(AvionLigne avion : aeroport.listAvionsLignes) {
+				if(aeroport.preparationAvionLigne(avion)) {
+					Vol vol = aeroport.createVol(avion, false);
+					for(PisteDecollage piste : aeroport.listPisteDecollages) {
+						if(piste.isOpened() && !piste.isFull()) {
+							piste.addToQueue(vol);
+							break;
+						}
+					}
+				}
+			}
+			int nbPersonnes = r.nextInt(500-50)+50;
+			aeroport.createPersonne(nbPersonnes);
+			
+			aeroport.diminueIntervallesDecollage();
+			aeroport.diminueIntervallePilotes();
+			aeroport.diminueCarburantAvionsEnVol();
 		}
-		
 	}
 }

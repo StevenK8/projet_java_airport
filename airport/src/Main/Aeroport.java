@@ -152,6 +152,7 @@ public class Aeroport {
 					prendAvionPrive = true;
 				}
 				Passager p = new Passager(prenom,nom,new DateNaissance(),nationalite,prendAvionPrive);
+				p.setEstEnVol(false);
 				listVoyageurs.add(p);
 			}
 			
@@ -171,17 +172,20 @@ public class Aeroport {
 				else {
 					p = new Pilote(prenom, nom, new DateNaissance(), nationalite);
 				}
+				p.setEstEnVol(false);
 				listPilotes.add(p);
 			}
 			if(typeDePersonne > 17 && typeDePersonne < 25) {
 				//Personnel
 				Personnel p = new Personnel(prenom, nom, new DateNaissance(), nationalite, compagnie);
+				p.setEstEnVol(false);
 				listPersonnels.add(p);
 				compagnie.addPersonnel(p);
 			}
 			if(typeDePersonne == 25) {
 				//Diplomate
 				Diplomate d = new Diplomate(prenom, nom, new DateNaissance(), nationalite);
+				d.setEstEnVol(false);
 				listDiplomates.add(d);
 			}
 		}
@@ -193,7 +197,7 @@ public class Aeroport {
 			int typeAvion = r.nextInt(20-1) + 1; 
 			
 			EnumModele modele = EnumModele.values()[new Random().nextInt(EnumModele.values().length)];
-			int capacite = r.nextInt(300-10) + 10; 
+			int capacite = r.nextInt(100-10) + 10; 
 			int poidsBagageMax = r.nextInt(3000-2000) + 2000;
 			int volumeCarburant = r.nextInt(5000-2000) + 2000; 
 			int nbPiloteMin = r.nextInt(3-1) + 1; 
@@ -406,56 +410,93 @@ public class Aeroport {
 	public void diminueIntervallePilotes() {
 		for(Pilote p : listPilotes) {
 			if(p.estEnPause()) {
-				p.setIntervallePilote(p.getIntervallePilote() - 1);
+				p.diminueIntervallePilote();
+			}
+		}
+	}
+	
+	public void diminueIntervallesDecollage() {
+		for(PisteDecollage piste : listPisteDecollages) {
+			if(piste.isOpened()) {
+				piste.diminueIntervalleDecollage();
+			}
+		}
+	}
+	
+	public void diminueCarburantAvionsEnVol() {
+		for(AvionLigne avion : listAvionsLignes) {
+			if(avion.estEnVol()) {
+				avion.diminueCarburant(avion.getVolumeCarburant() * 0.7);
+			}
+		}
+		for(AvionPrive avion : listAvionsPrives) {
+			if(avion.estEnVol()) {
+				avion.diminueCarburant(avion.getVolumeCarburant() * 0.8);
+			}
+		}
+		for(AvionLigne avion : listAvionsLignes) {
+			if(avion.estEnVol()) {
+				avion.diminueCarburant(avion.getVolumeCarburant() * 0.9);
 			}
 		}
 	}
 	
 	
-	protected void preparationAvionLigne(AvionLigne avion) {
+	protected boolean preparationAvionLigne(AvionLigne avion) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
-			if( this.getPilotesDansAeroport(avion.getCompagnie()) >= avion.getNbPiloteMin()) {
-				if(this.getPersonnelsDansAeroport(avion.getCompagnie()) >= avion.getNbPersonnelsMin()) {
+			if(this.getPilotesDansAeroport(/*avion.getCompagnie()*/) >= avion.getNbPiloteMin()) {
+				if(this.getPersonnelsDansAeroport(/*avion.getCompagnie()*/) >= avion.getNbPersonnelsMin()) {
 					avion.remplissageAvion(this);
+					return true;
 				}
 				else {
-					System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+					System.out.println(avion + "ne pourra pas decoller car il manque du personnel\n");
+					return false;
 				}
 			}
 			else {
-				System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+				System.out.println("nbPilotes dans aeroport : " + listPilotes.size() );
+				System.out.println(avion + "ne pourra pas decoller car il manque des pilotes\n");
+				return false;
 			}
 		}
 		else {
-			System.out.println(avion + "ne pourra pas decoller car la capacit� maximum n'est pas atteinte");
+			System.out.println(avion + "ne pourra pas decoller car la capacite maximum n'est pas atteinte\n");
+			return false;
 		}
 	}
 	
-	protected void preparationAvionPrive(AvionPrive avion) {
+	protected boolean preparationAvionPrive(AvionPrive avion) {
 		if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
+				return true;
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+				return false;
 			}
 		}
 		else {
 			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+			return false;
 		}
 	}
 	
-	protected void preparationAvionDiplomatique(AvionDiplomatique avion) {
+	protected boolean preparationAvionDiplomatique(AvionDiplomatique avion) {
 		if(this.getPilotesDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPersonnelsMin()) {
 				avion.remplissageAvion(this);
+				return true;
 			}
 			else {
 				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+				return false;
 			}
 		}
 		else {
 			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+			return false;
 		}
 	}
 	

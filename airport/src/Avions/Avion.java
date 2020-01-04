@@ -44,14 +44,6 @@ public abstract class Avion {
 	
 	public void addPersonne(Passager p) {
 		if(!p.estEnVol()) {
-			if(p instanceof Passager) {
-				if(listPassagers.size() < capacite) {
-					Passager passager = (Passager) p;
-					listPassagers.add(passager);
-					listOccupants.add(passager);
-					passager.setEstEnVol(true);
-				}			
-			}
 			if(p instanceof Personnel) {
 				if (listPersonnels.size() < nbPersonnelMin) {
 					Personnel personnel = (Personnel) p;
@@ -67,6 +59,14 @@ public abstract class Avion {
 					listOccupants.add(pilote);
 					p.setEstEnVol(true);
 				}
+			}
+			else if(p instanceof Passager) {
+				if(listPassagers.size() < capacite) {
+					Passager passager = (Passager) p;
+					listPassagers.add(passager);
+					listOccupants.add(passager);
+					passager.setEstEnVol(true);
+				}			
 			}
 		}
 	}
@@ -116,6 +116,10 @@ public abstract class Avion {
 			return true;
 		}
 		return false;
+	}
+	
+	public void diminueCarburant(double nCarburant) {
+		this.volumeCarburant = nCarburant;
 	}
 
 	public abstract boolean peutDecoller();

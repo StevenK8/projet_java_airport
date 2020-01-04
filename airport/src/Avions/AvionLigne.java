@@ -19,7 +19,7 @@ public class AvionLigne extends Avion{
 	
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
-			this.addPersonne(p);
+			super.addPersonne(p);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
 			this.addPersonnel(p);
@@ -31,15 +31,15 @@ public class AvionLigne extends Avion{
     }
 	
 	public void addPilote(Pilote p) {
-		if (p.getCompagnie() == compagnieProprietaire) {
+		//if (p.getCompagnie() == compagnieProprietaire) {
 			super.addPersonne(p);
-		}
+		//}
 	}
 	
 	public void addPersonnel(Personnel p) {
-		if (p.getCompagnie() == compagnieProprietaire) {
+		//if (p.getCompagnie() == compagnieProprietaire) {
 			super.addPersonne(p);
-		}
+		//}
 	}
 	
 	public boolean peutDecoller() {

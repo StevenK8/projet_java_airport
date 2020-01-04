@@ -6,8 +6,8 @@ public enum EnumCompagnie {
 
 	 American_Airlines (Pays.EtatsUnis),
 	 Air_Canada (Pays.Canada),
-	 Air_France (Pays.France),
-	 Air_Algerie (Pays.Algerie),
+	 Air_France (Pays.France);
+	 /*Air_Algerie (Pays.Algerie),
 	 Air_India (Pays.Algerie),
 	 Aerolineas_Argentinas (Pays.Argentine),
 	 Royal_Air_Maroc (Pays.Maroc),
@@ -56,7 +56,7 @@ public enum EnumCompagnie {
 	 Germanwings (Pays.Allemagne),
 	 TUI_Fly_Belgium (Pays.Belgique),
 	 Air_Arabia (Pays.Arabie),
-	 Air_Asia (Pays.Chine);
+	 Air_Asia (Pays.Chine);*/
 	
 	private Pays nationalite;
 	

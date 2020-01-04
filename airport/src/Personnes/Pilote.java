@@ -45,6 +45,12 @@ public class Pilote extends Passager{
 	public boolean estEnPause() {
 		return intervallePilote != 0;
 	}
+	public void diminueIntervallePilote() {
+		if(intervallePilote > 0) {
+			intervallePilote -= 1;
+		}
+	}
+	
 	public void setIntervallePilote(int inter) {
 		if(intervallePilote > 0) {
 			intervallePilote = inter;
