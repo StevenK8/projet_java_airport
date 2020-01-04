@@ -19,7 +19,7 @@ public enum Ville {
 	Bratislava,
 	Budapest,
 	Ljubjana,
-	Stackholm,
+	Stockholm,
 	Helsinki,
 	Tallin,
 	Riga,

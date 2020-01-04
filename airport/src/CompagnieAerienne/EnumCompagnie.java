@@ -4,10 +4,10 @@ import Personnes.Pays;
 
 public enum EnumCompagnie {
 
-	 American_Airlines (Pays.EtatsUnis),
-	 Air_Canada (Pays.Canada),
+	 American_Airlines (Pays.EtatsUnis);
+	/* Air_Canada (Pays.Canada),
 	 Air_France (Pays.France);
-	 /*Air_Algerie (Pays.Algerie),
+	 Air_Algerie (Pays.Algerie),
 	 Air_India (Pays.Algerie),
 	 Aerolineas_Argentinas (Pays.Argentine),
 	 Royal_Air_Maroc (Pays.Maroc),

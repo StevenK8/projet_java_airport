@@ -36,14 +36,14 @@ public class PisteAtterissage extends Piste{
 					}while(x != 1 && x != 2);
 					if(x == 1) {
 						fileAttente.add(i, vol);
-						this.afficheQueue();
+						//this.afficheQueue();
 						System.out.println(vol.toString() + " entre dans la liste d'attente pour atterir a la position " + i);
 						ajout = true;
 						break;
 					}
 					else if(x == 2) {
 						fileAttente.add(vol);
-						this.afficheQueue();
+						//this.afficheQueue();
 						ajout = true;
 						break;
 					}
@@ -51,7 +51,7 @@ public class PisteAtterissage extends Piste{
 			}
 			if(!ajout) {
 				fileAttente.add(vol);
-				this.afficheQueue();
+				//this.afficheQueue();
 			}
     			
 		}

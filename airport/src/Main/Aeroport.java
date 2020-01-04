@@ -36,6 +36,7 @@ public class Aeroport {
 	protected ArrayList<Diplomate> listDiplomates;
 	protected ArrayList<Personne> listProprietaires;
 	
+	protected ArrayList<Avion> listAvions;
 	protected ArrayList<AvionLigne> listAvionsLignes;
 	protected ArrayList<AvionDiplomatique> listAvionsDiplomatiques;
 	protected ArrayList<AvionPrive> listAvionsPrives;
@@ -58,29 +59,13 @@ public class Aeroport {
 		listPersonnels = new ArrayList<Personnel>();
 		listDiplomates = new ArrayList<Diplomate>();
 		listProprietaires = new ArrayList<Personne>();
+		listAvions = new ArrayList<Avion>();
 		listAvionsLignes = new ArrayList<AvionLigne>();
 		listAvionsDiplomatiques = new ArrayList<AvionDiplomatique>();
 		listAvionsPrives = new ArrayList<AvionPrive>();
 		listCompagnies= new ArrayList<Compagnie>();
 		listPisteDecollages = new ArrayList<PisteDecollage>(); 
 		listPisteAtterissages = new ArrayList<PisteAtterissage>();
-		
-		listProprietaires.add(proprio1);
-		
-		//Piste
-		PisteDecollage pisteDecollage1 = new PisteDecollage();
-		PisteDecollage pisteDecollage2 = new PisteDecollage();
-		PisteDecollage pisteDecollage3 = new PisteDecollage();
-		PisteAtterissage pisteAtterissage1 = new PisteAtterissage(this);
-		PisteAtterissage pisteAtterissage2 = new PisteAtterissage(this);
-		
-		listPisteAtterissages.add(pisteAtterissage1);
-		listPisteAtterissages.add(pisteAtterissage2);
-		
-
-		listPisteDecollages.add(pisteDecollage1);
-		listPisteDecollages.add(pisteDecollage2);
-		listPisteDecollages.add(pisteDecollage3);
 	}
 	
 	//ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
@@ -89,17 +74,18 @@ public class Aeroport {
 			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
 			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
 			Pays nationalite = Pays.values()[new Random().nextInt(Pays.values().length)];
-			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
-			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
 			Pilote p;
 			if(avion.getType().equals("Avion de ligne")) {
-				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,compagnie);
+				AvionLigne avionLigne = (AvionLigne) avion; //pour recuperer la compagnie de lavion de ligne et affecter la meme aux pilotes
+				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,avionLigne.getCompagnie());
 			}
 			else if(avion.getType().equals("Avion diplomatique")) {
-				p = new Pilote(prenom, nom, new DateNaissance(), nationalite);
+				AvionDiplomatique avionDiplomatique = (AvionDiplomatique) avion;
+				p = new Pilote(prenom, nom, new DateNaissance(), avionDiplomatique.getEtatProprietaire());
 			}
 			else {
-				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,proprio1.getNomProprio());
+				AvionPrive avionPrive = (AvionPrive) avion;//pour recuperer lemployeur de lavion de ligne et affecter le meme aux pilotes
+				p = new Pilote(prenom, nom, new DateNaissance(), nationalite,avionPrive.getIdProprio());
 			}
 			avion.addPersonne(p);
 			listPilotes.add(p);
@@ -135,6 +121,7 @@ public class Aeroport {
 	
 	public void createPersonne(int nombrePersonne) {
 		Random r = new Random();
+		int nbPassagers = 0, nbPilotes = 0, nbPersonnels = 0, nbDiplomates = 0;
 		for(int i = 0 ; i < nombrePersonne; i++) {
 			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
 			EnumNom nom = EnumNom.values()[new Random().nextInt(EnumNom.values().length)];
@@ -142,7 +129,7 @@ public class Aeroport {
 			EnumCompagnie c = EnumCompagnie.values()[new Random().nextInt(EnumCompagnie.values().length)];
 			Compagnie compagnie = new Compagnie(c,c.getPaysFromCompagnie());
 			
-			int typeDePersonne = r.nextInt(25-1) + 1; // D�finit le type de personne que l'on cr�� au hasard(passager, pilote, personnel ou diplomate)
+			int typeDePersonne = r.nextInt(25-1) + 1; // Definit le type de personne que l'on cree au hasard(passager, pilote, personnel ou diplomate)
 			
 			if(typeDePersonne <= 15) {
 				//Passager normal
@@ -154,6 +141,7 @@ public class Aeroport {
 				Passager p = new Passager(prenom,nom,new DateNaissance(),nationalite,prendAvionPrive);
 				p.setEstEnVol(false);
 				listVoyageurs.add(p);
+				nbPassagers +=1;
 			}
 			
 			if(typeDePersonne == 17 || typeDePersonne == 16) {
@@ -174,6 +162,7 @@ public class Aeroport {
 				}
 				p.setEstEnVol(false);
 				listPilotes.add(p);
+				nbPilotes += 1;
 			}
 			if(typeDePersonne > 17 && typeDePersonne < 25) {
 				//Personnel
@@ -181,14 +170,18 @@ public class Aeroport {
 				p.setEstEnVol(false);
 				listPersonnels.add(p);
 				compagnie.addPersonnel(p);
+				nbPersonnels += 1;
 			}
 			if(typeDePersonne == 25) {
 				//Diplomate
 				Diplomate d = new Diplomate(prenom, nom, new DateNaissance(), nationalite);
 				d.setEstEnVol(false);
 				listDiplomates.add(d);
+				nbDiplomates += 1;
 			}
 		}
+		System.out.println("> " + nombrePersonne + " personnes entrent dans votre aeroport");
+		System.out.println("\t " + nbPassagers + " passagers " + nbPilotes + " pilotes " + nbPersonnels + " personnels " + nbDiplomates + " diplomates\n");
 	}
 	
 	public void createAvions(int nombreAvions) {
@@ -209,17 +202,20 @@ public class Aeroport {
 			if(typeAvion <= 15) {
 				AvionLigne avion = new AvionLigne(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, compagnie, nbPersonnel);
 				listAvionsLignes.add(avion);
+				listAvions.add(avion);
 				compagnie.addAvionDansFlotte(avion);
 				avion.setEstEnVol(true);
 			}
 			else if (typeAvion > 15 && typeAvion < 18) {
 				AvionPrive avion = new AvionPrive(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, proprio1);
 				listAvionsPrives.add(avion);
+				listAvions.add(avion);
 				avion.setEstEnVol(true);
 			}
 			else {
 				AvionDiplomatique avion = new AvionDiplomatique(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, nbPersonnel, etat);
 				listAvionsDiplomatiques.add(avion);
+				listAvions.add(avion);
 				avion.setEstEnVol(true);
 			}
 		}
@@ -246,16 +242,22 @@ public class Aeroport {
 				avion.setEstEnVol(true);
 				compagnie.addAvionDansFlotte(avion);
 				listAvionsEnVol.add(createVol(avion, true));
+				listAvions.add(avion);
+				listAvionsLignes.add(avion);
 			}
 			else if (typeAvion > 15 && typeAvion < 18) {
 				AvionPrive avion = new AvionPrive(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, proprio1);
 				avion.setEstEnVol(true);
 				listAvionsEnVol.add(createVol(avion, true));
+				listAvions.add(avion);
+				listAvionsPrives.add(avion);
 			}
 			else {
 				AvionDiplomatique avion = new AvionDiplomatique(modele, capacite, poidsBagageMax, volumeCarburant, nbPiloteMin, nbPersonnel, etat);
 				avion.setEstEnVol(true);
 				listAvionsEnVol.add(createVol(avion, true));
+				listAvions.add(avion);
+				listAvionsDiplomatiques.add(avion);
 			}
 		}
 		return listAvionsEnVol;
@@ -450,18 +452,17 @@ public class Aeroport {
 					return true;
 				}
 				else {
-					System.out.println(avion + "ne pourra pas decoller car il manque du personnel\n");
+					//System.out.println(avion + "ne pourra pas decoller car il manque du personnel\n");
 					return false;
 				}
 			}
 			else {
-				System.out.println("nbPilotes dans aeroport : " + listPilotes.size() );
-				System.out.println(avion + "ne pourra pas decoller car il manque des pilotes\n");
+				//System.out.println(avion + "ne pourra pas decoller car il manque des pilotes\n");
 				return false;
 			}
 		}
 		else {
-			System.out.println(avion + "ne pourra pas decoller car la capacite maximum n'est pas atteinte\n");
+			//System.out.println(avion + "ne pourra pas decoller car la capacite maximum n'est pas atteinte\n");
 			return false;
 		}
 	}
@@ -473,12 +474,12 @@ public class Aeroport {
 				return true;
 			}
 			else {
-				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+				//System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
 				return false;
 			}
 		}
 		else {
-			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+			//System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
 			return false;
 		}
 	}
@@ -490,12 +491,12 @@ public class Aeroport {
 				return true;
 			}
 			else {
-				System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
+				//System.out.println(avion + "ne pourra pas decoller car il manque du personnel");
 				return false;
 			}
 		}
 		else {
-			System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
+			//System.out.println(avion + "ne pourra pas decoller car il manque des pilotes");
 			return false;
 		}
 	}
