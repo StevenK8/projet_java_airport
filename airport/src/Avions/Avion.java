@@ -8,6 +8,7 @@ import Personnes.Pilote;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import CompagnieAerienne.Compagnie;
 import Main.Aeroport;
@@ -25,6 +26,7 @@ public abstract class Avion {
 	public List<Personnel> listPersonnels;
 	public List<Passager> listOccupants; //nombre total de personnes dans l'avion (passagers + pilotes + personnels)
 	private boolean estEnVol = false;
+	private int periodeImmobilisation;
 	
 	
     public Avion(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin, int nbPersonnelMin){
@@ -38,6 +40,7 @@ public abstract class Avion {
 		listPilotes = new ArrayList<Pilote>();
 		listPersonnels = new ArrayList<Personnel>();
 		listOccupants = new ArrayList<Passager>();
+		periodeImmobilisation = 0;
 	}	
 	
     public abstract void remplissageAvion(Aeroport aeroport);
@@ -48,7 +51,16 @@ public abstract class Avion {
     	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelMin + ") \n");
     	res.append("nombre de pilotes : " + listPilotes.size() + " (min : " + NbPiloteMin + ") \n");
     	return res.toString();
-    }
+	}
+	
+	public void immobilise(){
+		Random r = new Random();
+		periodeImmobilisation = r.nextInt(5) + 1;
+	}
+
+	public void immobilise(int periodeImmobilisation){
+		this.periodeImmobilisation = periodeImmobilisation;
+	}
     
 	public void addPersonne(Passager p) {
 		if(!p.estEnVol()) {
