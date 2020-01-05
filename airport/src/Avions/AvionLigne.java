@@ -19,6 +19,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Remplit l'avion de ligne
 	 * @param aeroport
 	 */
 	public void remplissageAvion(Aeroport aeroport) {
@@ -36,6 +37,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Ajoute un pilote à l'avion de ligne
 	 * @param p
 	 */
 	public void addPilote(Pilote p) {
@@ -46,6 +48,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Ajoute un personnel à l'avion de ligne
 	 * @param p
 	 */
 	public void addPersonnel(Personnel p) {
@@ -56,6 +59,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Vérifie si l'avion de ligne remplit les conditions pour décoller
 	 * @return boolean
 	 */
 	public boolean peutDecoller() {
@@ -82,6 +86,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Renvoie les informations textuelles de l'avion de ligne
 	 * @return String
 	 */
 	public String toString() {
@@ -94,6 +99,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Renvoie la compagnie propriétaire de l'avion de ligne
 	 * @return Compagnie
 	 */
 	public Compagnie getCompagnie() {
@@ -102,6 +108,7 @@ public class AvionLigne extends Avion{
 	
 	
 	/** 
+	 * Renvoie la priorité de l'avion de ligne (1)
 	 * @return int
 	 */
 	public int getPriorite() {

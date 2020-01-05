@@ -24,6 +24,7 @@ public class AvionPrive extends Avion{
 	
 	
 	/** 
+	 * Remplit l'avion privé
 	 * @param aeroport
 	 */
 	public void remplissageAvion(Aeroport aeroport) {
@@ -43,6 +44,7 @@ public class AvionPrive extends Avion{
 	
 	
 	/** 
+	 * Ajoute un pilote à l'avion privé si son employeur est le même que le propriétaire de l'avion
 	 * @param p
 	 */
 	public void addPilote(Pilote p) {
@@ -53,6 +55,7 @@ public class AvionPrive extends Avion{
 	
 	
 	/** 
+	 * Ajoute un passager à l'avion privé
 	 * @param p
 	 */
 	public void addPassager(Passager p) {
@@ -63,6 +66,7 @@ public class AvionPrive extends Avion{
 	
 	
 	/** 
+	 * Renvoie les informations textuelles de l'avion
 	 * @return String
 	 */
 	public String toString() {
@@ -75,18 +79,18 @@ public class AvionPrive extends Avion{
 
 	
 	/** 
+	 * Renvoie la priorité de l'avion privé (2)
 	 * @return int
 	 */
-	@Override
 	public int getPriorite() {
 		return 2;
 	}
 
 	
 	/** 
+	 * Vérifie si l'avion privé remplit les conditions pour décoller
 	 * @return boolean
 	 */
-	@Override
 	public boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
 			if(aAssezDePilotes()) {
@@ -105,6 +109,7 @@ public class AvionPrive extends Avion{
 	
 	
 	/** 
+	 * Renvoie le propriétaire de l'avion privé
 	 * @return String
 	 */
 	public String getIdProprio() {
