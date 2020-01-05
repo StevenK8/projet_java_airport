@@ -30,6 +30,7 @@ public class Pilote extends Passager{
 
 	
 	/** 
+	 * Renvoie l'employeur du pilote
 	 * @return String
 	 */
 	public String getEmployeur(){
@@ -38,6 +39,7 @@ public class Pilote extends Passager{
 	}
 	
 	/** 
+	 * Renvoie la compagnie du pilote
 	 * @return Compagnie
 	 */
 	public Compagnie getCompagnie(){
@@ -45,6 +47,7 @@ public class Pilote extends Passager{
 	}
 	
 	/** 
+	 * Renvoie la nationalité du pilote
 	 * @return Pays
 	 */
 	public Pays getNationalite() {
@@ -52,6 +55,7 @@ public class Pilote extends Passager{
 	}
 	
 	/** 
+	 * Renvoie le statut de vol du pilote
 	 * @return boolean
 	 */
 	public boolean estEnVol() {
@@ -60,11 +64,16 @@ public class Pilote extends Passager{
 	
 	
 	/** 
+	 * Renvoie le statut de pause du pilote
 	 * @return boolean
 	 */
 	public boolean estEnPause() {
 		return intervallePilote != 0;
 	}
+
+	/**
+	 * Décrémente l'intervalle de pause du pilote
+	 */
 	public void diminueIntervallePilote() {
 		if(intervallePilote > 0) {
 			intervallePilote -= 1;
@@ -73,6 +82,7 @@ public class Pilote extends Passager{
 	
 	
 	/** 
+	 * Définit l'intervalle de pause du pilote comme le paramètre entré
 	 * @param inter
 	 */
 	public void setIntervallePilote(int inter) {
@@ -83,6 +93,7 @@ public class Pilote extends Passager{
 	
 	
 	/** 
+	 * Renvoie l'intervalle de pause du pilote
 	 * @return int
 	 */
 	public int getIntervallePilote() {
@@ -91,6 +102,7 @@ public class Pilote extends Passager{
 	
 	
 	/** 
+	 * Renvoie les informations du pilote
 	 * @return String
 	 */
 	public String toString() {

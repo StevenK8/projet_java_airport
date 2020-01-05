@@ -16,6 +16,7 @@ public class Personnel extends Passager{
 	
 	
 	/** 
+	 * Renvoie le statut de vol du personnel
 	 * @return boolean
 	 */
 	public boolean EstEnVol() {
@@ -24,6 +25,7 @@ public class Personnel extends Passager{
 	
 	
 	/** 
+	 * Renvoie la compagnie du personnel
 	 * @return Compagnie
 	 */
 	public Compagnie getCompagnie() {
@@ -32,6 +34,7 @@ public class Personnel extends Passager{
 	
 	
 	/** 
+	 * renvoie la nationalité du personnel
 	 * @return Pays
 	 */
 	public Pays getNationalite() {
@@ -40,6 +43,7 @@ public class Personnel extends Passager{
 	
 	
 	/** 
+	 * Renvoie les informations textuelles du personnel
 	 * @return String
 	 */
 	public String toString() {

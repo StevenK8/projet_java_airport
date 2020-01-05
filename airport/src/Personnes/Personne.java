@@ -16,6 +16,7 @@ public class Personne {
 	
 	
 	/** 
+	 * Renvoie les informations textuelles de la personne
 	 * @return String
 	 */
 	public String toString() {
@@ -24,6 +25,7 @@ public class Personne {
 	
 	
 	/** 
+	 * Renvoie le statut de vol de la personne
 	 * @return boolean
 	 */
 	public boolean estEnVol() {
@@ -31,6 +33,7 @@ public class Personne {
 	}
 	
 	/** 
+	 * Définit le statut de vol de la personne
 	 * @param modif
 	 */
 	public void setEstEnVol(boolean modif) {

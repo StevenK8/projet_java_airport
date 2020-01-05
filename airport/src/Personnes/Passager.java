@@ -15,6 +15,7 @@ public class Passager extends Personne{
 
 	
 	/** 
+	 * Renvoie le statut de vol du passager
 	 * @return boolean
 	 */
 	public boolean estEnVol() {
@@ -23,6 +24,7 @@ public class Passager extends Personne{
 	
 	
 	/** 
+	 * Renvoie si ou non le passager voyage en avion privé
 	 * @return boolean
 	 */
 	public boolean getPrendAvionPrive() {
@@ -30,6 +32,7 @@ public class Passager extends Personne{
 	}
 	
 	/** 
+	 * Définit si le passager voyage en avion privé
 	 * @param pPrendAvionprive
 	 */
 	public void setPrendAvionPrive(boolean pPrendAvionprive) {
@@ -38,6 +41,7 @@ public class Passager extends Personne{
 	
 	
 	/** 
+	 * Renvoie les informations textuelles du passager
 	 * @return String
 	 */
 	public String toString() {
