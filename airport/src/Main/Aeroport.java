@@ -70,9 +70,9 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
 	 * @param avion
 	 */
-	//ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
 	public void populateAvionEnVol(Avion avion) {
 		for(int i = 0; i < avion.getNbPiloteMin();i++) {
 			EnumPrenom prenom = EnumPrenom.values()[new Random().nextInt(EnumPrenom.values().length)];
@@ -108,6 +108,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un nombre entré de pistes de décollage
 	 * @param nbPiste
 	 */
 	public void createPisteDecollage(int nbPiste) {
@@ -118,6 +119,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un nombre entré de pistes d'atterissage
 	 * @param nbPiste
 	 */
 	public void createPisteAtterissage(int nbPiste) {
@@ -128,6 +130,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un vol d'un avion et d'une destination en entrée 
 	 * @param avion
 	 * @param isFromAnotherAirport
 	 * @return Vol
@@ -138,6 +141,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Crée un nombre entré de compagnies aériennes de nom et pays aléatoires
 	 * @param nombreCompagnie
 	 */
 	public void createCompagnie(int nombreCompagnie) {
@@ -151,6 +155,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un nombre entré de personnes avec des informations générées aléatoirement
 	 * @param nombrePersonne
 	 */
 	public void createPersonne(int nombrePersonne) {
@@ -220,6 +225,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un nombre entré d'avions avec des caractéristiques aléatoires
 	 * @param nombreAvions
 	 */
 	public void createAvions(int nombreAvions) {
@@ -261,6 +267,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Crée un nombre entré d'avions en état de vol
 	 * @param nombreAvions
 	 * @return ArrayList<Vol>
 	 */
@@ -308,6 +315,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Ouvre un piste de décollage en entrée
 	 * @param piste
 	 * @return boolean
 	 */
@@ -328,6 +336,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Remplit une piste de décollage à partir des autres pistes ouvertes
 	 * @param piste
 	 */
 	private void remplirPiste(PisteDecollage piste) {
@@ -340,10 +349,7 @@ public class Aeroport {
 			}
 		}
 
-		if(nbPistesOuvertes!=0)
-			size = (size/nbPistesOuvertes)-1;
-		else
-			System.out.println("ERREUR : Aucune piste de décollage n'est ouverte!");
+		size = (size/nbPistesOuvertes+1);
 
 		while (size>0){
 			for (Piste p : listPisteDecollages){
@@ -361,6 +367,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Ferme une piste de décollage
 	 * @param piste
 	 * @return boolean
 	 */
@@ -381,6 +388,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Répartit les vols de la piste de décollage en entrée dans les autres pistes ouvertes
 	 * @param piste
 	 */
 	private void mergePiste(PisteDecollage piste) {
@@ -398,6 +406,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Ferme une piste d'atterissage
 	 * @param piste
 	 * @return boolean
 	 */
@@ -418,6 +427,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Répartit les vols de la piste d'atterissage en entrée dans les autres pistes ouvertes
 	 * @param piste
 	 */
 	private void mergePiste(PisteAtterissage piste) {
@@ -435,6 +445,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Ouvre une piste d'atterissage
 	 * @param piste
 	 * @return boolean
 	 */
@@ -455,6 +466,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Remplit une piste d'atterissage à partir des autres pistes ouvertes
 	 * @param piste
 	 */
 	private void remplirPiste(PisteAtterissage piste) {
@@ -467,10 +479,7 @@ public class Aeroport {
 			}
 		}
 
-		if(nbPistesOuvertes!=0)
-			size = (size/nbPistesOuvertes)-1;
-		else
-			System.out.println("ERREUR : Aucune piste d'atterissage n'est ouverte!");
+		size = (size/nbPistesOuvertes+1);
 
 		while (size>0){
 			for (Piste p : listPisteAtterissages){
@@ -488,6 +497,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Annule un vol en entrée & immobilise et vide l'avion concerné
 	 * @param vol
 	 */
 	public void annuleVol(Vol vol){
@@ -498,6 +508,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Annule un vol en entrée & immobilise et vide l'avion concerné pendant une période renseignée
 	 * @param vol
 	 * @param periodeImmobilisation
 	 */
@@ -507,7 +518,9 @@ public class Aeroport {
 		avion.cancelVolAvion(this);
 	}
 	 
-	 
+	/**
+	 * Décrémente l'intervalle de pause d'un pilote
+	 */
 	public void diminueIntervallePilotes() {
 		for(Pilote p : listPilotes) {
 			if(p.estEnPause()) {
@@ -516,6 +529,9 @@ public class Aeroport {
 		}
 	}
 	
+	/**
+	 * Décrémente l'intervalle de décollage d'une piste
+	 */
 	public void diminueIntervallesDecollage() {
 		for(PisteDecollage piste : listPisteDecollages) {
 			if(piste.isOpened()) {
@@ -524,6 +540,9 @@ public class Aeroport {
 		}
 	}
 	
+	/**
+	 * Diminue la quantité de carburant des avions en vol
+	 */
 	public void diminueCarburantAvionsEnVol() {
 		for(AvionLigne avion : listAvionsLignes) {
 			if(avion.estEnVol()) {
@@ -553,6 +572,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie la piste d'atterissage la moins remplie
 	 * @return PisteAtterissage
 	 */
 	public PisteAtterissage getPisteAterrissageMoinsEncombre() {
@@ -568,6 +588,7 @@ public class Aeroport {
 	}
 	
 	/** 
+	 * Renvoie la piste de decollage la moins remplie
 	 * @return PisteDecollage
 	 */
 	public PisteDecollage getPisteDecollageMoinsEncombre() {
@@ -584,6 +605,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Vérifie si l'avion de ligne en entrée peut décoller
 	 * @param avion
 	 * @return boolean
 	 */
@@ -612,6 +634,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Vérifie si l'avion privé en entrée peut décoller
 	 * @param avion
 	 * @return boolean
 	 */
@@ -634,6 +657,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Vérifie si l'avion diplomatique en entrée peut décoller
 	 * @param avion
 	 * @return boolean
 	 */
@@ -656,6 +680,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de passagers dans l'aéroport (Pas en vol)
 	 * @return int
 	 */
 	public int getPassagersDansAeroport() {
@@ -670,6 +695,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de pilotes dans l'aéroport
 	 * @return int
 	 */
 	public int getPilotesDansAeroport() {
@@ -687,6 +713,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de personnels dans l'aéroport
 	 * @return int
 	 */
 	public int getPersonnelsDansAeroport() {
@@ -701,6 +728,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de pilotes appartenant à une compagnie en entrée dans l'aéroport
 	 * @param c
 	 * @return int
 	 */
@@ -717,6 +745,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de personnels appartenant à une compagnie en entrée dans l'aéroport
 	 * @param c
 	 * @return int
 	 */
@@ -732,6 +761,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de pilotes travaillant pour un propriétaire en entrée dans l'aéroport
 	 * @param idProprio
 	 * @return int
 	 */
@@ -751,6 +781,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de pilotes d'une nationalité en entrée dans l'aéroport
 	 * @param pays
 	 * @return int
 	 */
@@ -769,6 +800,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie le nombre de personnels d'une nationalité en entrée dans l'aéroport
 	 * @param pays
 	 * @return int
 	 */
@@ -786,6 +818,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de voyageurs de l'aéroport
 	 * @return ArrayList<Passager>
 	 */
 	//Getters basiques
@@ -797,6 +830,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de pilotes de l'aéroport
 	 * @return ArrayList<Pilote>
 	 */
 	public ArrayList<Pilote> getListPilotes() {
@@ -807,6 +841,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de personnels de l'aéroport
 	 * @return ArrayList<Personnel>
 	 */
 	public ArrayList<Personnel> getListPersonnels() {
@@ -817,6 +852,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de diplomates de l'aéroport
 	 * @return ArrayList<Diplomate>
 	 */
 	public ArrayList<Diplomate> getListDiplomates() {
@@ -827,6 +863,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de propriétaires de l'aéroport
 	 * @return ArrayList<Personne>
 	 */
 	public ArrayList<Personne> getListProprietaires() {
@@ -837,6 +874,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste d'avions de ligne de l'aéroport
 	 * @return ArrayList<AvionLigne>
 	 */
 	public ArrayList<AvionLigne> getListAvionsLignes() {
@@ -847,6 +885,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste d'avions diplomatiques de l'aéroport
 	 * @return ArrayList<AvionDiplomatique>
 	 */
 	public ArrayList<AvionDiplomatique> getListAvionsDiplomatiques() {
@@ -857,6 +896,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste d'avions privés de l'aéroport
 	 * @return ArrayList<AvionPrive>
 	 */
 	public ArrayList<AvionPrive> getListAvionsPrives() {
@@ -867,6 +907,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de compagnies de l'aéroport
 	 * @return ArrayList<Compagnie>
 	 */
 	public ArrayList<Compagnie> getListCompagnies() {
@@ -877,6 +918,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de pistes de décollage de l'aéroport
 	 * @return ArrayList<PisteDecollage>
 	 */
 	public ArrayList<PisteDecollage> getListPisteDecollages() {
@@ -885,6 +927,7 @@ public class Aeroport {
 
 	
 	/** 
+	 * Renvoie la liste de pistes d'atterissage de l'aéroport
 	 * @return ArrayList<PisteAtterissage>
 	 */
 	public ArrayList<PisteAtterissage> getListPisteAtterissages() {
@@ -893,6 +936,7 @@ public class Aeroport {
 	
 	
 	/** 
+	 * Renvoie la ville de l'aéroport
 	 * @return Ville
 	 */
 	public Ville getVille() {
