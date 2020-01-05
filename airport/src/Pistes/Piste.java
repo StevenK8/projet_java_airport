@@ -12,6 +12,7 @@ public abstract class Piste {
     
     
 	/** 
+	 * Renvoie la file d'attente de la piste
 	 * @return ArrayList<Vol>
 	 */
 	public ArrayList<Vol> getFileAttente(){
@@ -20,6 +21,7 @@ public abstract class Piste {
 	
 	
 	/** 
+	 * Retire et renvoie le premier vol de la file d'attente
 	 * @return Vol
 	 */
 	public Vol removeVol(){
@@ -34,6 +36,7 @@ public abstract class Piste {
     
     
 	/** 
+	 * Renvoie le contenu textuel de la file d'attente de la piste
 	 * @return String
 	 */
 	public String afficheQueue() {
@@ -47,24 +50,32 @@ public abstract class Piste {
 		return res;
 	}
 	
+	/**
+	 * Définit le statut de la piste comme fermé
+	 */
 	public void closePiste(){
 		status = false;
 	}
 
 	
 	/** 
+	 * Renvoie le statut d'ouverture de la piste
 	 * @return boolean
 	 */
 	public boolean isOpened(){
 		return status;
 	}
 
+	/**
+	 * Définit le statut de la piste comme ouvert
+	 */
 	public void openPiste(){
 		status = true;
 	}
 	
 	
 	/** 
+	 * Renvoie la capacité de la piste
 	 * @return int
 	 */
 	private int getCapacite() {
@@ -72,6 +83,7 @@ public abstract class Piste {
 	}
 	
 	/** 
+	 * Vérifie si la capacité totale de la piste est atteinte
 	 * @return boolean
 	 */
 	public boolean isFull() {

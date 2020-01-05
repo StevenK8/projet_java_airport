@@ -29,6 +29,7 @@ public class PisteDecollage extends Piste{
 	
 	
 	/** 
+	 * Vérifie si le premier avion dans la piste peut décoller et le fait si c'est possible
 	 * @return boolean
 	 */
 	public boolean decollePiste() {
@@ -66,11 +67,16 @@ public class PisteDecollage extends Piste{
 	
 	
 	/** 
+	 * Renvoie l'intervalle de décollage de la piste
 	 * @return int
 	 */
 	public int getIntervalleDecollage() {
 		return intervalleDecollage;
 	}
+
+	/**
+	 * Décrémente l'intervalle de décollage de la piste
+	 */
 	public void diminueIntervalleDecollage() {
 		if(intervalleDecollage > 0) {
 			intervalleDecollage -= 1;
