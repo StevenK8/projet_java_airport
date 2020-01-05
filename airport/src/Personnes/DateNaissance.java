@@ -13,6 +13,10 @@ public class DateNaissance {
 		this.mois = mois;
 		this.jour = jour;
 	}
+
+	/**
+	 * Crée une date de naissance aléatoire
+	 */
 	public DateNaissance() {
 		Random r = new Random();
 		jour = r.nextInt(31-1) + 1;

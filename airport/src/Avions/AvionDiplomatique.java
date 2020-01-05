@@ -97,7 +97,9 @@ public class AvionDiplomatique extends Avion {
 	public boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
 			if(aAssezDePilotes()) {
-				return true;
+				if(getPeriodeImmobilisation()==0)
+					return true;
+				return false;
 			}
 			else {
 				System.out.println("Pas assez de pilotes dans " + this.getModele());

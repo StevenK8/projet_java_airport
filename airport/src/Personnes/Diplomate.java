@@ -11,6 +11,7 @@ public class Diplomate extends Passager{
 	
 	
 	/** 
+	 * Renvoie le code d'accès du diplomate
 	 * @return boolean
 	 */
 	public boolean getBooleanAccesCode() {
@@ -18,6 +19,7 @@ public class Diplomate extends Passager{
 	}
 	
 	/** 
+	 * Définit le code d'accès du diplomate
 	 * @param modif
 	 */
 	public void setBooleanAccesCode(boolean modif) {
@@ -26,6 +28,7 @@ public class Diplomate extends Passager{
 	
 	
 	/** 
+	 * Renvoie le statut de vol du diplomate
 	 * @return boolean
 	 */
 	public boolean estEnVol() {

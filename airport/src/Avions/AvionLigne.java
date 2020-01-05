@@ -66,7 +66,9 @@ public class AvionLigne extends Avion{
 		if(super.aAssezDePersonnels()) {
 			if(super.avionRempli()) {
 				if(super.aAssezDePilotes()) {
-					return true;
+					if(getPeriodeImmobilisation()==0)
+						return true;
+					return false;
 				}
 				else {
 					System.out.println("Pas assez de pilotes dans " + this.getModele());
