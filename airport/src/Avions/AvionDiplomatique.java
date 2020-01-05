@@ -19,7 +19,8 @@ public class AvionDiplomatique extends Avion {
     }
     
     
-	/** 
+	/**
+	 * Méthode toString renvoie la texte d'information de l'avion diplomatique
 	 * @return String
 	 */
 	public String toString() {
@@ -32,6 +33,7 @@ public class AvionDiplomatique extends Avion {
     
     
 	/** 
+	 * Remplit l'avion diplomatique de diplomates
 	 * @param aeroport
 	 */
 	public void remplissageAvion(Aeroport aeroport) {
@@ -49,6 +51,7 @@ public class AvionDiplomatique extends Avion {
     
     
 	/** 
+	 * Ajoute un passager à l'avion diplomatique
 	 * @param p
 	 */
 	public void addDiplomate(Passager p) {
@@ -57,6 +60,7 @@ public class AvionDiplomatique extends Avion {
     
     
 	/** 
+	 * Ajoute un personnel à l'avion s'il est de la nationalité de l'état propriétaire de l'avion
 	 * @param p
 	 */
 	public void addPersonnel(Personnel p) {
@@ -67,6 +71,7 @@ public class AvionDiplomatique extends Avion {
     
     
 	/** 
+	 * Ajoute un pilote à l'avion s'il est de la nationalité de l'état propriétaire de l'avion
 	 * @param p
 	 */
 	public void addPilote(Pilote p) {
@@ -77,18 +82,18 @@ public class AvionDiplomatique extends Avion {
 
 	
 	/** 
+	 * Renvoie la priorité de l'avion diplomatique (0)
 	 * @return int
 	 */
-	@Override
 	public int getPriorite() {
 		return 0;
 	}
 
 	
 	/** 
+	 * Vérifie si l'avion remplit les conditions pour décoller
 	 * @return boolean
 	 */
-	@Override
 	public boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
 			if(aAssezDePilotes()) {
@@ -107,6 +112,7 @@ public class AvionDiplomatique extends Avion {
 	
 	
 	/** 
+	 * Renvoie le pays propriétaire de l'avion
 	 * @return Pays
 	 */
 	public Pays getEtatProprietaire() {

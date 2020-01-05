@@ -16,9 +16,9 @@ public class PisteDecollage extends Piste{
 
 	
 	/** 
+	 * Ajoute un vol à la file d'attente de la piste de décollage
 	 * @param vol
 	 */
-	@Override
 	public void addToQueue(Vol vol) {
 		//prendre en compte la priorite de l'avion pour son espacement
 		if(vol.getAvion().peutDecoller() && isOpened()) {

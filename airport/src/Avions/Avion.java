@@ -53,6 +53,7 @@ public abstract class Avion {
 	
     
 	/** 
+	 * Méthode toString affiche les informations et le statut de l'avion
 	 * @return String
 	 */
 	public String toString() {
@@ -63,6 +64,9 @@ public abstract class Avion {
     	return res.toString();
 	}
 	
+	/**
+	 * Définit une période d'immobilisation aléatoire de l'avion
+	 */
 	public void immobilise(){
 		Random r = new Random();
 		periodeImmobilisation = r.nextInt(5) + 1;
@@ -70,12 +74,16 @@ public abstract class Avion {
 
 	
 	/** 
+	 * Définit la période d'immobilisation de l'avion via un paramètre entré
 	 * @param periodeImmobilisation
 	 */
 	public void immobilise(int periodeImmobilisation){
 		this.periodeImmobilisation = periodeImmobilisation;
 	}
 
+	/**
+	 * Décrémente la période d'immobilisation
+	 */
 	public void diminuePeriodeImmobilisation(){
 		if(periodeImmobilisation>0)
 			periodeImmobilisation--;
@@ -83,6 +91,7 @@ public abstract class Avion {
 
 	
 	/** 
+	 * Récupère la période d'immobilisation
 	 * @return int
 	 */
 	public int getPeriodeImmobilisation(){
@@ -91,6 +100,8 @@ public abstract class Avion {
     
 	
 	/** 
+	 * Ajoute un passager dans l'avion
+	 * Il est ajouté dans la liste correspondant à son type
 	 * @param p
 	 */
 	public void addPersonne(Passager p) {
@@ -124,6 +135,8 @@ public abstract class Avion {
 
 	
 	/** 
+	 * Vide l'avion de ses passagers
+	 * Un pilote qui ne travaille pas pour une compagnie quitte également l'aéroport
 	 * @param aeroport
 	 */
 	public void clearAvion(Aeroport aeroport) {
@@ -131,7 +144,7 @@ public abstract class Avion {
 		for (Passager p : listOccupants) {
 			if(p instanceof Pilote) {
 				Pilote pilote = (Pilote) p;
-				if(pilote.getCompagnie() != null) {
+				if(pilote.getCompagnie() != null) { // Pilote de compagnie
 					listPilotes.remove(pilote); //le pilote descend de l'avion mais reste dans laeroport
 					pilote.setIntervallePilote(1); //le pilote a un temps de pause de 1 intervalle
 				}
@@ -154,6 +167,7 @@ public abstract class Avion {
 
 	
 	/** 
+	 * Vide l'avion et replace les passagers en première position des listes de l'aéroport
 	 * @param aeroport
 	 */
 	public void cancelVolAvion(Aeroport aeroport) {
@@ -181,6 +195,7 @@ public abstract class Avion {
 
 	
 	/** 
+	 * Vérifie si le nombre de pilotes est suffisant
 	 * @return boolean
 	 */
 	public boolean aAssezDePilotes(){
@@ -192,6 +207,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Vérifie si le nombre de personnels est suffisant
 	 * @return boolean
 	 */
 	public boolean aAssezDePersonnels(){
@@ -203,6 +219,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Vérifie si l'avion est plein
 	 * @return boolean
 	 */
 	public boolean avionRempli(){
@@ -214,6 +231,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Définit le volume de carburant restant comme le paramètre d'entrée
 	 * @param nCarburant
 	 */
 	public void diminueCarburant(double nCarburant) {
@@ -222,15 +240,6 @@ public abstract class Avion {
 
 	
 	
-	
-	/** 
-	 * @param estEnVol(
-	 * @return boolean
-	 */
-	/** 
-	 * @param estEnVol(
-	 * @return boolean
-	 */
 	/** 
 	 * @param estEnVol(
 	 * @return boolean
@@ -239,6 +248,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Renvoie le statut de vol de l'avion
 	 * @return boolean
 	 */
 	public boolean estEnVol() {
@@ -246,6 +256,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Définit le statut de vol de l'avion comme le paramètre d'entrée
 	 * @param modif
 	 */
 	public void setEstEnVol(boolean modif) {
@@ -254,6 +265,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Retire un passager de l'avion
 	 * @param passager
 	 */
 	public void removePassager(Passager passager) {
@@ -266,6 +278,7 @@ public abstract class Avion {
 	
     
 	/** 
+	 * Renvoie la liste d'occupants de l'avion
 	 * @return List<Passager>
 	 */
 	public List<Passager> getListOccupants(){
@@ -274,6 +287,7 @@ public abstract class Avion {
     
 	
 	/** 
+	 * Renvoie la liste de passagers de l'avion
 	 * @return List<Passager>
 	 */
 	public List<Passager> getlistPassagers(){
@@ -281,6 +295,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie la liste de pilotes de l'avion
 	 * @return List<Pilote>
 	 */
 	public List<Pilote> getListPilotes(){
@@ -289,6 +304,7 @@ public abstract class Avion {
     
 	
 	/** 
+	 * Renvoie la liste de personnels de l'avion
 	 * @return List<Personnel>
 	 */
 	public List<Personnel> getlistPersonnels(){
@@ -297,6 +313,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Renvoie le nombre de passagers dans l'avion
 	 * @return int
 	 */
 	public int getNbPassagers(){
@@ -304,6 +321,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie le modèle de l'avion
 	 * @return EnumModele
 	 */
 	public EnumModele getModele() {
@@ -311,6 +329,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie la capacité de l'avion
 	 * @return int
 	 */
 	public int getCapacite() {
@@ -318,6 +337,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie le poids maximal des bagages
 	 * @return double
 	 */
 	public double getPoidsBagageMax() {
@@ -325,6 +345,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie le volume de carburant
 	 * @return double
 	 */
 	public double getVolumeCarburant() {
@@ -332,6 +353,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie le nombre minimal de pilotes
 	 * @return int
 	 */
 	public int getNbPiloteMin() {
@@ -339,6 +361,7 @@ public abstract class Avion {
 	}
 	
 	/** 
+	 * Renvoie le nombre minimal de personnels
 	 * @return int
 	 */
 	public int getNbPersonnelsMin() {
@@ -347,6 +370,7 @@ public abstract class Avion {
 	
 	
 	/** 
+	 * Renvoie le type d'avion
 	 * @return String
 	 */
 	public String getType() {

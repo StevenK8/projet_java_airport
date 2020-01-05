@@ -18,9 +18,10 @@ public class PisteAtterissage extends Piste{
 	
 	
 	/** 
+	 * Ajoute un vol à la file d'attente de la piste d'atterissage
+	 * On peut demander la priorité d'atterissage à l'opérateur
 	 * @param vol
 	 */
-	@Override
 	public void addToQueue(Vol vol) {
 		if(isOpened()){
 			//prendre en compte la priorite de l'avion pour son espacement
