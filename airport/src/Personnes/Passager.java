@@ -50,10 +50,18 @@ public class Passager extends Personne{
 		return res;
 	}
 	
+	/**
+	 * Definit le numero de vol du passager
+	 * @param num
+	 */
 	public void setNumeroVol(int num) {
 		numeroVol = num;
 	}
 	
+	/**
+	 * renvoit le numero de vol du passager
+	 * @return int
+	 */
 	public int getNumeroVol() {
 		return numeroVol;
 	}
