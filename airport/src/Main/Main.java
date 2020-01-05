@@ -176,7 +176,7 @@ public class Main {
 						choixActions = sc.nextInt();
 						int choiceInt = -1;
 						String strList = "[\n";
-						if(choixActions == 1) {
+						if(choixActions == 1) { //Ouverture piste atterissage
 							int i = 0;
 							for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
 								if(!p.isOpened()){
@@ -186,18 +186,18 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
-								System.out.println("Veuillez choisir la piste d'atterissage a ouvrir [1-"+aeroport.getListPisteAtterissages().size()+"] :\n");
+								System.out.println("Veuillez choisir la piste d'atterissage a ouvrir [1-"+i+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								while(choiceInt<0 || choiceInt>=i)
 									choiceInt = sc.nextInt()-1;
-								aeroport.openPiste(aeroport.getListPisteAtterissages().get(choiceInt));
+								aeroport.openPiste(aeroport.getListPisteAtterissages(true).get(choiceInt));
 							}else{
 								System.out.println("Il n'y a pas de piste d'atterissage a ouvrir.");
 							}
 						}
-						else if (choixActions == 2) {
+						else if (choixActions == 2) { // Fermeture piste atterissage
 							int i = 0;
 							for (PisteAtterissage p : aeroport.getListPisteAtterissages()){
 								if(p.isOpened()){
@@ -207,19 +207,19 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
-								System.out.println("Veuillez choisir la piste d'atterissage a fermer [1-"+aeroport.getListPisteAtterissages().size()+"] :\n");
+								System.out.println("Veuillez choisir la piste d'atterissage a fermer [1-"+i+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 							
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								while(choiceInt<0 || choiceInt>=i)
 									choiceInt = sc.nextInt()-1;
-								aeroport.closePiste(aeroport.getListPisteAtterissages().get(choiceInt));
+								aeroport.closePiste(aeroport.getListPisteAtterissages(false).get(choiceInt));
 							}else{
 								System.out.println("Il n'y a pas de piste de d'atterissage a fermer.");
 							}
 						}
 						
-						else if(choixActions == 3) {
+						else if(choixActions == 3) { // Ouverture piste decollage
 							int i = 0;
 							for (PisteDecollage p : aeroport.getListPisteDecollages()){
 								if(!p.isOpened()){	
@@ -229,19 +229,19 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
-								System.out.println("Veuillez choisir la piste de decollage a ouvrir [1-"+aeroport.getListPisteDecollages().size()+"] :\n");
+								System.out.println("Veuillez choisir la piste de decollage a ouvrir [1-"+i+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								while(choiceInt<0 || choiceInt>=i)
 									choiceInt = sc.nextInt()-1;
-								aeroport.openPiste(aeroport.getListPisteDecollages().get(choiceInt));
+								aeroport.openPiste(aeroport.getListPisteDecollages(true).get(choiceInt));
 							}else{
 								System.out.println("Il n'y a pas de piste de decollage à ouvrir.");
 							}
 						}
 						
-						else if(choixActions == 4) {
+						else if(choixActions == 4) { // Fermeture piste decollage
 							int i = 0;
 							for (PisteDecollage p : aeroport.getListPisteDecollages()){
 								if(p.isOpened()){
@@ -251,13 +251,13 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
-								System.out.println("Veuillez choisir la piste de decollage a fermer [1-"+aeroport.getListPisteDecollages().size()+"] :\n");
+								System.out.println("Veuillez choisir la piste de decollage a fermer [1-"+i+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								while(choiceInt<0 || choiceInt>=i)
 									choiceInt = sc.nextInt()-1;
-								aeroport.closePiste(aeroport.getListPisteDecollages().get(choiceInt));
+								aeroport.closePiste(aeroport.getListPisteDecollages(false).get(choiceInt));
 							}else{
 								System.out.println("Il n'y a pas de piste de decollage a fermer.");
 							}

@@ -321,14 +321,10 @@ public class Aeroport {
 	 */
 	public boolean openPiste(PisteDecollage piste){
 		if(listPisteDecollages.contains(piste)){
-			for (Piste p : listPisteDecollages){
-				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
-					piste.openPiste();
-					System.out.println("> Ouverture piste de decollage");
-					remplirPiste(piste);
-					return true;
-				}
-			}
+			piste.openPiste();
+			System.out.println("> Ouverture piste de decollage");
+			remplirPiste(piste);
+			return true;
 		}
 		System.out.println("> La piste de decollage ne peut etre ouverte!");
 		return false;
@@ -349,7 +345,7 @@ public class Aeroport {
 			}
 		}
 
-		size = (size/nbPistesOuvertes+1);
+		size = (size/(nbPistesOuvertes+1));
 
 		while (size>0){
 			for (Piste p : listPisteDecollages){
@@ -392,15 +388,10 @@ public class Aeroport {
 	 * @param piste
 	 */
 	private void mergePiste(PisteDecollage piste) {
+		PisteDecollage p;
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
-			for (PisteDecollage p : listPisteDecollages){
-				if(p.isOpened()){ // Pour chaque piste ouverte
-					if(piste.getFileAttente().size() > 0)
-						p.addToQueue(piste.removeVol());
-					else
-						break;
-				}
-			}
+			p = getPisteDecollageOuverteMoinsEncombre(getListPisteDecollages(false));
+			p.addToQueue(piste.removeVol());
 		}
 	}
 
@@ -413,7 +404,7 @@ public class Aeroport {
 	public boolean closePiste(PisteAtterissage piste){
 		if(listPisteAtterissages.contains(piste)){
 			for (Piste p : listPisteAtterissages){
-				if(p.isOpened()){
+				if(p.isOpened() && !p.equals(piste)){
 					System.out.println("> Fermeture piste atterissage");
 					piste.closePiste();
 					mergePiste(piste);
@@ -431,15 +422,10 @@ public class Aeroport {
 	 * @param piste
 	 */
 	private void mergePiste(PisteAtterissage piste) {
+		PisteAtterissage p;
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
-			for (PisteAtterissage p : listPisteAtterissages){
-				if(p.isOpened()){ // Pour chaque piste ouverte
-					if(piste.getFileAttente().size() > 0)
-						p.addToQueue(piste.removeVol());
-					else 
-						break;
-				}
-			}
+			p = getPisteAterrissageOuverteMoinsEncombre(getListPisteAtterissages(false));
+			p.addToQueue(piste.removeVol());
 		}
 	}
 
@@ -451,14 +437,10 @@ public class Aeroport {
 	 */
 	public boolean openPiste(PisteAtterissage piste){
 		if(listPisteAtterissages.contains(piste)){
-			for (Piste p : listPisteAtterissages){
-				if(p.isOpened() && !p.equals(piste)){ // Une autre piste est ouverte
-					piste.openPiste();
-					System.out.println("> Ouverture piste d'atterissage");
-					remplirPiste(piste);
-					return true;
-				}
-			}
+			piste.openPiste();
+			System.out.println("> Ouverture piste d'atterissage");
+			remplirPiste(piste);
+			return true;
 		}
 		System.out.println("> La piste d'atterissage ne peut être ouverte!");
 		return false;
@@ -479,7 +461,7 @@ public class Aeroport {
 			}
 		}
 
-		size = (size/nbPistesOuvertes+1);
+		size = (size/(nbPistesOuvertes+1));
 
 		while (size>0){
 			for (Piste p : listPisteAtterissages){
@@ -586,6 +568,22 @@ public class Aeroport {
 		}
 		return res;
 	}
+
+	/** 
+	 * Renvoie la piste d'atterissage ouverte en entrée la moins remplie
+	 * @return PisteAtterissage
+	 */
+	public PisteAtterissage getPisteAterrissageOuverteMoinsEncombre(ArrayList<PisteAtterissage> listePistesOuvertes) {
+		int min = 200;
+		PisteAtterissage res = listePistesOuvertes.get(0);
+		for(PisteAtterissage piste : listePistesOuvertes) {
+			if(piste.getFileAttente().size() < min && piste.isOpened()) {
+				res = piste;
+				min = res.getFileAttente().size();
+			}
+		}
+		return res;
+	}
 	
 	/** 
 	 * Renvoie la piste de decollage la moins remplie
@@ -603,6 +601,23 @@ public class Aeroport {
 		return res;
 	}
 	
+
+		
+	/** 
+	 * Renvoie la piste de decollage ouverte en entrée la moins remplie
+	 * @return PisteDecollage
+	 */
+	public PisteDecollage getPisteDecollageOuverteMoinsEncombre(ArrayList<PisteDecollage> listePistesOuvertes) {
+		int min = 200;
+		PisteDecollage res = listePistesOuvertes.get(0);
+		for(PisteDecollage piste : listePistesOuvertes) {
+			if(piste.getFileAttente().size() < min && piste.isOpened()) {
+				res = piste;
+				min = res.getFileAttente().size();
+			}
+		}
+		return res;
+	}
 	
 	/** 
 	 * Vérifie si l'avion de ligne en entrée peut décoller
@@ -925,6 +940,20 @@ public class Aeroport {
 		return listPisteDecollages;
 	}
 
+	/** 
+	 * Renvoie la liste de pistes de décollage ouvertes ou fermées de l'aéroport
+	 * @return ArrayList<PisteDecollage>
+	 */
+	public ArrayList<PisteDecollage> getListPisteDecollages(boolean ouverte) {
+		ArrayList<PisteDecollage> pistesOuvertes = new ArrayList<PisteDecollage>();
+		for (PisteDecollage p : listPisteDecollages){
+			if (ouverte && !p.isOpened() || !ouverte && p.isOpened()){
+				pistesOuvertes.add(p);
+			}
+		}
+		return pistesOuvertes;
+	}
+
 	
 	/** 
 	 * Renvoie la liste de pistes d'atterissage de l'aéroport
@@ -932,6 +961,20 @@ public class Aeroport {
 	 */
 	public ArrayList<PisteAtterissage> getListPisteAtterissages() {
 		return listPisteAtterissages;
+	}
+
+	/** 
+	 * Renvoie la liste de pistes de décollage ouvertes ou fermées de l'aéroport
+	 * @return ArrayList<PisteDecollage>
+	 */
+	public ArrayList<PisteAtterissage> getListPisteAtterissages(boolean ouverte) {
+		ArrayList<PisteAtterissage> pistesOuvertes = new ArrayList<PisteAtterissage>();
+		for (PisteAtterissage p : listPisteAtterissages){
+			if (ouverte && !p.isOpened() || !ouverte && p.isOpened()){
+				pistesOuvertes.add(p);
+			}
+		}
+		return pistesOuvertes;
 	}
 	
 	
