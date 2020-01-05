@@ -1,17 +1,13 @@
 package Avions;
 
-import Personnes.Diplomate;
-import Personnes.Passager;
-import Personnes.Personne;
-import Personnes.Personnel;
-import Personnes.Pilote;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import CompagnieAerienne.Compagnie;
 import Main.Aeroport;
+import Personnes.Passager;
+import Personnes.Personnel;
+import Personnes.Pilote;
 
 public abstract class Avion {
 	protected EnumModele modele;
@@ -144,7 +140,6 @@ public abstract class Avion {
 	 * @param aeroport
 	 */
 	public void clearAvion(Aeroport aeroport) {
-		ArrayList<Pilote> pilotesRestantsDansAeroport = new ArrayList<>();
 		for (Passager p : listOccupants) {
 			if(p instanceof Pilote) {
 				Pilote pilote = (Pilote) p;

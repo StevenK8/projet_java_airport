@@ -74,16 +74,9 @@ public abstract class Piste {
 	}
 	
 	
-	/** 
-	 * Renvoie la capacité de la piste
-	 * @return int
-	 */
-	private int getCapacite() {
-		return capacite;
-	}
-	
-	/** 
+	/**
 	 * Vérifie si la capacité totale de la piste est atteinte
+	 * 
 	 * @return boolean
 	 */
 	public boolean isFull() {

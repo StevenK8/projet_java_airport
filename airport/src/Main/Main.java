@@ -1,7 +1,6 @@
 package Main;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,7 +21,6 @@ public class Main {
 	
 	/** 
 	 * @param args
-	 * 
 	 */
 	public static void main(String[] args) {	
 		//Creation de laeroport
@@ -342,6 +340,7 @@ public class Main {
 					}
 				}else if (resume == 5){
 					System.out.println("Au revoir!");
+					sc.close();
 					System.exit(0);
 				}
 			}while( resume != 4);
