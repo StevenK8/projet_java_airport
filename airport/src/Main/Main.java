@@ -36,14 +36,14 @@ public class Main {
 		do {
 			System.out.println("Combien de pistes de decollages avez-vous ? [1-5]\n");
 			nbPistesDecollage = sc.nextInt();
-		}while(nbPistesDecollage < 1 || nbPistesDecollage > 6);
+		}while(nbPistesDecollage < 1 || nbPistesDecollage >5);
 		aeroport.createPisteDecollage(nbPistesDecollage);
 		System.out.println("> Creation de " + nbPistesDecollage + " pistes de decollage");
 		
 		do {
 			System.out.println("Combien de pistes d'aterrissage avez-vous ? [1-5]\n");
 			nbPistesAterrissage = sc.nextInt();
-		}while(nbPistesAterrissage < 1 || nbPistesAterrissage > 6);
+		}while(nbPistesAterrissage < 1 || nbPistesAterrissage > 5);
 		aeroport.createPisteAtterissage(nbPistesAterrissage);
 		System.out.println("> Creation de " + nbPistesAterrissage + " pistes d'aterrissage");
 		
