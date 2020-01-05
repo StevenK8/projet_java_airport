@@ -28,20 +28,40 @@ public class Pilote extends Passager{
 		pays = nationalite;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getEmployeur(){
 		return employeur; //si employeur == nom+prenom du proprietaire l'avion privee alors cest un pilote privee
 						  
 	}
+	
+	/** 
+	 * @return Compagnie
+	 */
 	public Compagnie getCompagnie(){
 		return compagnie;
 	}
+	
+	/** 
+	 * @return Pays
+	 */
 	public Pays getNationalite() {
 		return pays;
 	}
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnVol() {
 		return super.estEnVol();
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnPause() {
 		return intervallePilote != 0;
 	}
@@ -51,16 +71,28 @@ public class Pilote extends Passager{
 		}
 	}
 	
+	
+	/** 
+	 * @param inter
+	 */
 	public void setIntervallePilote(int inter) {
 		if(intervallePilote > 0) {
 			intervallePilote = inter;
 		}
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getIntervallePilote() {
 		return intervallePilote;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
 		String res = super.toString();
 		if(compagnie != null) {

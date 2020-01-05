@@ -18,7 +18,11 @@ public class AvionDiplomatique extends Avion {
         personnelMin = pPersonnelMin;
     }
     
-    public String toString() {
+    
+	/** 
+	 * @return String
+	 */
+	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion diplomatique : " + modele + "\n");
     	res.append(super.toString());
@@ -26,7 +30,11 @@ public class AvionDiplomatique extends Avion {
     	return res.toString();
     }
     
-    public void remplissageAvion(Aeroport aeroport) {
+    
+	/** 
+	 * @param aeroport
+	 */
+	public void remplissageAvion(Aeroport aeroport) {
     	for (Diplomate d : aeroport.getListDiplomates()) {
 			this.addDiplomate(d);
 		}
@@ -39,27 +47,47 @@ public class AvionDiplomatique extends Avion {
 		//System.out.println(this);
     }
     
-    public void addDiplomate(Passager p) {
+    
+	/** 
+	 * @param p
+	 */
+	public void addDiplomate(Passager p) {
     	super.addPersonne(p);
     }
     
-    public void addPersonnel(Personnel p) {
+    
+	/** 
+	 * @param p
+	 */
+	public void addPersonnel(Personnel p) {
     	if(p.getNationalite() == etatProprietaire) {
     		super.addPersonne(p);
     	}
     }
     
-    public void addPilote(Pilote p) {
+    
+	/** 
+	 * @param p
+	 */
+	public void addPilote(Pilote p) {
     	if(p.getNationalite() == etatProprietaire) {
     		super.addPersonne(p);
     	}
     }
 
+	
+	/** 
+	 * @return int
+	 */
 	@Override
 	public int getPriorite() {
 		return 0;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	@Override
 	public boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
@@ -77,6 +105,10 @@ public class AvionDiplomatique extends Avion {
 		}
 	}
 	
+	
+	/** 
+	 * @return Pays
+	 */
 	public Pays getEtatProprietaire() {
 		return etatProprietaire;
 	}

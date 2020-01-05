@@ -17,6 +17,10 @@ public class AvionLigne extends Avion{
 		nbPersonnelsMin = nbPersonnel;
 	}
 	
+	
+	/** 
+	 * @param aeroport
+	 */
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
 			super.addPersonne(p);
@@ -30,18 +34,30 @@ public class AvionLigne extends Avion{
 		//System.out.println(this);
     }
 	
+	
+	/** 
+	 * @param p
+	 */
 	public void addPilote(Pilote p) {
 		//if (p.getCompagnie() == compagnieProprietaire) {
 			super.addPersonne(p);
 		//}
 	}
 	
+	
+	/** 
+	 * @param p
+	 */
 	public void addPersonnel(Personnel p) {
 		//if (p.getCompagnie() == compagnieProprietaire) {
 			super.addPersonne(p);
 		//}
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean peutDecoller() {
 		if(super.aAssezDePersonnels()) {
 			if(super.avionRempli()) {
@@ -64,6 +80,10 @@ public class AvionLigne extends Avion{
 		}
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion de ligne : " + modele + "\n");
@@ -72,10 +92,18 @@ public class AvionLigne extends Avion{
     	return res.toString();
     }
 	
+	
+	/** 
+	 * @return Compagnie
+	 */
 	public Compagnie getCompagnie() {
 		return compagnieProprietaire;
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getPriorite() {
 		return 1;
 	}

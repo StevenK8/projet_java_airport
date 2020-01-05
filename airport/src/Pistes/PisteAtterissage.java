@@ -16,6 +16,10 @@ public class PisteAtterissage extends Piste{
 		aeroport = pAeroport;
 	}
 	
+	
+	/** 
+	 * @param vol
+	 */
 	@Override
 	public void addToQueue(Vol vol) {
 		if(isOpened()){

@@ -23,41 +23,81 @@ public class Compagnie {
 		personnelsNavigants = new ArrayList<>();
 	}
 	
+	
+	/** 
+	 * @param avion
+	 */
 	public void addAvionDansFlotte(AvionLigne avion) {
 		flotte.add((AvionLigne)avion);
 	}
 	
+	
+	/** 
+	 * @param avion
+	 */
 	public void removeAvion(AvionLigne avion) {
 		flotte.remove(avion);
 	}
 	
+	
+	/** 
+	 * @param pilote
+	 */
 	public void addPilote(Pilote pilote) {
 		pilotes.add(pilote);
 	}
+	
+	/** 
+	 * @param pilote
+	 */
 	public void removePilote(Pilote pilote) {
 		pilotes.remove(pilote);
 	}
 	
+	
+	/** 
+	 * @param personnel
+	 */
 	public void addPersonnel(Personnel personnel) {
 		personnelsNavigants.add(personnel);
 	}
 	
+	
+	/** 
+	 * @param personnel
+	 */
 	public void removePersonnel(Personnel personnel) {
 		personnelsNavigants.remove(personnel);
 	}
 	
+	
+	/** 
+	 * @return List<AvionLigne>
+	 */
 	public List<AvionLigne> getListAvions(){
 		return flotte;
 	}
 	
+	
+	/** 
+	 * @return List<Pilote>
+	 */
 	public List<Pilote> getListPilotes(){
 		return pilotes;
 	}
 	
+	
+	/** 
+	 * @return List<Personnel>
+	 */
 	public List<Personnel> getListPersonnel(){
 		return personnelsNavigants;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
 		return nomCommercial + " " + nationalite;
 	}

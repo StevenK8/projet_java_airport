@@ -19,6 +19,10 @@ import Vols.Vol;
 
 public class Main {
 	
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {	
 		//Creation de laeroport
 		Aeroport aeroport = new Aeroport(Ville.Paris);
@@ -363,6 +367,11 @@ public class Main {
 		//sc.close();
 	}
 
+	
+	/** 
+	 * @param sc
+	 * @return String
+	 */
 	public static String getChoice(Scanner sc) {
 		System.out.print("\n> ");
 		String choice = sc.nextLine();

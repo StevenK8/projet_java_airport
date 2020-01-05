@@ -9,13 +9,25 @@ public class Diplomate extends Passager{
 		accesCode = true; //peut etre a enlever plus tard ?
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean getBooleanAccesCode() {
 		return accesCode;
 	}
+	
+	/** 
+	 * @param modif
+	 */
 	public void setBooleanAccesCode(boolean modif) {
 		accesCode = modif;
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnVol() {
 		return super.estEnVol();
 	}

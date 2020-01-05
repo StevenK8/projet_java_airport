@@ -14,17 +14,33 @@ public class Personne {
         this.nationalite = nationalite;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
 		return prenom + " " + nom + " originaire de " + nationalite;
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnVol() {
 		return estEnVol;
 	}
+	
+	/** 
+	 * @param modif
+	 */
 	public void setEstEnVol(boolean modif) {
 		estEnVol = modif;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String getNomProprio() {
 		return prenom.toString() + nom.toString();
 	}

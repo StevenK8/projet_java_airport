@@ -15,17 +15,33 @@ public class Passager extends Personne{
 		prendAvionPrivee = pPrendAvionPrive;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnVol() {
 		return super.estEnVol();
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean getPrendAvionPrive() {
 		return prendAvionPrivee;
 	}
+	
+	/** 
+	 * @param pPrendAvionprive
+	 */
 	public void setPrendAvionPrive(boolean pPrendAvionprive) {
 		prendAvionPrivee = pPrendAvionprive;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
 		String res= "";
 		res += super.toString();

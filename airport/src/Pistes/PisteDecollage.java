@@ -14,6 +14,10 @@ public class PisteDecollage extends Piste{
 		intervalleDecollage = 1;
 	}
 
+	
+	/** 
+	 * @param vol
+	 */
 	@Override
 	public void addToQueue(Vol vol) {
 		//prendre en compte la priorite de l'avion pour son espacement
@@ -23,6 +27,10 @@ public class PisteDecollage extends Piste{
 		}	
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean decollePiste() {
 		if(intervalleDecollage == 0 && isOpened()) {
 			if (fileAttente.size() != 0) {
@@ -56,6 +64,10 @@ public class PisteDecollage extends Piste{
 		}
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getIntervalleDecollage() {
 		return intervalleDecollage;
 	}

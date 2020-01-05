@@ -43,9 +43,19 @@ public abstract class Avion {
 		periodeImmobilisation = 0;
 	}	
 	
-    public abstract void remplissageAvion(Aeroport aeroport);
+    
 	
-    public String toString() {
+	
+	/** 
+	 * @param toString(
+	 */
+	public abstract void remplissageAvion(Aeroport aeroport);
+	
+    
+	/** 
+	 * @return String
+	 */
+	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("nombre de passagers : " + listPassagers.size() + " (max : " + capacite + ") \n");
     	res.append("nombre de personnels navigants : " + listPersonnels.size() + " (min : " + nbPersonnelMin + ") \n");
@@ -58,10 +68,31 @@ public abstract class Avion {
 		periodeImmobilisation = r.nextInt(5) + 1;
 	}
 
+	
+	/** 
+	 * @param periodeImmobilisation
+	 */
 	public void immobilise(int periodeImmobilisation){
 		this.periodeImmobilisation = periodeImmobilisation;
 	}
+
+	public void diminuePeriodeImmobilisation(){
+		if(periodeImmobilisation>0)
+			periodeImmobilisation--;
+	}
+
+	
+	/** 
+	 * @return int
+	 */
+	public int getPeriodeImmobilisation(){
+		return periodeImmobilisation;
+	}
     
+	
+	/** 
+	 * @param p
+	 */
 	public void addPersonne(Passager p) {
 		if(!p.estEnVol()) {
 			if(p instanceof Personnel) {
@@ -91,6 +122,10 @@ public abstract class Avion {
 		}
 	}
 
+	
+	/** 
+	 * @param aeroport
+	 */
 	public void clearAvion(Aeroport aeroport) {
 		ArrayList<Pilote> pilotesRestantsDansAeroport = new ArrayList<>();
 		for (Passager p : listOccupants) {
@@ -117,6 +152,10 @@ public abstract class Avion {
 		listOccupants.clear();
 	}
 
+	
+	/** 
+	 * @param aeroport
+	 */
 	public void cancelVolAvion(Aeroport aeroport) {
 		for (Passager p : listOccupants) {
 			if(p instanceof Pilote) {
@@ -140,6 +179,10 @@ public abstract class Avion {
 		listOccupants.clear();
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean aAssezDePilotes(){
 		if (listPilotes.size() >= NbPiloteMin){
 			return true;
@@ -147,6 +190,10 @@ public abstract class Avion {
 		return false;
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean aAssezDePersonnels(){
 		if (listPersonnels.size() >= nbPersonnelMin){
 			return true;
@@ -154,6 +201,10 @@ public abstract class Avion {
 		return false;
 	}
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean avionRempli(){
 		if (listPassagers.size() == capacite){
 			return true;
@@ -161,19 +212,50 @@ public abstract class Avion {
 		return false;
 	}
 	
+	
+	/** 
+	 * @param nCarburant
+	 */
 	public void diminueCarburant(double nCarburant) {
 		this.volumeCarburant = nCarburant;
 	}
 
+	
+	
+	
+	/** 
+	 * @param estEnVol(
+	 * @return boolean
+	 */
+	/** 
+	 * @param estEnVol(
+	 * @return boolean
+	 */
+	/** 
+	 * @param estEnVol(
+	 * @return boolean
+	 */
 	public abstract boolean peutDecoller();
 	
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean estEnVol() {
 		return estEnVol;
 	}
+	
+	/** 
+	 * @param modif
+	 */
 	public void setEstEnVol(boolean modif) {
 		estEnVol = modif;
 	}
 	
+	
+	/** 
+	 * @param passager
+	 */
 	public void removePassager(Passager passager) {
 		listPassagers.remove(passager);
 		listOccupants.remove(passager);
@@ -182,43 +264,91 @@ public abstract class Avion {
 	}
 	
 	
-    public List<Passager> getListOccupants(){
+    
+	/** 
+	 * @return List<Passager>
+	 */
+	public List<Passager> getListOccupants(){
     	return listOccupants;
     }
     
+	
+	/** 
+	 * @return List<Passager>
+	 */
 	public List<Passager> getlistPassagers(){
 		return listPassagers;
 	}
+	
+	/** 
+	 * @return List<Pilote>
+	 */
 	public List<Pilote> getListPilotes(){
     	return listPilotes;
     }
     
+	
+	/** 
+	 * @return List<Personnel>
+	 */
 	public List<Personnel> getlistPersonnels(){
 		return listPersonnels;
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getNbPassagers(){
 		return listPassagers.size();
 	}
+	
+	/** 
+	 * @return EnumModele
+	 */
 	public EnumModele getModele() {
 		return modele;
 	}
+	
+	/** 
+	 * @return int
+	 */
 	public int getCapacite() {
 		return capacite;
 	}
+	
+	/** 
+	 * @return double
+	 */
 	public double getPoidsBagageMax() {
 		return poidsBagageMax;
 	}
+	
+	/** 
+	 * @return double
+	 */
 	public double getVolumeCarburant() {
 		return volumeCarburant;
 	}
+	
+	/** 
+	 * @return int
+	 */
 	public int getNbPiloteMin() {
 		return NbPiloteMin;
 	}
+	
+	/** 
+	 * @return int
+	 */
 	public int getNbPersonnelsMin() {
 		return nbPersonnelMin;
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String getType() {
 		if (this instanceof AvionLigne) {
 			return "Avion de ligne";

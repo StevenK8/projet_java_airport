@@ -22,6 +22,10 @@ public class AvionPrive extends Avion{
 		this.nbPersonnelMin = nbPersonnelMin;
 	}
 	
+	
+	/** 
+	 * @param aeroport
+	 */
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
 			this.addPassager(p);
@@ -37,18 +41,30 @@ public class AvionPrive extends Avion{
 		//System.out.println(this);
     }
 	
+	
+	/** 
+	 * @param p
+	 */
 	public void addPilote(Pilote p) {
 		if (p.getEmployeur().equals(proprietaire.getNomProprio())) {
 			super.addPersonne(p);
 		}
 	}
 	
+	
+	/** 
+	 * @param p
+	 */
 	public void addPassager(Passager p) {
 		if (p.getPrendAvionPrive()) {
 			super.addPersonne(p);
 		}
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String toString() {
     	StringBuilder res = new StringBuilder();
     	res.append("Avion prive : " + modele + "\n");
@@ -57,11 +73,19 @@ public class AvionPrive extends Avion{
     	return res.toString();
     }
 
+	
+	/** 
+	 * @return int
+	 */
 	@Override
 	public int getPriorite() {
 		return 2;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	@Override
 	public boolean peutDecoller() {
 		if(listPassagers.size() == getNbPassagers()) {
@@ -79,6 +103,10 @@ public class AvionPrive extends Avion{
 		}
 	}
 	
+	
+	/** 
+	 * @return String
+	 */
 	public String getIdProprio() {
 		return proprietaire.getNomProprio();
 	}

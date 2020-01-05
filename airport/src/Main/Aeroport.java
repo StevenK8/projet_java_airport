@@ -68,6 +68,10 @@ public class Aeroport {
 		listPisteAtterissages = new ArrayList<PisteAtterissage>();
 	}
 	
+	
+	/** 
+	 * @param avion
+	 */
 	//ajout des pilotes dans les avions qui viennent aterrir (uniquement les pilotes car les passagers et personnels seront supprimes de toute facon)
 	public void populateAvionEnVol(Avion avion) {
 		for(int i = 0; i < avion.getNbPiloteMin();i++) {
@@ -102,22 +106,40 @@ public class Aeroport {
 	}
 	
 	
+	
+	/** 
+	 * @param nbPiste
+	 */
 	public void createPisteDecollage(int nbPiste) {
 		for(int i = 0; i < nbPiste;i++) {
 			listPisteDecollages.add(new PisteDecollage());
 		}
 	}
 	
+	
+	/** 
+	 * @param nbPiste
+	 */
 	public void createPisteAtterissage(int nbPiste) {
 		for(int i = 0; i < nbPiste;i++) {
 			listPisteAtterissages.add(new PisteAtterissage(this));
 		}
 	}
 	
+	
+	/** 
+	 * @param avion
+	 * @param isFromAnotherAirport
+	 * @return Vol
+	 */
 	public Vol createVol(Avion avion, boolean isFromAnotherAirport) {
 		return new Vol(avion, this, isFromAnotherAirport);
 	}
 
+	
+	/** 
+	 * @param nombreCompagnie
+	 */
 	public void createCompagnie(int nombreCompagnie) {
 		for(int i = 0 ; i < nombreCompagnie; i++) {
 			Compagnie c = new Compagnie(
@@ -127,6 +149,10 @@ public class Aeroport {
 		}
 	}
 	
+	
+	/** 
+	 * @param nombrePersonne
+	 */
 	public void createPersonne(int nombrePersonne) {
 		Random r = new Random();
 		int nbPassagers = 0, nbPilotes = 0, nbPersonnels = 0, nbDiplomates = 0;
@@ -192,6 +218,10 @@ public class Aeroport {
 		System.out.println("\t " + nbPassagers + " passagers " + nbPilotes + " pilotes " + nbPersonnels + " personnels " + nbDiplomates + " diplomates\n");
 	}
 	
+	
+	/** 
+	 * @param nombreAvions
+	 */
 	public void createAvions(int nombreAvions) {
 		Random r = new Random();
 		for(int i = 0 ; i < nombreAvions; i++) {
@@ -229,6 +259,11 @@ public class Aeroport {
 		}
 	}
 	
+	
+	/** 
+	 * @param nombreAvions
+	 * @return ArrayList<Vol>
+	 */
 	public ArrayList<Vol> createAvionsEnVol(int nombreAvions) {
 		Random r = new Random();
 		ArrayList<Vol> listAvionsEnVol = new ArrayList<>();
@@ -271,6 +306,11 @@ public class Aeroport {
 		return listAvionsEnVol;
 	}
 
+	
+	/** 
+	 * @param piste
+	 * @return boolean
+	 */
 	public boolean openPiste(PisteDecollage piste){
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
@@ -286,6 +326,10 @@ public class Aeroport {
 		return false;
 	}
 	
+	
+	/** 
+	 * @param piste
+	 */
 	private void remplirPiste(PisteDecollage piste) {
 		int size = 0;
 		int nbPistesOuvertes = 0;
@@ -315,6 +359,11 @@ public class Aeroport {
 		}
 	}
 
+	
+	/** 
+	 * @param piste
+	 * @return boolean
+	 */
 	public boolean closePiste(PisteDecollage piste) {
 		if(listPisteDecollages.contains(piste)){
 			for (Piste p : listPisteDecollages){
@@ -330,6 +379,10 @@ public class Aeroport {
 		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
 	}
 
+	
+	/** 
+	 * @param piste
+	 */
 	private void mergePiste(PisteDecollage piste) {
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
 			for (PisteDecollage p : listPisteDecollages){
@@ -343,6 +396,11 @@ public class Aeroport {
 		}
 	}
 
+	
+	/** 
+	 * @param piste
+	 * @return boolean
+	 */
 	public boolean closePiste(PisteAtterissage piste){
 		if(listPisteAtterissages.contains(piste)){
 			for (Piste p : listPisteAtterissages){
@@ -358,6 +416,10 @@ public class Aeroport {
 		return false; // Aucune piste n'est ouverte -> impossible de fermer la dernière / la piste à fermer n'est pas dans l'aéroport
 	}
 
+	
+	/** 
+	 * @param piste
+	 */
 	private void mergePiste(PisteAtterissage piste) {
 		while (piste.getFileAttente().size() > 0){ // Tant que la piste contient des vols dans sa file d'attente
 			for (PisteAtterissage p : listPisteAtterissages){
@@ -371,6 +433,11 @@ public class Aeroport {
 		}
 	}
 
+	
+	/** 
+	 * @param piste
+	 * @return boolean
+	 */
 	public boolean openPiste(PisteAtterissage piste){
 		if(listPisteAtterissages.contains(piste)){
 			for (Piste p : listPisteAtterissages){
@@ -386,6 +453,10 @@ public class Aeroport {
 		return false;
 	}
 	
+	
+	/** 
+	 * @param piste
+	 */
 	private void remplirPiste(PisteAtterissage piste) {
 		int size = 0;
 		int nbPistesOuvertes = 0;
@@ -415,12 +486,21 @@ public class Aeroport {
 		}
 	}
 
+	
+	/** 
+	 * @param vol
+	 */
 	public void annuleVol(Vol vol){
 		Avion avion = vol.getAvion();
 		avion.immobilise();
 		avion.cancelVolAvion(this);
 	}
 
+	
+	/** 
+	 * @param vol
+	 * @param periodeImmobilisation
+	 */
 	public void annuleVol(Vol vol, int periodeImmobilisation){
 		Avion avion = vol.getAvion();
 		avion.immobilise(periodeImmobilisation);
@@ -449,19 +529,32 @@ public class Aeroport {
 			if(avion.estEnVol()) {
 				avion.diminueCarburant(avion.getVolumeCarburant() * 0.7);
 			}
+			if(avion.getPeriodeImmobilisation()!=0){
+				avion.diminuePeriodeImmobilisation();
+			}
 		}
 		for(AvionPrive avion : listAvionsPrives) {
 			if(avion.estEnVol()) {
 				avion.diminueCarburant(avion.getVolumeCarburant() * 0.8);
+			}
+			if(avion.getPeriodeImmobilisation()!=0){
+				avion.diminuePeriodeImmobilisation();
 			}
 		}
 		for(AvionLigne avion : listAvionsLignes) {
 			if(avion.estEnVol()) {
 				avion.diminueCarburant(avion.getVolumeCarburant() * 0.9);
 			}
+			if(avion.getPeriodeImmobilisation()!=0){
+				avion.diminuePeriodeImmobilisation();
+			}
 		}
 	}
 	
+	
+	/** 
+	 * @return PisteAtterissage
+	 */
 	public PisteAtterissage getPisteAterrissageMoinsEncombre() {
 		int min = 200;
 		PisteAtterissage res = listPisteAtterissages.get(0);
@@ -473,6 +566,10 @@ public class Aeroport {
 		}
 		return res;
 	}
+	
+	/** 
+	 * @return PisteDecollage
+	 */
 	public PisteDecollage getPisteDecollageMoinsEncombre() {
 		int min = 200;
 		PisteDecollage res = listPisteDecollages.get(0);
@@ -485,6 +582,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param avion
+	 * @return boolean
+	 */
 	protected boolean preparationAvionLigne(AvionLigne avion) {
 		if(this.getPassagersDansAeroport() >= avion.getCapacite()) {
 			if(this.getPilotesDansAeroport(/*avion.getCompagnie()*/) >= avion.getNbPiloteMin()) {
@@ -508,6 +610,11 @@ public class Aeroport {
 		}
 	}
 	
+	
+	/** 
+	 * @param avion
+	 * @return boolean
+	 */
 	protected boolean preparationAvionPrive(AvionPrive avion) {
 		if( this.getPilotesDansAeroport(avion.getIdProprio()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport() >= avion.getNbPersonnelsMin()) {
@@ -525,6 +632,11 @@ public class Aeroport {
 		}
 	}
 	
+	
+	/** 
+	 * @param avion
+	 * @return boolean
+	 */
 	protected boolean preparationAvionDiplomatique(AvionDiplomatique avion) {
 		if(this.getPilotesDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPiloteMin()) {
 			if(this.getPersonnelsDansAeroport(avion.getEtatProprietaire()) >= avion.getNbPersonnelsMin()) {
@@ -542,6 +654,10 @@ public class Aeroport {
 		}
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getPassagersDansAeroport() {
 		int res = 0;
 		for(Passager p : listVoyageurs) {
@@ -552,6 +668,10 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getPilotesDansAeroport() {
 		int res = 0;
 		for(Pilote p : listPilotes) {
@@ -565,6 +685,10 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @return int
+	 */
 	public int getPersonnelsDansAeroport() {
 		int res = 0;
 		for(Personnel p : listPersonnels) {
@@ -575,6 +699,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param c
+	 * @return int
+	 */
 	//Pour les avions de ligne
 	public int getPilotesDansAeroport(Compagnie c) {
 		int res = 0;
@@ -586,6 +715,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param c
+	 * @return int
+	 */
 	public int getPersonnelsDansAeroport(Compagnie c) {
 		int res = 0;
 		for(Personnel p : listPersonnels) {
@@ -596,6 +730,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param idProprio
+	 * @return int
+	 */
 	//Pour avion prive
 	public int getPilotesDansAeroport(String idProprio) {
 		int res = 0;
@@ -610,6 +749,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param pays
+	 * @return int
+	 */
 	//Pour les avions Diplomatiques
 	public int getPilotesDansAeroport(Pays pays) {
 		int res = 0;
@@ -623,6 +767,11 @@ public class Aeroport {
 		return res;
 	}
 	
+	
+	/** 
+	 * @param pays
+	 * @return int
+	 */
 	public int getPersonnelsDansAeroport(Pays pays) {
 		int res = 0;
 		for(Personnel p : listPersonnels) {
@@ -635,6 +784,10 @@ public class Aeroport {
 		return res;
 	}
 
+	
+	/** 
+	 * @return ArrayList<Passager>
+	 */
 	//Getters basiques
 	public ArrayList<Passager> getListVoyageurs() {
 		return listVoyageurs;
@@ -642,62 +795,106 @@ public class Aeroport {
 
 
 
+	
+	/** 
+	 * @return ArrayList<Pilote>
+	 */
 	public ArrayList<Pilote> getListPilotes() {
 		return listPilotes;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<Personnel>
+	 */
 	public ArrayList<Personnel> getListPersonnels() {
 		return listPersonnels;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<Diplomate>
+	 */
 	public ArrayList<Diplomate> getListDiplomates() {
 		return listDiplomates;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<Personne>
+	 */
 	public ArrayList<Personne> getListProprietaires() {
 		return listProprietaires;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<AvionLigne>
+	 */
 	public ArrayList<AvionLigne> getListAvionsLignes() {
 		return listAvionsLignes;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<AvionDiplomatique>
+	 */
 	public ArrayList<AvionDiplomatique> getListAvionsDiplomatiques() {
 		return listAvionsDiplomatiques;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<AvionPrive>
+	 */
 	public ArrayList<AvionPrive> getListAvionsPrives() {
 		return listAvionsPrives;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<Compagnie>
+	 */
 	public ArrayList<Compagnie> getListCompagnies() {
 		return listCompagnies;
 	}
 
 
 
+	
+	/** 
+	 * @return ArrayList<PisteDecollage>
+	 */
 	public ArrayList<PisteDecollage> getListPisteDecollages() {
 		return listPisteDecollages;
 	}
 
+	
+	/** 
+	 * @return ArrayList<PisteAtterissage>
+	 */
 	public ArrayList<PisteAtterissage> getListPisteAtterissages() {
 		return listPisteAtterissages;
 	}
 	
+	
+	/** 
+	 * @return Ville
+	 */
 	public Ville getVille() {
 		return ville;
 	}
