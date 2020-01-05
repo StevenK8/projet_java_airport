@@ -265,7 +265,7 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
-								System.out.println("Veuillez choisir le vol à annuler [1-"+listAvionsVoulantAtterir.size()+"] :\n");
+								System.out.println("Veuillez choisir le vol a annuler [1-"+listAvionsVoulantAtterir.size()+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 
