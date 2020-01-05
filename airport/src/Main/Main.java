@@ -172,7 +172,7 @@ public class Main {
 				if(resume == 1) {
 					int choixActions;
 					do {
-						System.out.println("Ouverture Piste Atterrissage ? (1) \tFermeture Piste Atterrissage (2) \tOuverture Piste Decollage ? (3) \tFermeture Piste Decollage (4) \tAnnulation vol (5) \tRetour (6)");
+						System.out.println("Ouverture Piste Atterrissage ? (1)   Fermeture Piste Atterrissage (2)   Ouverture Piste Decollage ? (3)   Fermeture Piste Decollage (4)   Annulation vol (5)   Retour (6)");
 						choixActions = sc.nextInt();
 						int choiceInt = -1;
 						String strList = "[\n";
@@ -190,7 +190,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<1 || choiceInt>aeroport.getListPisteAtterissages().size())
+								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.openPiste(aeroport.getListPisteAtterissages().get(choiceInt));
 							}else{
@@ -211,7 +211,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 							
-								while(choiceInt<1 || choiceInt>aeroport.getListPisteAtterissages().size())
+								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.closePiste(aeroport.getListPisteAtterissages().get(choiceInt));
 							}else{
@@ -233,7 +233,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<1 || choiceInt>aeroport.getListPisteDecollages().size())
+								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.openPiste(aeroport.getListPisteDecollages().get(choiceInt));
 							}else{
@@ -255,7 +255,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<1 || choiceInt>aeroport.getListPisteDecollages().size())
+								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.closePiste(aeroport.getListPisteDecollages().get(choiceInt));
 							}else{
@@ -269,13 +269,27 @@ public class Main {
 							}
 							strList += "]";
 							if(i!=0){
+								int volAnnule;
 								System.out.println("Veuillez choisir le vol a annuler [1-"+listAvionsVoulantAtterir.size()+"] :\n");
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<1 || choiceInt>listAvionsVoulantAtterir.size())
+								while(choiceInt<0 || choiceInt>+listAvionsVoulantAtterir.size())
 									choiceInt = sc.nextInt()-1;
-								aeroport.annuleVol(listAvionsVoulantAtterir.remove(choiceInt));
+								volAnnule = choiceInt;
+								choiceInt = 0;
+								System.out.println("Voulez vous choisir manuellement une période d'immobilisation? Manuelle (1)   Aléatoire (2)");
+								while(choiceInt<1 || choiceInt>2)
+									choiceInt = sc.nextInt();
+								if(choiceInt == 1){
+									choiceInt = 0;
+									System.out.println("Veuillez entrer la periode d'immobilisation desiree [1-5]");
+									while(choiceInt<1 || choiceInt>5)
+										choiceInt = sc.nextInt();
+									aeroport.annuleVol(listAvionsVoulantAtterir.remove(volAnnule),choiceInt);
+								}else if (choiceInt == 2){
+									aeroport.annuleVol(listAvionsVoulantAtterir.remove(volAnnule));
+								}	
 							}else{
 								System.out.println("Il n'y a pas de vol à annuler.");
 							}
