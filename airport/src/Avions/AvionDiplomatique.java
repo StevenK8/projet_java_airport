@@ -39,12 +39,15 @@ public class AvionDiplomatique extends Avion {
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Diplomate d : aeroport.getListDiplomates()) {
 			this.addDiplomate(d);
+			d.setNumeroVol(numVol);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
 			this.addPersonnel(p);
+			p.setNumeroVol(numVol);
 		}
 		for(Pilote p : aeroport.getListPilotes()) {
 			this.addPilote(p);
+			p.setNumeroVol(numVol);
 		}
 		//System.out.println(this);
     }

@@ -28,6 +28,9 @@ public abstract class Avion {
 	private boolean estEnVol = false;
 	private int periodeImmobilisation;
 	
+
+	protected static int numVol = 1;
+	
 	
     public Avion(EnumModele modele, int capacite, double poidsBagageMax, double volumeCarburant, int NbPiloteMin, int nbPersonnelMin){
         this.modele = modele;
@@ -41,6 +44,7 @@ public abstract class Avion {
 		listPersonnels = new ArrayList<Personnel>();
 		listOccupants = new ArrayList<Passager>();
 		periodeImmobilisation = 0;
+		numVol += 1;
 	}	
 	
     

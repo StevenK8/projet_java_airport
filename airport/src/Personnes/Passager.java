@@ -3,9 +3,7 @@ package Personnes;
 public class Passager extends Personne{
 	
 	private int numPasseport = 0;
-	//add voyage souhaite (2 aeroports) --> faire les classes Vol et Avion
-	//add historique de leurs vols (liste aeroports departs et arrivees) --> classe Vol
-	
+	private int numeroVol;
 	private boolean prendAvionPrivee = false;
 	
 	//constructeur temporaire
@@ -46,6 +44,14 @@ public class Passager extends Personne{
 		String res= "";
 		res += super.toString();
 		return res;
+	}
+	
+	public void setNumeroVol(int num) {
+		numeroVol = num;
+	}
+	
+	public int getNumeroVol() {
+		return numeroVol;
 	}
 	
 }

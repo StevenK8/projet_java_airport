@@ -32,43 +32,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);Random r = new Random();
 		System.out.println("BIENVENUE DANS VOTRE NOUVEL AEROPORT \n");
 		
-		int nbAvionDepart, nbPersonneDepart, nbPistesDecollage, nbPistesAterrissage;
-		//creation des avions
-		/*do {
-			System.out.println("Combien d'avions avez-vous actuellement dans votre aeroport ? [1-100]\n");
-			nbAvionDepart = sc.nextInt();
-		}while(nbAvionDepart < 1 || nbAvionDepart > 101);
-		aeroport.createAvions(nbAvionDepart);
-		
-		System.out.println("> Creation de  " + aeroport.listAvionsLignes.size() + " avions de ligne");
-		System.out.println("> Creation de  " + aeroport.listAvionsPrives.size() + " avions prives");
-		System.out.println("> Creation de  " + aeroport.listAvionsDiplomatiques.size() + " avions diplomatique");
-		
-		//Creation des personnes
-		do {
-			System.out.println("Combien de personnes sont actuellement dans votre aeroport ? [10-2000]\n");
-			nbPersonneDepart = sc.nextInt();
-		}while(nbPersonneDepart < 10 || nbPersonneDepart > 2001);
-		aeroport.createPersonne(nbPersonneDepart);
-		
-		System.out.println("> Creation de " + aeroport.listVoyageurs.size() + " passagers");
-		int nbPiloteDiplo = 0;int nbPiloteAvionLigne = 0;int nbPilotePrive = 0;
-		for (Pilote p : aeroport.listPilotes) {
-			if(p.getCompagnie() != null) {
-				nbPiloteAvionLigne += 1;
-			}
-			else if(p.getEmployeur() != null) {
-				nbPilotePrive += 1;
-			}
-			else if(p.getCompagnie() == null && p.getEmployeur() == null){
-				nbPiloteDiplo += 1;
-			}
-		}
-		
-		System.out.println("> Creation de " + nbPiloteAvionLigne + " pilotes de ligne");
-		System.out.println("> Creation de " + nbPilotePrive + " pilotes prives");
-		System.out.println("> Creation de " + nbPiloteDiplo + " pilotes diplomatique");
-		System.out.println("> Creation de " + aeroport.listPersonnels.size() + " personnels navigants");*/
+		int nbPistesDecollage, nbPistesAterrissage;
 		
 		do {
 			System.out.println("Combien de pistes de decollages avez-vous ? [1-5]\n");

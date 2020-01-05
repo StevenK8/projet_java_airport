@@ -24,12 +24,15 @@ public class AvionLigne extends Avion{
 	 */
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
+    		p.setNumeroVol(numVol);
 			super.addPersonne(p);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
+			p.setNumeroVol(numVol);
 			this.addPersonnel(p);
 		}
 		for(Pilote p : aeroport.getListPilotes()) {
+			p.setNumeroVol(numVol);
 			this.addPilote(p);
 		}
 		//System.out.println(this);

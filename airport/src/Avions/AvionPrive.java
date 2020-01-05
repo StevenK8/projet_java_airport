@@ -30,13 +30,16 @@ public class AvionPrive extends Avion{
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
 			this.addPassager(p);
+			p.setNumeroVol(numVol);
 		}
 		for(Personnel p : aeroport.getListPersonnels()) {
 			super.addPersonne(p);
+			p.setNumeroVol(numVol);
 		}
 		for(Pilote p : aeroport.getListPilotes()) {
 			if(p.getEmployeur() != null) {
 				this.addPilote(p);
+				p.setNumeroVol(numVol);
 			}
 		}
 		//System.out.println(this);
