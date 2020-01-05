@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Main.Aeroport;
-import Personnes.Pilote;
 import Vols.Vol;
 
 public class PisteAtterissage extends Piste{

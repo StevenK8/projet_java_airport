@@ -1,12 +1,9 @@
 package Vols;
 
+import java.util.Random;
+
 import Avions.Avion;
 import Main.Aeroport;
-import Personnes.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Vol {
 

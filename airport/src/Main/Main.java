@@ -1,7 +1,6 @@
 package Main;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -30,9 +29,9 @@ public class Main {
 	 * Il peut s'agir de pilotes, de personnels navigants mais aussi de simples passagers.
 	 * Lorsque qu'un certains nombre de contraintes sont respectees (pauses des pilotes, bonne compagnie aerienne, pauses avant 
 	 * un prochain decollage...) un avion est rempli et peut decoller.
-	 * L'atterrissage se gere de la meme façon : l'utilisateur peut gerer les priorites d'atterrissages de maniere automatique.
+	 * L'atterrissage se gere de la meme faï¿½on : l'utilisateur peut gerer les priorites d'atterrissages de maniere automatique.
 	 * Il peut aussi consulter l'etat des avions, des passagers et de toutes les entites en attente dans son aeroport.
-	 * L'application se deroule sous formes d'intervalles d'actions. Il y a en tout 7 actions à chaque "tour" de jeu qui se repeteront.
+	 * L'application se deroule sous formes d'intervalles d'actions. Il y a en tout 7 actions ï¿½ chaque "tour" de jeu qui se repeteront.
 	 * A la fin de chaque tour, l'utilisateur peut aussi realiser certaines operations speciales comme la fermeture d'une piste ou sa reouverture.
 	 */
 	public static void main(String[] args) {	
@@ -353,6 +352,7 @@ public class Main {
 					}
 				}else if (resume == 5){
 					System.out.println("Au revoir!");
+					sc.close();
 					System.exit(0);
 				}
 			}while( resume != 4);
