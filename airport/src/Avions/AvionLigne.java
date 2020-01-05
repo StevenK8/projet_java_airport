@@ -22,6 +22,7 @@ public class AvionLigne extends Avion{
 	 * Remplit l'avion de ligne
 	 * @param aeroport
 	 */
+	
 	public void remplissageAvion(Aeroport aeroport) {
     	for (Passager p : aeroport.getListVoyageurs()) {
     		p.setNumeroVol(numVol);
