@@ -274,7 +274,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>+listAvionsVoulantAtterir.size())
+								while(choiceInt<0 || choiceInt>=listAvionsVoulantAtterir.size())
 									choiceInt = sc.nextInt()-1;
 								volAnnule = choiceInt;
 								choiceInt = 0;
