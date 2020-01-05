@@ -166,7 +166,7 @@ public class Main {
 			aeroport.diminueCarburantAvionsEnVol();
 			
 			do {
-				System.out.println("Actions Speciales (1)    Voir etat aeroport ? (2)    Voir avions en vol (3)    Prochain intervalle (4)");
+				System.out.println("Actions Speciales (1)    Voir etat aeroport ? (2)    Voir avions en vol (3)    Prochain intervalle (4)    Quitter (5)");
 				resume = sc.nextInt();
 				
 				if(resume == 1) {
@@ -190,7 +190,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								while(choiceInt<1 || choiceInt>aeroport.getListPisteAtterissages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.openPiste(aeroport.getListPisteAtterissages().get(choiceInt));
 							}else{
@@ -211,7 +211,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 							
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteAtterissages().size())
+								while(choiceInt<1 || choiceInt>aeroport.getListPisteAtterissages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.closePiste(aeroport.getListPisteAtterissages().get(choiceInt));
 							}else{
@@ -233,7 +233,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								while(choiceInt<1 || choiceInt>aeroport.getListPisteDecollages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.openPiste(aeroport.getListPisteDecollages().get(choiceInt));
 							}else{
@@ -255,7 +255,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=aeroport.getListPisteDecollages().size())
+								while(choiceInt<1 || choiceInt>aeroport.getListPisteDecollages().size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.closePiste(aeroport.getListPisteDecollages().get(choiceInt));
 							}else{
@@ -273,7 +273,7 @@ public class Main {
 								System.out.println(strList);
 								System.out.print("> ");
 
-								while(choiceInt<0 || choiceInt>=listAvionsVoulantAtterir.size())
+								while(choiceInt<1 || choiceInt>listAvionsVoulantAtterir.size())
 									choiceInt = sc.nextInt()-1;
 								aeroport.annuleVol(listAvionsVoulantAtterir.remove(choiceInt));
 							}else{
@@ -361,6 +361,9 @@ public class Main {
 							System.out.println(avionEnVol + "- " + a.toString());
 						}
 					}
+				}else if (resume == 5){
+					System.out.println("Au revoir!");
+					System.exit(0);
 				}
 			}while( resume != 4);
 		}
